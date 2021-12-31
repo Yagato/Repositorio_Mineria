@@ -324,6 +324,7 @@ public class AgregarSimulador extends javax.swing.JFrame {
                     }
                 }
                 catch(SQLException e){
+                    JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                     e.printStackTrace();
                 }
             }

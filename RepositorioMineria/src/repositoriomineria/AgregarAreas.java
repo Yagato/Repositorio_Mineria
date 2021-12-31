@@ -126,6 +126,7 @@ public class AgregarAreas extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
         
@@ -273,6 +274,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Ya existe esa área.");
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -319,6 +321,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                 rsCheck.close();
             }
             catch(Exception e){
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -358,6 +361,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                     pstDelete.close();
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }

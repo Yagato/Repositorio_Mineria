@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\Documents\GitHub\Repositorio-Mineria\RepositorioMineria\dist\RepositorioMineria.jar</jar>
+  <jar>D:\Documents\GitHub\Repositorio-Backup\RepositorioMineria\dist\RepositorioMineria.jar</jar>
   <outfile>D:\Documents\Escuela\S8\GPS\Documentacion proyecto\Repositorio\Repositorio.exe</outfile>
   <errTitle>Necesita instalar Java para ejecutar este programa</errTitle>
   <cmdLine></cmdLine>

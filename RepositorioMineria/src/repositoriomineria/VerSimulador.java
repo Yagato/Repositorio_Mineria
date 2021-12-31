@@ -205,6 +205,7 @@ public class VerSimulador extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }
@@ -535,6 +536,7 @@ public class VerSimulador extends javax.swing.JFrame {
                 }
             }
             catch(Exception e){
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -698,6 +700,7 @@ public class VerSimulador extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }//GEN-LAST:event_botonEliminarActionPerformed

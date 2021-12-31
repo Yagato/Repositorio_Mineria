@@ -268,6 +268,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Rol actualizado correctamente.");
             }
             catch(Exception e){
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -304,6 +305,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                     rolAntiguo = "";
                 }
                 catch(Exception e){
+                    JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                     e.printStackTrace();
                 }
             }
@@ -359,6 +361,7 @@ public class VerUsuarios extends javax.swing.JFrame {
             rsConsulta.close();
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
         

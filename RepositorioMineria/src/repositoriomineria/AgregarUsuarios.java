@@ -250,6 +250,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }//GEN-LAST:event_botonRegistrarseActionPerformed

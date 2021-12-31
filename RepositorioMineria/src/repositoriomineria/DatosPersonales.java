@@ -216,6 +216,7 @@ public class DatosPersonales extends javax.swing.JFrame {
             rsDatos.close();
         }
         catch(Exception e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }
@@ -328,6 +329,7 @@ public class DatosPersonales extends javax.swing.JFrame {
                 }
             }
             catch(Exception e){
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -356,6 +358,7 @@ public class DatosPersonales extends javax.swing.JFrame {
                 new InicioSesion().setVisible(true);
             }
             catch(Exception e){
+                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }

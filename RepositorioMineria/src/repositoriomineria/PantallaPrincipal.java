@@ -33,6 +33,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -230,6 +231,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
@@ -300,6 +302,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
@@ -373,6 +376,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
