@@ -35,7 +35,7 @@ public class Conexion {
         try{
             //Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/repositoriomineria","root","");
             Connection cn = DriverManager.getConnection("jdbc:mysql://"+ip_Address+":3306/repositoriomineria",
-                    "yagato","password");
+                    "username","password");
             return cn;
         }catch(Exception e){
             e.printStackTrace();
