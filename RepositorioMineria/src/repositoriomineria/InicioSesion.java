@@ -20,7 +20,7 @@ public class InicioSesion extends javax.swing.JFrame {
      * Creates new form InicioSesion
      */
     JComboBox comboHosts = new JComboBox();
-    DefaultComboBoxModel model = new DefaultComboBoxModel(new String[]{"LAPTOP-818UCN4A"});
+    DefaultComboBoxModel model = new DefaultComboBoxModel();
     InetAddress ip = null;
     String ipHost;
     
