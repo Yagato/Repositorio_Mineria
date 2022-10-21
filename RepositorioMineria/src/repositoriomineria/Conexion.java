@@ -2,7 +2,7 @@ package repositoriomineria;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  */
 
 import java.net.InetAddress;

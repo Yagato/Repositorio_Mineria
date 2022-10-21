@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  * @author Ocampo Mora
  */
 public class AgregarSimulador extends javax.swing.JFrame {

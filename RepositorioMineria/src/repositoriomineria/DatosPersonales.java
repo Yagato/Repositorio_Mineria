@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  */
 public class DatosPersonales extends javax.swing.JFrame {
     

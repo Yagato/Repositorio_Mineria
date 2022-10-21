@@ -46,7 +46,7 @@ import org.jfree.io.IOUtils;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  * @author Ocampo Mora
  */
 

@@ -30,7 +30,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  * @author Ocampo Mora
  */
 public class VerSimulador extends javax.swing.JFrame {

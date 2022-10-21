@@ -2,7 +2,7 @@ package repositoriomineria;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  * @author Ocampo Mora
  */
 

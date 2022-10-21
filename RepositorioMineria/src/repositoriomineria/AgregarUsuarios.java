@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  */
 public class AgregarUsuarios extends javax.swing.JFrame {
 

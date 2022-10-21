@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author Carlos Alberto Gonzalez Guerrero
+ * @author YGT
  */
 public class TablaImagen extends DefaultTableCellRenderer{
 
