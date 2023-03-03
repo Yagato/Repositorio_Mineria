@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  * @author Ocampo Mora
  */
 public class AgregarSimulador extends javax.swing.JFrame {
@@ -72,7 +72,7 @@ public class AgregarSimulador extends javax.swing.JFrame {
         comboTutorial.addItem("No");
         
         areas = new Consultas(ipAddress).getAreas();
-        areas.setBackground(new Color(253,193,1));
+        //areas.setBackground(new Color(253,193,1));
         areas.setFont(new Font("Arial", Font.BOLD, 14));
         areas.setBounds(180, 160, 150, 25);
         jLabelFondo.add(areas);
@@ -142,7 +142,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel5.setText("Tutorial:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        comboTutorial.setBackground(new java.awt.Color(253, 193, 1));
         comboTutorial.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboTutorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(comboTutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
@@ -156,7 +155,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel6.setText("Costo:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
-        textCosto.setBackground(new java.awt.Color(255, 255, 51));
         textCosto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 345, 70, -1));
 
@@ -164,7 +162,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel7.setText("Características:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
-        textCaracteristicas.setBackground(new java.awt.Color(255, 255, 51));
         textCaracteristicas.setColumns(20);
         textCaracteristicas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textCaracteristicas.setRows(5);
@@ -181,7 +178,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel1.setText("Nombre del simulador:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        textNombre.setBackground(new java.awt.Color(255, 255, 51));
         textNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 250, -1));
 
@@ -194,8 +190,9 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel3.setText("Logo");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        botonAbrir.setBackground(new java.awt.Color(253, 193, 1));
+        botonAbrir.setBackground(new java.awt.Color(51, 51, 255));
         botonAbrir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonAbrir.setForeground(new java.awt.Color(255, 255, 255));
         botonAbrir.setText("Abrir imagen");
         botonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,11 +205,9 @@ public class AgregarSimulador extends javax.swing.JFrame {
         jLabel4.setText("Requerimientos:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
-        textLink.setBackground(new java.awt.Color(255, 255, 51));
         textLink.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(textLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, 250, -1));
 
-        textReq.setBackground(new java.awt.Color(255, 255, 51));
         textReq.setColumns(20);
         textReq.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textReq.setRows(5);
@@ -220,8 +215,9 @@ public class AgregarSimulador extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 300, -1));
 
-        botonAgregar.setBackground(new java.awt.Color(0, 255, 0));
+        botonAgregar.setBackground(new java.awt.Color(0, 255, 51));
         botonAgregar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
         botonAgregar.setText("Agregar");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,8 +225,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, -1, -1));
-
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoL.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 630));
 
         pack();
@@ -324,7 +318,6 @@ public class AgregarSimulador extends javax.swing.JFrame {
                     }
                 }
                 catch(SQLException e){
-                    JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                     e.printStackTrace();
                 }
             }

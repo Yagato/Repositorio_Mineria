@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class AgregarUsuarios extends javax.swing.JFrame {
 
@@ -71,7 +71,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         setBackground(new java.awt.Color(247, 242, 216));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(247, 242, 216));
         jPanel1.setForeground(new java.awt.Color(240, 240, 240));
         jPanel1.setLayout(new java.awt.GridLayout(6, 2, -100, 30));
 
@@ -79,7 +78,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
-        textNombres.setBackground(new java.awt.Color(255, 255, 51));
         textNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textNombres);
 
@@ -87,7 +85,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
-        textApellidos.setBackground(new java.awt.Color(255, 255, 51));
         textApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textApellidos);
 
@@ -95,7 +92,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
-        textUsername.setBackground(new java.awt.Color(255, 255, 51));
         textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textUsername);
 
@@ -103,7 +99,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        textContrasena.setBackground(new java.awt.Color(255, 255, 51));
         textContrasena.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textContrasena);
 
@@ -111,7 +106,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
-        textTelefono.setBackground(new java.awt.Color(255, 255, 51));
         textTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textTelefono);
 
@@ -119,14 +113,14 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
-        textCorreo.setBackground(new java.awt.Color(255, 255, 51));
         textCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textCorreo);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, 440));
 
-        botonRegistrarse.setBackground(new java.awt.Color(253, 193, 1));
+        botonRegistrarse.setBackground(new java.awt.Color(0, 204, 51));
         botonRegistrarse.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistrarse.setText("Registrarse");
         botonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,8 +128,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(247, 242, 216));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
@@ -250,7 +242,6 @@ public class AgregarUsuarios extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }//GEN-LAST:event_botonRegistrarseActionPerformed

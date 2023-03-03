@@ -1,6 +1,5 @@
 package repositoriomineria;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,20 +11,16 @@ import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -33,7 +28,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -42,11 +36,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import org.jfree.io.IOUtils;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  * @author Ocampo Mora
  */
 
@@ -70,7 +63,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     public PantallaPrincipal(String idUser, String user, String rol, String ip) {
-        super("Pantalla Principal");
+        //super("Pantalla Principal");
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -115,12 +108,30 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
         menuBar.add(new JSeparator());
         
-        searchButton.setBackground(new Color(253,193,1));
+        //searchButton.setBackground(new Color(253,193,1));
         searchButton.setFont(new Font("Arial", Font.BOLD, 14));
         searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         
-        searchText.setBackground(new Color(255,255,51));
+        searchText.setBackground(new Color(121,125,130));
+        searchText.setText("Buscar...");
         searchText.setFont(new Font("Arial", Font.BOLD, 14));
+        searchText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                //searchText.setForeground(Color.WHITE);
+                if(searchText.getText().equals("Buscar..."))
+                    searchText.setText("");
+                super.focusGained(e);
+            }
+            
+            @Override
+            public void focusLost(FocusEvent e) {
+                //searchText.setForeground(Color.GRAY);
+                if(searchText.getText().equals(""))
+                    searchText.setText("Buscar...");
+                super.focusLost(e);
+            }
+        });
         
         searchButton.addActionListener((ActionEvent evt) -> {
             String nombre = searchText.getText().trim();
@@ -130,11 +141,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });    
         
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        refreshButton.setBackground(new Color(153,177,251));
+        //refreshButton.setBackground(new Color(153,177,251));
         refreshButton.setFont(new Font("Arial", Font.BOLD, 14));
         
         refreshButton.addActionListener((ActionEvent evt) -> {
             tableModelSimuladores.setRowCount(0);
+            searchText.setText("");
+            comboBoxAreas.setSelectedIndex(0);
             this.verTabla();
         }); 
         
@@ -159,14 +172,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 if(!nombreArea.equals("-")){
                     tableModelSimuladores.setRowCount(0);
                     filtrarPorAreas(nombreArea);
-                    comboBoxAreas.removeItem("-");
+                    //comboBoxAreas.removeItem("-");
                 }
             }
         });
         
         menuBar.add(comboBoxAreas);
         menuBar.add(refreshButton);
-        menuBar.add(Box.createHorizontalGlue());
+        //menuBar.add(Box.createHorizontalGlue());
     }
     
     public JTable verTabla(){
@@ -189,9 +202,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         tabla.setFillsViewportHeight(true);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setFont(new Font("Arial", Font.BOLD, 16));
+        tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(253,193,1));
+        tabla.getTableHeader().setBackground(new Color(114,137,218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
+        tabla.getTableHeader().setForeground(Color.WHITE);
         
         String consulta = "SELECT logo, nombre_simulador, costo "
                     + "FROM simuladores "
@@ -231,7 +246,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
@@ -302,7 +316,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
@@ -376,7 +389,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             pst.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
             System.out.println(e.getErrorCode());
         }
@@ -408,6 +420,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(253, 193, 1));
         setIconImage(getIconImage());
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(1150, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

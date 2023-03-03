@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class DatosPersonales extends javax.swing.JFrame {
     
@@ -61,6 +61,7 @@ public class DatosPersonales extends javax.swing.JFrame {
                 pp.setEnabled(true);
             }
         });
+        
     }
     
     public Image getIconImage() {
@@ -100,8 +101,9 @@ public class DatosPersonales extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonActualizar.setBackground(new java.awt.Color(253, 193, 1));
+        botonActualizar.setBackground(new java.awt.Color(0, 51, 255));
         botonActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizar.setText("Actualizar Datos");
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,10 +123,8 @@ public class DatosPersonales extends javax.swing.JFrame {
         });
         getContentPane().add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(247, 242, 216));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(247, 242, 216));
         jPanel1.setForeground(new java.awt.Color(240, 240, 240));
         jPanel1.setLayout(new java.awt.GridLayout(7, 2, -100, 30));
 
@@ -132,7 +132,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
-        textNombres.setBackground(new java.awt.Color(255, 255, 51));
         textNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textNombres);
 
@@ -140,7 +139,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
-        textApellidos.setBackground(new java.awt.Color(255, 255, 51));
         textApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textApellidos);
 
@@ -148,7 +146,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
-        textUsername.setBackground(new java.awt.Color(255, 255, 51));
         textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textUsername);
 
@@ -156,7 +153,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        textContrasena.setBackground(new java.awt.Color(255, 255, 51));
         textContrasena.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textContrasena);
 
@@ -164,7 +160,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
-        textTelefono.setBackground(new java.awt.Color(255, 255, 51));
         textTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textTelefono);
 
@@ -172,7 +167,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
-        textCorreo.setBackground(new java.awt.Color(255, 255, 51));
         textCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textCorreo);
 
@@ -216,7 +210,6 @@ public class DatosPersonales extends javax.swing.JFrame {
             rsDatos.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }
@@ -329,7 +322,6 @@ public class DatosPersonales extends javax.swing.JFrame {
                 }
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -358,7 +350,6 @@ public class DatosPersonales extends javax.swing.JFrame {
                 new InicioSesion().setVisible(true);
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }

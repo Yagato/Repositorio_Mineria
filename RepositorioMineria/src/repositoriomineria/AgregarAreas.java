@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package repositoriomineria;
 
 import java.awt.BorderLayout;
@@ -22,7 +27,7 @@ import javax.swing.JScrollPane;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class AgregarAreas extends javax.swing.JFrame {
     
@@ -97,9 +102,11 @@ public class AgregarAreas extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(20);
         tabla.setFont(new Font("Arial", Font.BOLD, 14));
+        tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(253,193,1));
-        tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));;
+        tabla.getTableHeader().setBackground(new Color(114,137,218));
+        tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+        tabla.getTableHeader().setForeground(Color.WHITE);
         
         String consulta = "SELECT nombre_area FROM areas";
         
@@ -121,7 +128,6 @@ public class AgregarAreas extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
         
@@ -166,7 +172,6 @@ public class AgregarAreas extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
-        jPanel4.setBackground(new java.awt.Color(247, 242, 216));
         jPanel4.setLayout(new java.awt.GridLayout(4, 2, 100, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -179,18 +184,17 @@ public class AgregarAreas extends javax.swing.JFrame {
         jLabel2.setText("Nueva Área");
         jPanel4.add(jLabel2);
 
-        textAreaSeleccionada.setBackground(new java.awt.Color(255, 255, 51));
         textAreaSeleccionada.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textAreaSeleccionada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel4.add(textAreaSeleccionada);
 
-        textNuevaArea.setBackground(new java.awt.Color(255, 255, 51));
         textNuevaArea.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textNuevaArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel4.add(textNuevaArea);
 
-        botonActualizarArea.setBackground(new java.awt.Color(253, 193, 1));
+        botonActualizarArea.setBackground(new java.awt.Color(51, 51, 255));
         botonActualizarArea.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonActualizarArea.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizarArea.setText("Actualizar");
         botonActualizarArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,8 +203,9 @@ public class AgregarAreas extends javax.swing.JFrame {
         });
         jPanel4.add(botonActualizarArea);
 
-        botonAgregar.setBackground(new java.awt.Color(0, 255, 0));
+        botonAgregar.setBackground(new java.awt.Color(0, 204, 0));
         botonAgregar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
         botonAgregar.setText("Agregar");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +274,6 @@ public class AgregarAreas extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Ya existe esa área.");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -316,7 +320,6 @@ public class AgregarAreas extends javax.swing.JFrame {
                 rsCheck.close();
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -356,7 +359,6 @@ public class AgregarAreas extends javax.swing.JFrame {
                     pstDelete.close();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }

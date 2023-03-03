@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package repositoriomineria;
 
 import java.awt.BorderLayout;
@@ -22,7 +27,7 @@ import javax.swing.JScrollPane;
 
 /**
  *
- * @author YGT
+ * @author Lenovo
  */
 public class VerUsuarios extends javax.swing.JFrame {
 
@@ -169,8 +174,6 @@ public class VerUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(2, 1));
 
-        jPanel1.setBackground(new java.awt.Color(247, 242, 216));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -184,7 +187,6 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(247, 242, 216));
         jPanel2.setLayout(new java.awt.GridLayout(3, 2, 20, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -201,13 +203,13 @@ public class VerUsuarios extends javax.swing.JFrame {
         jLabel2.setText("Rol:");
         jPanel2.add(jLabel2);
 
-        comboBoxRol.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboBoxRol);
 
-        botonActualizarRol.setBackground(new java.awt.Color(253, 193, 1));
+        botonActualizarRol.setBackground(new java.awt.Color(0, 102, 255));
         botonActualizarRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonActualizarRol.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizarRol.setText("Actualizar rol");
         botonActualizarRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +265,6 @@ public class VerUsuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Rol actualizado correctamente.");
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -300,7 +301,6 @@ public class VerUsuarios extends javax.swing.JFrame {
                     rolAntiguo = "";
                 }
                 catch(Exception e){
-                    JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                     e.printStackTrace();
                 }
             }
@@ -327,9 +327,11 @@ public class VerUsuarios extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(50);
         tabla.setFont(new Font("Arial", Font.BOLD, 14));
+        tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(253,193,1));
+        tabla.getTableHeader().setBackground(new Color(114,137,218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
+        tabla.getTableHeader().setForeground(Color.WHITE);
         
         String consulta = "SELECT CONCAT(nombres, ' ', apellidos) AS nombre, username, telefono, correo, rol "
                         + "FROM usuarios";
@@ -356,7 +358,6 @@ public class VerUsuarios extends javax.swing.JFrame {
             rsConsulta.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
         

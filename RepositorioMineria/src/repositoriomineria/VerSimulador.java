@@ -30,7 +30,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  * @author Ocampo Mora
  */
 public class VerSimulador extends javax.swing.JFrame {
@@ -135,7 +135,7 @@ public class VerSimulador extends javax.swing.JFrame {
         textLink.setLineWrap(true);
         textLink.setWrapStyleWord(true);
                 
-        jPanel1.add(calendar, new AbsoluteConstraints(590, 510, 105, 14));
+        jPanel1.add(calendar, new AbsoluteConstraints(590, 510, 105, 20));
         editor.setEditable(false);
      
         this.displayData();
@@ -205,7 +205,6 @@ public class VerSimulador extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }
@@ -294,11 +293,9 @@ public class VerSimulador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
 
-        jPanel1.setBackground(new java.awt.Color(247, 242, 216));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 218, 200));
 
-        textNombre.setBackground(new java.awt.Color(255, 255, 51));
         textNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 218, -1));
 
@@ -306,7 +303,7 @@ public class VerSimulador extends javax.swing.JFrame {
         jLabel2.setText("REQUISITOS");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
-        textRequerimientos.setBackground(new java.awt.Color(255, 255, 51));
+        textRequerimientos.setBackground(new java.awt.Color(102, 102, 102));
         textRequerimientos.setColumns(20);
         textRequerimientos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textRequerimientos.setRows(5);
@@ -322,7 +319,6 @@ public class VerSimulador extends javax.swing.JFrame {
         jLabel4.setText("COSTO");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
 
-        textCosto.setBackground(new java.awt.Color(255, 255, 51));
         textCosto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 174, 112, -1));
 
@@ -330,7 +326,7 @@ public class VerSimulador extends javax.swing.JFrame {
         jLabel5.setText("CARACTERISTICAS");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
-        textCaracteristicas.setBackground(new java.awt.Color(255, 255, 51));
+        textCaracteristicas.setBackground(new java.awt.Color(102, 102, 102));
         textCaracteristicas.setColumns(20);
         textCaracteristicas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textCaracteristicas.setRows(5);
@@ -350,8 +346,9 @@ public class VerSimulador extends javax.swing.JFrame {
         jLabel8.setText("ÁREAS");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
 
-        botonImagen.setBackground(new java.awt.Color(253, 193, 1));
+        botonImagen.setBackground(new java.awt.Color(0, 51, 255));
         botonImagen.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonImagen.setForeground(new java.awt.Color(255, 255, 255));
         botonImagen.setText("Elegir imagen");
         botonImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,43 +357,37 @@ public class VerSimulador extends javax.swing.JFrame {
         });
         jPanel1.add(botonImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
-        radioSi.setBackground(new java.awt.Color(247, 242, 216));
         radioSi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         radioSi.setText("Si");
         jPanel1.add(radioSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 77, -1, -1));
 
-        radioNo.setBackground(new java.awt.Color(247, 242, 216));
         radioNo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         radioNo.setText("No");
         jPanel1.add(radioNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 77, -1, -1));
 
-        comboBoxArea1.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxArea1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxArea1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboBoxArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
 
-        comboBoxArea2.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxArea2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxArea2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboBoxArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, -1));
 
-        comboBoxArea3.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxArea3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxArea3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboBoxArea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, -1, -1));
 
-        comboBoxArea4.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxArea4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxArea4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboBoxArea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, -1, -1));
 
-        comboBoxArea5.setBackground(new java.awt.Color(255, 255, 51));
         comboBoxArea5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxArea5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboBoxArea5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
 
-        botonActualizar.setBackground(new java.awt.Color(253, 193, 1));
+        botonActualizar.setBackground(new java.awt.Color(0, 204, 0));
         botonActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizar.setText("Actualizar");
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +396,7 @@ public class VerSimulador extends javax.swing.JFrame {
         });
         jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
 
-        textLink.setBackground(new java.awt.Color(255, 255, 51));
+        textLink.setBackground(new java.awt.Color(102, 102, 102));
         textLink.setColumns(20);
         textLink.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         textLink.setRows(5);
@@ -536,7 +527,6 @@ public class VerSimulador extends javax.swing.JFrame {
                 }
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 e.printStackTrace();
             }
         }
@@ -700,7 +690,6 @@ public class VerSimulador extends javax.swing.JFrame {
             rs.close();
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
             e.printStackTrace();
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
