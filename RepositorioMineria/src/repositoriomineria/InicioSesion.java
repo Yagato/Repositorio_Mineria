@@ -19,7 +19,7 @@ public class InicioSesion extends javax.swing.JFrame {
     /**
      * Creates new form InicioSesion
      */
-    JComboBox comboHosts = new JComboBox();
+    //JComboBox comboHosts = new JComboBox();
     DefaultComboBoxModel model = new DefaultComboBoxModel(new String[]{"LAPTOP-818UCN4A"});
     InetAddress ip = null;
     String ipHost;
@@ -31,10 +31,12 @@ public class InicioSesion extends javax.swing.JFrame {
         this.setIconImage(getIconImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        /*
         comboHosts = new JComboBox(model);
         //comboHosts.setBackground(new Color(255,255,255));
         comboHosts.setFont(new Font("Arial", Font.BOLD, 14));
         comboHosts.setBounds(90, 85, 230, 23);
+        */
         
         try{
             ip = InetAddress.getLocalHost();
@@ -43,10 +45,12 @@ public class InicioSesion extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
+        /*
         if(model.getIndexOf(ip.getHostName()) == -1){
             comboHosts.addItem("Local: " + ip.getHostName());
         }
         jLabelFondo.add(comboHosts);
+        */
         
         this.pack();
     }
@@ -64,7 +68,6 @@ public class InicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         botonCrearCuenta = new javax.swing.JButton();
         jLabelIcon = new javax.swing.JLabel();
         jLabelUser = new javax.swing.JLabel();
@@ -78,11 +81,6 @@ public class InicioSesion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Servidor:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         botonCrearCuenta.setBackground(new java.awt.Color(0, 255, 0));
         botonCrearCuenta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -156,12 +154,15 @@ public class InicioSesion extends javax.swing.JFrame {
         
         String user = jTextFieldUser.getText().trim();
         String password = jPassword.getText().trim();
+        String hashedPassword = Passwords.cipher(password, user);
         
+        /*
         String host = comboHosts.getSelectedItem().toString();
         
         if(host.toLowerCase().contains("Local: ".toLowerCase())){
             host = host.replace("Local: ", "");
         }
+        */
         
        /* ip = Conexion.getHostIP(host);
         ipHost = ip.getHostAddress();*/
@@ -176,7 +177,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 Connection cn = new Conexion().conectar();
                 PreparedStatement pst = cn.prepareStatement(
                         "select id_usuario, username, contrasenia, rol from usuarios where username = '" 
-                        + user + "' and contrasenia = '" + password + "'");
+                        + user + "' and contrasenia = '" + hashedPassword + "'");
                 ResultSet rs = pst.executeQuery();
                 
                 if(rs.next()){
@@ -204,11 +205,13 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void botonCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuentaActionPerformed
         try{
+            /*
             String host = comboHosts.getSelectedItem().toString();
         
             if(host.toLowerCase().contains("Local: ".toLowerCase())){
                 host = host.replace("Local: ", "");
             }
+            */
 
             //ip = Conexion.getHostIP(host);
             ipHost = ip.getHostAddress();
@@ -222,7 +225,6 @@ public class InicioSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCrearCuenta;
     private javax.swing.JButton jButtonSesion;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JLabel jLabelName;

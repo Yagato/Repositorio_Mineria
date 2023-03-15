@@ -2,15 +2,19 @@ package repositoriomineria;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.List;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -23,6 +27,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
      */
     
     String ipAddress;
+    List<JTextField> list = new ArrayList<>();
     
     public AgregarUsuarios(String ip) {
         super("Crear cuenta");
@@ -32,7 +37,43 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         this.setIconImage(getIconImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        this.ipAddress = ip;
+        botonRegistrarse.setEnabled(false);
+        botonRegistrarse.setToolTipText("Llene todos los campos");
+        
+        list.add(textNombres);
+        list.add(textApellidos);
+        list.add(textCorreo);
+        list.add(textUsername);
+        list.add(textTelefono);
+        
+        DocumentListener listener = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                boolean canEnable = true;
+                for(JTextField tf : list) {
+                    if(tf.getText().isEmpty() || passwordField.getText().isEmpty()) {
+                        canEnable = false;
+                    }
+                }
+                botonRegistrarse.setEnabled(canEnable);
+            }  
+        };
+        
+        for(JTextField tf : list) {
+            tf.getDocument().addDocumentListener(listener);
+        }
+        
+        //this.ipAddress = ip;
     }
 
     public Image getIconImage() {
@@ -57,7 +98,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         textUsername = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        textContrasena = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         textTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -104,8 +145,9 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        textContrasena.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(textContrasena);
+        passwordField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        passwordField.setToolTipText("");
+        jPanel1.add(passwordField);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,7 +195,8 @@ public class AgregarUsuarios extends javax.swing.JFrame {
             String nombres = textNombres.getText().trim();
             String apellidos = textApellidos.getText().trim();
             String username = textUsername.getText().trim();
-            String contrasena = textContrasena.getText().trim();
+            String contrasena = passwordField.getText().trim();
+            String hashedPassword = Passwords.cipher(contrasena, username);
             String telefono = textTelefono.getText().trim();
             String correo = textCorreo.getText().trim();
             
@@ -188,7 +231,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
                                         pstInsertUser.setString(2, nombres);
                                         pstInsertUser.setString(3, apellidos);
                                         pstInsertUser.setString(4, username);
-                                        pstInsertUser.setString(5, contrasena);
+                                        pstInsertUser.setString(5, hashedPassword);
                                         pstInsertUser.setString(6, telefono);
                                         pstInsertUser.setString(7, correo);
                                         pstInsertUser.setString(8, "Usuario");
@@ -200,7 +243,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
                                         textNombres.setText("");
                                         textApellidos.setText("");
                                         textUsername.setText("");
-                                        textContrasena.setText("");
+                                        passwordField.setText("");
                                         textTelefono.setText("");
                                         textCorreo.setText("");
                                         textCorreo.setText("");
@@ -211,7 +254,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
                                     else{
                                         JOptionPane.showMessageDialog(this, "Contraseña no válida. Debe haber mínimo 8 "
                                                 + "caracteres, una o más mayúsculas y minúsculas, y uno o más números");
-                                        textContrasena.setText(""); 
+                                        passwordField.setText(""); 
                                     }
                                 }
                                 else{
@@ -266,8 +309,8 @@ public class AgregarUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField textApellidos;
-    private javax.swing.JTextField textContrasena;
     private javax.swing.JTextField textCorreo;
     private javax.swing.JTextField textNombres;
     private javax.swing.JTextField textTelefono;
