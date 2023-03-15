@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package repositoriomineria;
 
 import java.sql.PreparedStatement;
@@ -26,7 +21,7 @@ public class Simuladores {
     public String getIDSimulador(String nombre){
         String consultaID = "select id_simulador from simuladores where nombre_simulador = '" + nombre + "'";
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement obtenerIDSimulador = cn.prepareStatement(consultaID);
             ResultSet rs = obtenerIDSimulador.executeQuery();
             while(rs.next()){

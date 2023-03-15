@@ -71,10 +71,12 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         setBackground(new java.awt.Color(247, 242, 216));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setForeground(new java.awt.Color(240, 240, 240));
+        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridLayout(6, 2, -100, 30));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
@@ -82,6 +84,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel1.add(textNombres);
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
@@ -89,6 +92,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel1.add(textApellidos);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
@@ -96,6 +100,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel1.add(textUsername);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
@@ -103,6 +108,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel1.add(textContrasena);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
@@ -110,6 +116,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel1.add(textTelefono);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
@@ -129,8 +136,10 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         });
         getContentPane().add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
 
+        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("TODOS LOS CAMPOS SON OBLIGATORIOS");
         jPanel2.add(jLabel1);
 
@@ -154,7 +163,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
                 String checkTelefono = "SELECT * FROM usuarios WHERE telefono = '" + telefono + "'";
                 String checkCorreo = "SELECT * FROM usuarios WHERE correo = '" + correo + "'";
 
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
 
                 PreparedStatement pstCheckUsername = cn.prepareStatement(checkUsername);
                 PreparedStatement pstCheckTelefono = cn.prepareStatement(checkTelefono);

@@ -159,7 +159,7 @@ public class VerSimulador extends javax.swing.JFrame {
                         + "WHERE simuladores.id_simulador = '" + id_simulador + "' ";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstConsulta = cn.prepareStatement(consulta);
             ResultSet rs = pstConsulta.executeQuery();
             while(rs.next()){
@@ -216,7 +216,7 @@ public class VerSimulador extends javax.swing.JFrame {
                              + "AND simuladorarea.id_area = areas.id_area";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstConsultaArea = cn.prepareStatement(consultaAreas);
             ResultSet rsArea = pstConsultaArea.executeQuery();
             int i = 1;
@@ -486,7 +486,7 @@ public class VerSimulador extends javax.swing.JFrame {
             String checkSimuladores = "SELECT * FROM simuladores WHERE nombre_simulador = '" + nombre + "'";
             
             try{
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstUpdate = cn.prepareStatement(update);
                 PreparedStatement pstCheckSimuladores = cn.prepareStatement(checkSimuladores);
                 
@@ -549,7 +549,7 @@ public class VerSimulador extends javax.swing.JFrame {
                          + "WHERE simuladorarea.id_simulador = '" + id_simulador + "' "
                          + "AND simuladorarea.id_area = ?";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             
             PreparedStatement pstUpdateAreas = cn.prepareStatement(updateAreas);
             PreparedStatement pstInsertAreas = cn.prepareStatement(insertAreas);
@@ -613,7 +613,7 @@ public class VerSimulador extends javax.swing.JFrame {
                          + "WHERE id_simulador = '" + id_simulador + "' "
                          + "AND id_area = '" + id_area + "'";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstDelete = cn.prepareStatement(delete);
             PreparedStatement pstCheck = cn.prepareStatement(check);
             ResultSet rsCheck = pstCheck.executeQuery();
@@ -662,7 +662,7 @@ public class VerSimulador extends javax.swing.JFrame {
             String checkSimulador = "SELECT * FROM simuladores WHERE id_simulador = '" + id_simulador + "'";
             String deleteSimulador = "DELETE FROM simuladores WHERE id_simulador = '" + id_simulador + "'";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstDeleteSimulador = cn.prepareStatement(deleteSimulador);
             PreparedStatement pstCheck = cn.prepareStatement(checkSimulador);
             
@@ -699,7 +699,7 @@ public class VerSimulador extends javax.swing.JFrame {
             String checkSimuladorArea = "SELECT * FROM simuladorarea WHERE id_simulador = '" + id_simulador + "'";
             String deleteSimuladorArea = "DELETE FROM simuladorarea WHERE id_simulador = '" + id_simulador + "'";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstDeleteSimuladorArea = cn.prepareStatement(deleteSimuladorArea);
             PreparedStatement pstCheck = cn.prepareStatement(checkSimuladorArea);
             

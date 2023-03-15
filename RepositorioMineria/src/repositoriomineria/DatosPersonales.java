@@ -189,7 +189,7 @@ public class DatosPersonales extends javax.swing.JFrame {
         try{
             String datos = "SELECT * FROM usuarios WHERE username = '" + user + "'";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             
             PreparedStatement pstDatos = cn.prepareStatement(datos);
             
@@ -239,7 +239,7 @@ public class DatosPersonales extends javax.swing.JFrame {
                     String checkTelefono = "SELECT * FROM usuarios WHERE telefono = '" + telefono + "'";
                     String checkCorreo = "SELECT * FROM usuarios WHERE correo = '" + correo + "'";
 
-                    Connection cn = new Conexion(ipAddress).conectar();
+                    Connection cn = new Conexion().conectar();
 
                     PreparedStatement pstCheckUsername = cn.prepareStatement(checkUsername);
                     PreparedStatement pstCheckTelefono = cn.prepareStatement(checkTelefono);
@@ -336,7 +336,7 @@ public class DatosPersonales extends javax.swing.JFrame {
             try{
                 String deleteUser = "DELETE FROM usuarios WHERE id_usuario = '" + id_usuario + "'";
 
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstDelete = cn.prepareStatement(deleteUser);
                 
                 pstDelete.executeUpdate();

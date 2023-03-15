@@ -7,6 +7,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -49,8 +50,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     JTable tablaSimuladores;
     String headerSimuladores[] = {"Logo", "Nombre", "Costo (MXN)"};
     DefaultTableModel tableModelSimuladores = new DefaultTableModel(headerSimuladores, 0);
-    JButton refreshButton = new JButton("Recargar");
-    JButton searchButton = new JButton("Buscar");
+    JButton refreshButton = new JButton();
+    //JButton searchButton = new JButton("Buscar");
     JTextField searchText = new JTextField(20);
     JComboBox comboBoxAreas = new JComboBox();
     String ipAddress;
@@ -109,10 +110,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuBar.add(new JSeparator());
         
         //searchButton.setBackground(new Color(253,193,1));
-        searchButton.setFont(new Font("Arial", Font.BOLD, 14));
-        searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        /*searchButton.setFont(new Font("Arial", Font.BOLD, 14));
+        searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);*/
         
-        searchText.setBackground(new Color(121,125,130));
+        //searchText.setBackground(new Color(121,125,130));
         searchText.setText("Buscar...");
         searchText.setFont(new Font("Arial", Font.BOLD, 14));
         searchText.addFocusListener(new FocusAdapter() {
@@ -133,16 +134,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         
+        /*
         searchButton.addActionListener((ActionEvent evt) -> {
             String nombre = searchText.getText().trim();
             nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
             tableModelSimuladores.setRowCount(0);
             buscarSimulador(nombre);
-        });    
+        });
+        */
         
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         //refreshButton.setBackground(new Color(153,177,251));
         refreshButton.setFont(new Font("Arial", Font.BOLD, 14));
+        refreshButton.setBackground(Color.GREEN);
+        /*refreshButton.setContentAreaFilled(false);
+        refreshButton.setBorderPainted(false);*/
+        try {
+            Image img = ImageIO.read(getClass().getResource("/imagenes/refresh.png"));
+            Image scaledImage = img.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            refreshButton.setIcon(new ImageIcon(scaledImage));
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
         
         refreshButton.addActionListener((ActionEvent evt) -> {
             tableModelSimuladores.setRowCount(0);
@@ -151,7 +165,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             this.verTabla();
         }); 
         
-        menuBar.add(searchButton);
+        //menuBar.add(searchButton);
         menuBar.add(searchText);
         
         List areas = new List();
@@ -159,6 +173,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
         comboBoxAreas.setBackground(new Color(255,255,255));
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
+        comboBoxAreas.setBackground(new Color(74, 75, 80));
+        comboBoxAreas.setForeground(Color.WHITE);
         comboBoxAreas.removeAllItems();
         comboBoxAreas.addItem("-");
                 
@@ -182,7 +198,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //menuBar.add(Box.createHorizontalGlue());
     }
     
-    public JTable verTabla(){
+    public JTable renderTable() {
         JTable tabla = new JTable(){
             @Override
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
@@ -202,18 +218,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         tabla.setFillsViewportHeight(true);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setFont(new Font("Arial", Font.BOLD, 16));
+        tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
         tabla.getTableHeader().setBackground(new Color(114,137,218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
-        tabla.getTableHeader().setForeground(Color.WHITE);
+        
+        return tabla;
+    }
+    
+    public JTable verTabla(){
+        JTable tabla = renderTable();
         
         String consulta = "SELECT logo, nombre_simulador, costo "
                     + "FROM simuladores "
                     + "GROUP BY simuladores.id_simulador";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -254,28 +276,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     public JTable buscarSimulador(String nombre){
-        JTable tabla = new JTable(){
-            @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-                Component component = super.prepareRenderer(renderer, row, column);
-                int rendererWidth = component.getPreferredSize().width;
-                TableColumn tableColumn = getColumnModel().getColumn(column);
-                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, tableColumn.getPreferredWidth()));
-                return component;
-            }
-        };
-        TablaImagen imgRenderer = new TablaImagen();
-        imgRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tabla.setDefaultRenderer(Object.class, imgRenderer);
-        tabla.setRowHeight(64);
-        tabla.setDefaultEditor(Object.class, null);
-        tabla.setFillsViewportHeight(true);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        tabla.setFont(new Font("Arial", Font.BOLD, 16));
-        tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(253,193,1));
-        tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
+        JTable tabla = renderTable();
         
         String consulta = "SELECT logo, nombre_simulador, costo "
                     + "FROM simuladores "
@@ -283,7 +284,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     + "GROUP BY simuladores.id_simulador";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -324,28 +325,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
     
     public JTable filtrarPorAreas(String area){
-        JTable tabla = new JTable(){
-            @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
-                Component component = super.prepareRenderer(renderer, row, column);
-                int rendererWidth = component.getPreferredSize().width;
-                TableColumn tableColumn = getColumnModel().getColumn(column);
-                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, tableColumn.getPreferredWidth()));
-                return component;
-            }
-        };
-        TablaImagen imgRenderer = new TablaImagen();
-        imgRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tabla.setDefaultRenderer(Object.class, imgRenderer);
-        tabla.setRowHeight(64);
-        tabla.setDefaultEditor(Object.class, null);
-        tabla.setFillsViewportHeight(true);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        tabla.setFont(new Font("Arial", Font.BOLD, 16));
-        tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(253,193,1));
-        tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
+        JTable tabla = renderTable();
         
         String id_area = new Areas(ipAddress).getIDArea(area);
         
@@ -356,7 +336,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         + "AND simuladorarea.id_area = '" + id_area + "'";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -421,6 +401,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(253, 193, 1));
         setIconImage(getIconImage());
 
+        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
         jPanel1.setPreferredSize(new java.awt.Dimension(1150, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -436,13 +417,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        menuBar.setBackground(new java.awt.Color(247, 242, 216));
+        menuBar.setBackground(new java.awt.Color(74, 75, 80));
 
+        menuOpciones.setForeground(new java.awt.Color(255, 255, 255));
         menuOpciones.setText("Opciones");
         menuOpciones.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
-        agregarSimuladorMenu.setBackground(new java.awt.Color(247, 242, 216));
+        agregarSimuladorMenu.setBackground(new java.awt.Color(74, 75, 80));
         agregarSimuladorMenu.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        agregarSimuladorMenu.setForeground(new java.awt.Color(255, 255, 255));
         agregarSimuladorMenu.setText("Agregar simulador");
         agregarSimuladorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,8 +434,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuOpciones.add(agregarSimuladorMenu);
 
-        menuAgregarAreas.setBackground(new java.awt.Color(247, 242, 216));
+        menuAgregarAreas.setBackground(new java.awt.Color(74, 75, 80));
         menuAgregarAreas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuAgregarAreas.setForeground(new java.awt.Color(255, 255, 255));
         menuAgregarAreas.setText("Agregar/Editar areas");
         menuAgregarAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,8 +445,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuOpciones.add(menuAgregarAreas);
 
-        menuDatosPersonales.setBackground(new java.awt.Color(247, 242, 216));
+        menuDatosPersonales.setBackground(new java.awt.Color(74, 75, 80));
         menuDatosPersonales.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuDatosPersonales.setForeground(new java.awt.Color(255, 255, 255));
         menuDatosPersonales.setText("Datos personales");
         menuDatosPersonales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -471,8 +456,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuOpciones.add(menuDatosPersonales);
 
-        menuUsuarios.setBackground(new java.awt.Color(247, 242, 216));
+        menuUsuarios.setBackground(new java.awt.Color(74, 75, 80));
         menuUsuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         menuUsuarios.setText("Ver Usuarios");
         menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,8 +467,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuOpciones.add(menuUsuarios);
 
-        CerrarSesion.setBackground(new java.awt.Color(247, 242, 216));
+        CerrarSesion.setBackground(new java.awt.Color(74, 75, 80));
         CerrarSesion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        CerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         CerrarSesion.setText("Cerrar Sesion");
         CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,11 +480,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuOpciones);
 
+        menuDocumentacion.setForeground(new java.awt.Color(255, 255, 255));
         menuDocumentacion.setText("Documentación");
         menuDocumentacion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
-        menuManualUsuario.setBackground(new java.awt.Color(247, 242, 216));
+        menuManualUsuario.setBackground(new java.awt.Color(74, 75, 80));
         menuManualUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuManualUsuario.setForeground(new java.awt.Color(255, 255, 255));
         menuManualUsuario.setText("Manual de Usuario");
         menuManualUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -506,8 +495,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuDocumentacion.add(menuManualUsuario);
 
-        menuManualTecnico.setBackground(new java.awt.Color(247, 242, 216));
+        menuManualTecnico.setBackground(new java.awt.Color(74, 75, 80));
         menuManualTecnico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuManualTecnico.setForeground(new java.awt.Color(255, 255, 255));
         menuManualTecnico.setText("Manual Técnico");
         menuManualTecnico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -539,32 +529,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuUsuariosActionPerformed
 
     private void menuManualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuManualUsuarioActionPerformed
-        try{
-            Path tempOutput = null;
-            String tempFile = "manual_usuario";
-            tempOutput = Files.createTempFile(tempFile, ".pdf");
-            tempOutput.toFile().deleteOnExit();
-            InputStream is = getClass().getResourceAsStream("/documentacion/manual_usuario.pdf");
-            Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-            if(Desktop.isDesktopSupported()){
-                Desktop desktop = Desktop.getDesktop();
-                if(desktop.isSupported(Desktop.Action.OPEN)){
-                    desktop.open(tempOutput.toFile());
-                }
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        openFile("manual_usuario");
     }//GEN-LAST:event_menuManualUsuarioActionPerformed
 
     private void menuManualTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuManualTecnicoActionPerformed
+        openFile("manual_tecnico");
+    }//GEN-LAST:event_menuManualTecnicoActionPerformed
+
+    private void openFile(String filename) {
         try{
             Path tempOutput = null;
-            String tempFile = "manual_tecnico";
-            tempOutput = Files.createTempFile(tempFile, ".pdf");
+            tempOutput = Files.createTempFile(filename, ".pdf");
             tempOutput.toFile().deleteOnExit();
-            InputStream is = getClass().getResourceAsStream("/documentacion/manual_tecnico.pdf");
+            InputStream is = getClass().getResourceAsStream("/documentacion/"+ filename + ".pdf");
             Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
             if(Desktop.isDesktopSupported()){
                 Desktop desktop = Desktop.getDesktop();
@@ -576,8 +553,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catch(Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_menuManualTecnicoActionPerformed
-
+    }
+    
     private void menuAgregarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarAreasActionPerformed
         new AgregarAreas(this, ipAddress).setVisible(true);
         this.setEnabled(false);

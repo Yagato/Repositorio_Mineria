@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package repositoriomineria;
 
 import java.awt.BorderLayout;
@@ -111,7 +106,7 @@ public class AgregarAreas extends javax.swing.JFrame {
         String consulta = "SELECT nombre_area FROM areas";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -239,7 +234,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                 String check = "SELECT * from areas WHERE BINARY nombre_area = '" + nombreArea + "'";
                 String consulta = "UPDATE areas SET nombre_area = '" + nombreArea + "' "
                         + "WHERE nombre_area = '" + nombreAntiguo + "'";
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstUpdate = cn.prepareStatement(consulta);
                 PreparedStatement pstCheck = cn.prepareStatement(check);
                 
@@ -290,7 +285,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                 String check = "SELECT * from areas WHERE nombre_area = '" + nombreArea + "'";
                 String insertArea = "INSERT INTO areas values(?,?)";
                 
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstCheck = cn.prepareStatement(check);
                 PreparedStatement pstInsertArea = cn.prepareStatement(insertArea);
                 
@@ -334,7 +329,7 @@ public class AgregarAreas extends javax.swing.JFrame {
             try {
                 String id_area = new Areas(ipAddress).getIDArea(nombreArea);
                 String delete = "DELETE FROM areas WHERE nombre_area = '" + nombreArea + "'";
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstDelete = cn.prepareStatement(delete);
 
                 int yes_no = JOptionPane.showConfirmDialog(null,
@@ -370,7 +365,7 @@ public class AgregarAreas extends javax.swing.JFrame {
     private void eliminarSimuladorArea(String id_area){
         try{
             String delete = "DELETE FROM simuladorarea WHERE  id_area = '" + id_area + "'";
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstDelete = cn.prepareStatement(delete);
             
             pstDelete.executeUpdate();

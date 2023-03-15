@@ -111,7 +111,7 @@ public class InicioSesion extends javax.swing.JFrame {
         getContentPane().add(jLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
 
         jTextFieldUser.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTextFieldUser.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldUser.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUserActionPerformed(evt);
@@ -120,7 +120,7 @@ public class InicioSesion extends javax.swing.JFrame {
         getContentPane().add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 200, 30));
 
         jPassword.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPassword.setForeground(new java.awt.Color(255, 255, 255));
+        jPassword.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 200, 30));
 
         jButtonSesion.setBackground(new java.awt.Color(0, 102, 255));
@@ -163,8 +163,8 @@ public class InicioSesion extends javax.swing.JFrame {
             host = host.replace("Local: ", "");
         }
         
-        ip = Conexion.getHostIP(host);
-        ipHost = ip.getHostAddress();
+       /* ip = Conexion.getHostIP(host);
+        ipHost = ip.getHostAddress();*/
         
         if(jTextFieldUser.getText().length() == 0 || jPassword.getPassword().length == 0){
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no ingresado");
@@ -173,7 +173,7 @@ public class InicioSesion extends javax.swing.JFrame {
         }
         else{
             try{
-                Connection cn = new Conexion(ipHost).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pst = cn.prepareStatement(
                         "select id_usuario, username, contrasenia, rol from usuarios where username = '" 
                         + user + "' and contrasenia = '" + password + "'");
@@ -210,7 +210,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 host = host.replace("Local: ", "");
             }
 
-            ip = Conexion.getHostIP(host);
+            //ip = Conexion.getHostIP(host);
             ipHost = ip.getHostAddress();
             new AgregarUsuarios(ipHost).setVisible(true);
         }

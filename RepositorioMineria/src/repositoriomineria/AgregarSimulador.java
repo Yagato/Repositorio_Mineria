@@ -225,6 +225,9 @@ public class AgregarSimulador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, -1, -1));
+
+        jLabelFondo.setBackground(new java.awt.Color(74, 75, 80));
+        jLabelFondo.setForeground(new java.awt.Color(60, 60, 60));
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 630));
 
         pack();
@@ -269,7 +272,7 @@ public class AgregarSimulador extends javax.swing.JFrame {
             if(!nombre.isEmpty() && !area.isEmpty()){
                 try{
                     String checkSimuladores = "SELECT * FROM simuladores WHERE nombre_simulador = '" + nombre + "'";
-                    Connection cn = new Conexion(ipAddress).conectar();
+                    Connection cn = new Conexion().conectar();
                     PreparedStatement pstSimuladores = cn.prepareStatement(insertarSimuladores);
                     PreparedStatement pstCheckSimuladores = cn.prepareStatement(checkSimuladores);
                     
@@ -335,13 +338,14 @@ public class AgregarSimulador extends javax.swing.JFrame {
 
     private void insertarArea(String nombre){
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            System.out.println("In insertarArea()");
+            Connection cn = new Conexion().conectar();
             String n = nombre;
             String area = areas.getSelectedItem().toString();
             String id_simulador = sim.getIDSimulador(n);
             String id_area = objetoAreas.getIDArea(area);
 
-            PreparedStatement pstInsertarArea = cn.prepareStatement("insert into Simuladorarea values(?,?)");
+            PreparedStatement pstInsertarArea = cn.prepareStatement("insert into simuladorarea values(?,?)");
 
             pstInsertarArea.setString(1, id_simulador);
             pstInsertarArea.setString(2, id_area);

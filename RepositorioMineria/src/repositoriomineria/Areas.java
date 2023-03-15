@@ -18,7 +18,7 @@ public class Areas {
     public String getIDArea(String nombre){
         String consultaID = "select id_area from areas where nombre_area = '" + nombre + "'";
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement obtenerIDArea = cn.prepareStatement(consultaID);
             ResultSet rs = obtenerIDArea.executeQuery();
             while(rs.next()){

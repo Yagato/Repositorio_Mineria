@@ -2,15 +2,37 @@ package repositoriomineria;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 
-import java.net.InetAddress;
-import java.sql.*;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Conexion {
     
-    static String ip_Address;
+    public static Connection conectar() {
+        Dotenv dotenv = Dotenv.configure().load();
+        if(dotenv.get("RDS_HOSTNAME") != null) {
+            try {
+                String dbName = dotenv.get("RDS_DB_NAME");
+                String userName = dotenv.get("RDS_USERNAME");
+                String password = dotenv.get("RDS_PASSWORD");
+                String hostname = dotenv.get("RDS_HOSTNAME");
+                String port = dotenv.get("RDS_PORT");
+                String jbdcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
+                Connection cn = DriverManager.getConnection(jbdcUrl);
+                return cn;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+    
+    /*static String ip_Address;
     
     public Conexion(String ip){
         Conexion.ip_Address = ip;
@@ -41,7 +63,7 @@ public class Conexion {
             e.printStackTrace();
         }
         return(null);
-    }
+    }*/
     
     
     

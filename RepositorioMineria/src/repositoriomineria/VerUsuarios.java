@@ -109,7 +109,7 @@ public class VerUsuarios extends javax.swing.JFrame {
         try{
             String consulta = "SELECT * FROM usuarios WHERE rol = 'MainAdmin'";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -134,7 +134,7 @@ public class VerUsuarios extends javax.swing.JFrame {
         try{
             String consulta = "SELECT * FROM usuarios";
             
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
             
@@ -248,7 +248,7 @@ public class VerUsuarios extends javax.swing.JFrame {
             try{
                 String updateRol = "UPDATE usuarios SET rol = ? WHERE username = '" + username + "'";
                 
-                Connection cn = new Conexion(ipAddress).conectar();
+                Connection cn = new Conexion().conectar();
                 PreparedStatement pstUpdateRol = cn.prepareStatement(updateRol);
                 
                 pstUpdateRol.setString(1, rol);
@@ -286,7 +286,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                 try{
                     String deleteUser = "DELETE FROM usuarios WHERE username = '" + username + "'";
 
-                    Connection cn = new Conexion(ipAddress).conectar();
+                    Connection cn = new Conexion().conectar();
                     PreparedStatement pstDelete = cn.prepareStatement(deleteUser);
 
                     pstDelete.executeUpdate();
@@ -337,7 +337,7 @@ public class VerUsuarios extends javax.swing.JFrame {
                         + "FROM usuarios";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstConsulta = cn.prepareStatement(consulta);
             ResultSet rsConsulta = pstConsulta.executeQuery();
             

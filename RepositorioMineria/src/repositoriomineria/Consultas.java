@@ -27,7 +27,7 @@ public class Consultas {
         comboAreas.removeAllItems();
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstAreas = cn.prepareStatement("select nombre_area from areas");
             ResultSet rs = pstAreas.executeQuery();
             
@@ -50,7 +50,7 @@ public class Consultas {
         List areas = new List();
         
          try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstAreas = cn.prepareStatement("select nombre_area from areas");
             ResultSet rs = pstAreas.executeQuery();
             
@@ -77,7 +77,7 @@ public class Consultas {
                         + "WHERE simuladores.id_simulador = '" + id_simulador + "' ";
         
         try{
-            Connection cn = new Conexion(ipAddress).conectar();
+            Connection cn = new Conexion().conectar();
             PreparedStatement pstConsulta = cn.prepareStatement(consulta);
             ResultSet rs = pstConsulta.executeQuery();
             
