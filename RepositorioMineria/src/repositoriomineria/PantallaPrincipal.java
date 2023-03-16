@@ -36,6 +36,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -45,15 +47,14 @@ import javax.swing.table.TableColumn;
  * @author Carlos Alberto Gonzalez Guerrero
  * @author Ocampo Mora
  */
-
 public class PantallaPrincipal extends javax.swing.JFrame {
-    
+
     String idUsuario = "", username = "", rolUsuario = "";
     JTable tablaSimuladores;
     String headerSimuladores[] = {"Logo", "Nombre", "Costo (MXN)"};
     DefaultTableModel tableModelSimuladores = new DefaultTableModel(headerSimuladores, 0);
     JButton refreshButton = new JButton();
-    //JButton searchButton = new JButton("Buscar");
+    JButton searchButton = new JButton("Buscar");
     JTextField searchText = new JTextField(20);
     JComboBox comboBoxAreas = new JComboBox();
     String ipAddress;
@@ -64,7 +65,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .getImage(ClassLoader.getSystemResource("imagenes/cascoIcon.png"));
         return retValue;
     }
-    
+
     public PantallaPrincipal(String idUser, String user, String rol, String ip) {
         //super("Pantalla Principal");
         initComponents();
@@ -72,35 +73,34 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setResizable(false);
         this.setIconImage(getIconImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         PantallaPrincipal frame = this;
-        
+
         this.idUsuario = idUser;
         this.username = user;
         this.rolUsuario = rol;
         this.ipAddress = ip;
-        
-        if(rolUsuario.equals("Usuario")){
+
+        if (rolUsuario.equals("Usuario")) {
             agregarSimuladorMenu.setVisible(false);
             menuAgregarAreas.setVisible(false);
             menuUsuarios.setVisible(false);
             menuManualTecnico.setVisible(false);
-        }
-        else if(rolUsuario.equals("Admin")){
+        } else if (rolUsuario.equals("Admin")) {
             menuUsuarios.setVisible(false);
         }
-        
+
         tablaSimuladores = verTabla();
-        
+
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(new JScrollPane(tablaSimuladores), BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        
-        tablaSimuladores.addMouseListener(new MouseAdapter(){
+
+        tablaSimuladores.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e){
-                if(e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)){
+            public void mousePressed(MouseEvent e) {
+                if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
                     String nombreSimulador = tablaSimuladores.getValueAt(tablaSimuladores.getSelectedRow(), 1)
                             .toString();
                     new VerSimulador(frame, nombreSimulador, ipAddress, rol).setVisible(true);
@@ -108,107 +108,106 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         menuBar.add(new JSeparator());
+
+        searchButton.setBackground(new Color(253,193,1));
+        searchButton.setFont(new Font("Arial", Font.BOLD, 14));
+        searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         
-        //searchButton.setBackground(new Color(253,193,1));
-        /*searchButton.setFont(new Font("Arial", Font.BOLD, 14));
-        searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);*/
-        
-        //searchText.setBackground(new Color(121,125,130));
-        searchText.setText("Buscar...");
+        searchText.setBackground(new Color(153, 153, 153));
         searchText.setFont(new Font("Arial", Font.BOLD, 14));
+        searchText.setForeground(Color.WHITE);
         searchText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                //searchText.setForeground(Color.WHITE);
-                if(searchText.getText().equals("Buscar..."))
+                if (searchText.getText().equals("Buscar...")) {
                     searchText.setText("");
+                }
                 super.focusGained(e);
             }
-            
+
             @Override
             public void focusLost(FocusEvent e) {
-                //searchText.setForeground(Color.GRAY);
-                if(searchText.getText().equals(""))
+                if (searchText.getText().equals("")) {
                     searchText.setText("Buscar...");
+                }
                 super.focusLost(e);
             }
         });
+
         
-        /*
         searchButton.addActionListener((ActionEvent evt) -> {
             String nombre = searchText.getText().trim();
+            
+            if(nombre.equals("Buscar..."))
+                return;
+            
             nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
             tableModelSimuladores.setRowCount(0);
             buscarSimulador(nombre);
         });
-        */
         
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        //refreshButton.setBackground(new Color(153,177,251));
         refreshButton.setFont(new Font("Arial", Font.BOLD, 14));
         refreshButton.setBackground(Color.GREEN);
-        /*refreshButton.setContentAreaFilled(false);
-        refreshButton.setBorderPainted(false);*/
+        
         try {
             Image img = ImageIO.read(getClass().getResource("/imagenes/refresh.png"));
             Image scaledImage = img.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
             refreshButton.setIcon(new ImageIcon(scaledImage));
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         refreshButton.addActionListener((ActionEvent evt) -> {
             tableModelSimuladores.setRowCount(0);
             searchText.setText("");
             comboBoxAreas.setSelectedIndex(0);
             this.verTabla();
-        }); 
-        
-        //menuBar.add(searchButton);
+        });
+
+        menuBar.add(searchButton);
         menuBar.add(searchText);
-        
+
         List areas = new List();
         areas = new Consultas(ipAddress).getListAreas();
-        
-        //comboBoxAreas.setBackground(new Color(255,255,255));
+
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
         comboBoxAreas.setBackground(new Color(204, 204, 204));
         comboBoxAreas.setForeground(Color.BLACK);
         comboBoxAreas.removeAllItems();
         comboBoxAreas.addItem("-");
-                
-        for(int i = 0; i < areas.getItemCount(); i++){
+
+        for (int i = 0; i < areas.getItemCount(); i++) {
             comboBoxAreas.addItem(areas.getItem(i));
         }
-        
-        comboBoxAreas.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        comboBoxAreas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 String nombreArea = comboBoxAreas.getSelectedItem().toString();
-                if(!nombreArea.equals("-")){
+                if (!nombreArea.equals("-")) {
                     tableModelSimuladores.setRowCount(0);
                     filtrarPorAreas(nombreArea);
                     //comboBoxAreas.removeItem("-");
                 }
             }
         });
-        
+
         menuBar.add(comboBoxAreas);
         menuBar.add(refreshButton);
         //menuBar.add(Box.createHorizontalGlue());
     }
-    
+
     public JTable renderTable() {
-        JTable tabla = new JTable(){
+        JTable tabla = new JTable() {
             @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
                 int rendererWidth = component.getPreferredSize().width;
                 TableColumn tableColumn = getColumnModel().getColumn(column);
-                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, 
-                                                tableColumn.getPreferredWidth()));
+                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width,
+                        tableColumn.getPreferredWidth()));
                 return component;
             }
         };
@@ -223,155 +222,155 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114,137,218));
+        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
-        
+
         return tabla;
     }
-    
-    public JTable verTabla(){
+
+    public JTable verTabla() {
         JTable tabla = renderTable();
-        
+
         String consulta = "SELECT logo, nombre_simulador, costo "
-                    + "FROM simuladores "
-                    + "GROUP BY simuladores.id_simulador";
-        
-        try{
+                + "FROM simuladores "
+                + "GROUP BY simuladores.id_simulador";
+
+        try {
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Object[] fila = new Object[4];
-                
+
                 Image dimg = null;
-                try{
+                try {
                     BufferedImage im = ImageIO.read(rs.getBinaryStream("logo"));
                     dimg = im.getScaledInstance(110, 64, Image.SCALE_SMOOTH);
                     ImageIcon icon = new ImageIcon(dimg);
                     fila[0] = new JLabel(icon);
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     fila[0] = "";
                 }
-                
+
                 fila[1] = rs.getString("nombre_simulador");
-                
-                if(rs.getString("costo").equals("") || rs.getString("costo").equals("0"))
+
+                if (rs.getString("costo").equals("") || rs.getString("costo").equals("0")) {
                     fila[2] = "GRATIS";
-                else
+                } else {
                     fila[2] = rs.getString("costo");
-                                
+                }
+
                 tableModelSimuladores.addRow(fila);
             }
-            
+
             tabla.setModel(tableModelSimuladores);
             cn.close();
             pst.close();
             rs.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return tabla;
     }
-    
-    public JTable buscarSimulador(String nombre){
+
+    public JTable buscarSimulador(String nombre) {
         JTable tabla = renderTable();
-        
+
         String consulta = "SELECT logo, nombre_simulador, costo "
-                    + "FROM simuladores "
-                    + "WHERE nombre_simulador = '" + nombre + "' "
-                    + "GROUP BY simuladores.id_simulador";
-        
-        try{
+                + "FROM simuladores "
+                + "WHERE nombre_simulador LIKE '" + nombre + "' "
+                + "GROUP BY simuladores.id_simulador";
+
+        try {
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Object[] fila = new Object[4];
-                
+
                 Image dimg = null;
-                try{
+                try {
                     BufferedImage im = ImageIO.read(rs.getBinaryStream("logo"));
                     dimg = im.getScaledInstance(110, 64, Image.SCALE_SMOOTH);
                     ImageIcon icon = new ImageIcon(dimg);
                     fila[0] = new JLabel(icon);
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     fila[0] = "";
                 }
-                
+
                 fila[1] = rs.getString("nombre_simulador");
-                
-                if(rs.getString("costo").equals("") || rs.getString("costo").equals("0"))
+
+                if (rs.getString("costo").equals("") || rs.getString("costo").equals("0")) {
                     fila[2] = "GRATIS";
-                else
+                } else {
                     fila[2] = rs.getString("costo");
-                                
+                }
+
                 tableModelSimuladores.addRow(fila);
             }
-            
+
             tabla.setModel(tableModelSimuladores);
             cn.close();
             pst.close();
             rs.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return tabla;
     }
-    
-    public JTable filtrarPorAreas(String area){
+
+    public JTable filtrarPorAreas(String area) {
         JTable tabla = renderTable();
-        
+
         String id_area = new Areas(ipAddress).getIDArea(area);
-        
+
         String consulta = "SELECT logo, costo, nombre_simulador "
-                        + "FROM simuladores, areas, simuladorarea "
-                        + "WHERE simuladores.id_simulador = simuladorarea.id_simulador "
-                        + "AND simuladorarea.id_area = areas.id_area "
-                        + "AND simuladorarea.id_area = '" + id_area + "'";
-        
-        try{
+                + "FROM simuladores, areas, simuladorarea "
+                + "WHERE simuladores.id_simulador = simuladorarea.id_simulador "
+                + "AND simuladorarea.id_area = areas.id_area "
+                + "AND simuladorarea.id_area = '" + id_area + "'";
+
+        try {
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Object[] fila = new Object[4];
-                
+
                 Image dimg = null;
-                try{
+                try {
                     BufferedImage im = ImageIO.read(rs.getBinaryStream("logo"));
                     dimg = im.getScaledInstance(110, 64, Image.SCALE_SMOOTH);
                     ImageIcon icon = new ImageIcon(dimg);
                     fila[0] = new JLabel(icon);
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     fila[0] = "";
                 }
-                
+
                 fila[1] = rs.getString("nombre_simulador");
-                
-                if(rs.getString("costo").equals("") || rs.getString("costo").equals("0"))
+
+                if (rs.getString("costo").equals("") || rs.getString("costo").equals("0")) {
                     fila[2] = "GRATIS";
-                else
+                } else {
                     fila[2] = rs.getString("costo");
-                                
+                }
+
                 tableModelSimuladores.addRow(fila);
             }
-            
+
             tabla.setModel(tableModelSimuladores);
             cn.close();
             pst.close();
             rs.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return tabla;
     }
 
@@ -538,24 +537,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuManualTecnicoActionPerformed
 
     private void openFile(String filename) {
-        try{
+        try {
             Path tempOutput = null;
             tempOutput = Files.createTempFile(filename, ".pdf");
             tempOutput.toFile().deleteOnExit();
-            InputStream is = getClass().getResourceAsStream("/documentacion/"+ filename + ".pdf");
+            InputStream is = getClass().getResourceAsStream("/documentacion/" + filename + ".pdf");
             Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-            if(Desktop.isDesktopSupported()){
+            if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
-                if(desktop.isSupported(Desktop.Action.OPEN)){
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
                     desktop.open(tempOutput.toFile());
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     private void menuAgregarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarAreasActionPerformed
         new AgregarAreas(this, ipAddress).setVisible(true);
         this.setEnabled(false);
