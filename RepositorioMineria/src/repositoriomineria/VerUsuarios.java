@@ -174,6 +174,8 @@ public class VerUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(2, 1));
 
+        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -187,9 +189,11 @@ public class VerUsuarios extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
         jPanel2.setLayout(new java.awt.GridLayout(3, 2, 20, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Usuario seleccionado:");
         jPanel2.add(jLabel1);
@@ -199,11 +203,14 @@ public class VerUsuarios extends javax.swing.JFrame {
         jPanel2.add(textUsername);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Rol:");
         jPanel2.add(jLabel2);
 
+        comboBoxRol.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxRol.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(comboBoxRol);
 
@@ -327,11 +334,11 @@ public class VerUsuarios extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(50);
         tabla.setFont(new Font("Arial", Font.BOLD, 14));
+        tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
         tabla.getTableHeader().setBackground(new Color(114,137,218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
-        tabla.getTableHeader().setForeground(Color.WHITE);
         
         String consulta = "SELECT CONCAT(nombres, ' ', apellidos) AS nombre, username, telefono, correo, rol "
                         + "FROM usuarios";

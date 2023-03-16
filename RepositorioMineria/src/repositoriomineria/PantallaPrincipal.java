@@ -21,7 +21,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -171,10 +173,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         List areas = new List();
         areas = new Consultas(ipAddress).getListAreas();
         
-        comboBoxAreas.setBackground(new Color(255,255,255));
+        //comboBoxAreas.setBackground(new Color(255,255,255));
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
-        comboBoxAreas.setBackground(new Color(74, 75, 80));
-        comboBoxAreas.setForeground(Color.WHITE);
+        comboBoxAreas.setBackground(new Color(204, 204, 204));
+        comboBoxAreas.setForeground(Color.BLACK);
         comboBoxAreas.removeAllItems();
         comboBoxAreas.addItem("-");
                 
@@ -267,9 +269,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             cn.close();
             pst.close();
             rs.close();
-        }catch(SQLException e){
+        }catch(Exception e){
             e.printStackTrace();
-            System.out.println(e.getErrorCode());
         }
         
         return tabla;
@@ -316,9 +317,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             cn.close();
             pst.close();
             rs.close();
-        }catch(SQLException e){
+        }catch(Exception e){
             e.printStackTrace();
-            System.out.println(e.getErrorCode());
         }
         
         return tabla;
@@ -368,9 +368,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             cn.close();
             pst.close();
             rs.close();
-        }catch(SQLException e){
+        }catch(Exception e){
             e.printStackTrace();
-            System.out.println(e.getErrorCode());
         }
         
         return tabla;
@@ -412,19 +411,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         menuBar.setBackground(new java.awt.Color(74, 75, 80));
 
+        menuOpciones.setBackground(new java.awt.Color(74, 75, 80));
         menuOpciones.setForeground(new java.awt.Color(255, 255, 255));
         menuOpciones.setText("Opciones");
-        menuOpciones.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuOpciones.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         agregarSimuladorMenu.setBackground(new java.awt.Color(74, 75, 80));
-        agregarSimuladorMenu.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        agregarSimuladorMenu.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         agregarSimuladorMenu.setForeground(new java.awt.Color(255, 255, 255));
         agregarSimuladorMenu.setText("Agregar simulador");
         agregarSimuladorMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -435,7 +435,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuOpciones.add(agregarSimuladorMenu);
 
         menuAgregarAreas.setBackground(new java.awt.Color(74, 75, 80));
-        menuAgregarAreas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuAgregarAreas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuAgregarAreas.setForeground(new java.awt.Color(255, 255, 255));
         menuAgregarAreas.setText("Agregar/Editar areas");
         menuAgregarAreas.addActionListener(new java.awt.event.ActionListener() {
@@ -446,7 +446,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuOpciones.add(menuAgregarAreas);
 
         menuDatosPersonales.setBackground(new java.awt.Color(74, 75, 80));
-        menuDatosPersonales.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuDatosPersonales.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuDatosPersonales.setForeground(new java.awt.Color(255, 255, 255));
         menuDatosPersonales.setText("Datos personales");
         menuDatosPersonales.addActionListener(new java.awt.event.ActionListener() {
@@ -457,7 +457,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuOpciones.add(menuDatosPersonales);
 
         menuUsuarios.setBackground(new java.awt.Color(74, 75, 80));
-        menuUsuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuUsuarios.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         menuUsuarios.setText("Ver Usuarios");
         menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -468,7 +468,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuOpciones.add(menuUsuarios);
 
         CerrarSesion.setBackground(new java.awt.Color(74, 75, 80));
-        CerrarSesion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        CerrarSesion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         CerrarSesion.setText("Cerrar Sesion");
         CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -480,12 +480,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuOpciones);
 
+        menuDocumentacion.setBackground(new java.awt.Color(74, 75, 80));
         menuDocumentacion.setForeground(new java.awt.Color(255, 255, 255));
         menuDocumentacion.setText("Documentación");
-        menuDocumentacion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuDocumentacion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         menuManualUsuario.setBackground(new java.awt.Color(74, 75, 80));
-        menuManualUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuManualUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuManualUsuario.setForeground(new java.awt.Color(255, 255, 255));
         menuManualUsuario.setText("Manual de Usuario");
         menuManualUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -496,7 +497,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuDocumentacion.add(menuManualUsuario);
 
         menuManualTecnico.setBackground(new java.awt.Color(74, 75, 80));
-        menuManualTecnico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menuManualTecnico.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuManualTecnico.setForeground(new java.awt.Color(255, 255, 255));
         menuManualTecnico.setText("Manual Técnico");
         menuManualTecnico.addActionListener(new java.awt.event.ActionListener() {

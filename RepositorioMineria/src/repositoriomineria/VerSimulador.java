@@ -3,6 +3,7 @@ package repositoriomineria;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.List;
@@ -135,7 +136,8 @@ public class VerSimulador extends javax.swing.JFrame {
         textLink.setLineWrap(true);
         textLink.setWrapStyleWord(true);
                 
-        jPanel1.add(calendar, new AbsoluteConstraints(590, 510, 105, 20));
+        calendar.setFont(new Font("Arial", Font.BOLD, 16));
+        jPanel1.add(calendar, new AbsoluteConstraints(840, 510, 261, 30));
         editor.setEditable(false);
      
         this.displayData();
@@ -261,90 +263,83 @@ public class VerSimulador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        textCosto = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textLink = new javax.swing.JTextArea();
         labelLogo = new javax.swing.JLabel();
+        botonImagen = new javax.swing.JButton();
         textNombre = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textRequerimientos = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        textCosto = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textCaracteristicas = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        botonImagen = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         radioSi = new javax.swing.JRadioButton();
         radioNo = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         comboBoxArea1 = new javax.swing.JComboBox<>();
         comboBoxArea2 = new javax.swing.JComboBox<>();
         comboBoxArea3 = new javax.swing.JComboBox<>();
         comboBoxArea4 = new javax.swing.JComboBox<>();
         comboBoxArea5 = new javax.swing.JComboBox<>();
+        jPanel9 = new javax.swing.JPanel();
         botonActualizar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textLink = new javax.swing.JTextArea();
         botonEliminar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
 
+        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 218, 200));
 
-        textNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 218, -1));
-
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setText("REQUISITOS");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
-
-        textRequerimientos.setBackground(new java.awt.Color(102, 102, 102));
-        textRequerimientos.setColumns(20);
-        textRequerimientos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        textRequerimientos.setRows(5);
-        jScrollPane1.setViewportView(textRequerimientos);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 37, 217, 218));
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel3.setText("¿TIENE TUTORIAL?");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 255));
         jLabel4.setText("COSTO");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 410, -1, -1));
 
-        textCosto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 174, 112, -1));
+        textCosto.setBackground(new java.awt.Color(153, 153, 153));
+        textCosto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textCosto.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 410, 140, 30));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel5.setText("CARACTERISTICAS");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
-
-        textCaracteristicas.setBackground(new java.awt.Color(102, 102, 102));
-        textCaracteristicas.setColumns(20);
-        textCaracteristicas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        textCaracteristicas.setRows(5);
-        jScrollPane2.setViewportView(textCaracteristicas);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 217, 191));
-
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 153, 255));
         jLabel6.setText("FECHA DE CONSULTA");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 470, 280, -1));
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel2.setLayout(new java.awt.GridLayout(2, 0, 0, 10));
+
+        jLabel7.setBackground(new java.awt.Color(74, 75, 80));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("LINK");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(633, 340, -1, -1));
+        jPanel2.add(jLabel7);
 
-        jLabel8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel8.setText("ÁREAS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, -1));
+        textLink.setBackground(new java.awt.Color(153, 153, 153));
+        textLink.setColumns(20);
+        textLink.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textLink.setForeground(new java.awt.Color(255, 255, 255));
+        textLink.setRows(5);
+        jScrollPane3.setViewportView(textLink);
+
+        jPanel2.add(jScrollPane3);
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 300, 100));
+        jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 300, 310));
 
         botonImagen.setBackground(new java.awt.Color(0, 51, 255));
         botonImagen.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -355,35 +350,133 @@ public class VerSimulador extends javax.swing.JFrame {
                 botonImagenActionPerformed(evt);
             }
         });
-        jPanel1.add(botonImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+        jPanel1.add(botonImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 150, 40));
 
-        radioSi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textNombre.setBackground(new java.awt.Color(153, 153, 153));
+        textNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textNombre.setForeground(new java.awt.Color(0, 0, 204));
+        textNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textNombre.setText("tes");
+        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 300, 40));
+
+        jPanel3.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("REQUISITOS");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 180, 30));
+
+        textRequerimientos.setBackground(new java.awt.Color(153, 153, 153));
+        textRequerimientos.setColumns(20);
+        textRequerimientos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textRequerimientos.setForeground(new java.awt.Color(255, 255, 255));
+        textRequerimientos.setRows(5);
+        jScrollPane1.setViewportView(textRequerimientos);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 410, 260));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 410, 300));
+
+        jPanel4.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel5.setText("CARACTERISTICAS");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        textCaracteristicas.setBackground(new java.awt.Color(153, 153, 153));
+        textCaracteristicas.setColumns(20);
+        textCaracteristicas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textCaracteristicas.setForeground(new java.awt.Color(255, 255, 255));
+        textCaracteristicas.setRows(5);
+        jScrollPane2.setViewportView(textCaracteristicas);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 410, 240));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 410, 290));
+
+        jPanel7.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setLayout(new java.awt.GridLayout(1, 2));
+
+        radioSi.setBackground(new java.awt.Color(74, 75, 80));
+        radioSi.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        radioSi.setForeground(new java.awt.Color(255, 255, 255));
         radioSi.setText("Si");
-        jPanel1.add(radioSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 77, -1, -1));
+        radioSi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(radioSi);
 
-        radioNo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        radioNo.setBackground(new java.awt.Color(74, 75, 80));
+        radioNo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        radioNo.setForeground(new java.awt.Color(255, 255, 255));
         radioNo.setText("No");
-        jPanel1.add(radioNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(681, 77, -1, -1));
+        radioNo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(radioNo);
 
+        jPanel7.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 320, 60));
+
+        jLabel3.setBackground(new java.awt.Color(0, 153, 255));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("¿TIENE TUTORIAL?");
+        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 290, 60));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, 320, 150));
+
+        jPanel8.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel8.setLayout(new java.awt.GridLayout(2, 1));
+
+        jLabel8.setBackground(new java.awt.Color(0, 102, 255));
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("ÁREAS");
+        jPanel8.add(jLabel8);
+
+        jPanel6.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel6.setLayout(new java.awt.GridLayout(3, 2));
+
+        comboBoxArea1.setBackground(new java.awt.Color(204, 204, 204));
         comboBoxArea1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxArea1.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboBoxArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
+        jPanel6.add(comboBoxArea1);
 
+        comboBoxArea2.setBackground(new java.awt.Color(204, 204, 204));
         comboBoxArea2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxArea2.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboBoxArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, -1));
+        jPanel6.add(comboBoxArea2);
 
+        comboBoxArea3.setBackground(new java.awt.Color(204, 204, 204));
         comboBoxArea3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxArea3.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboBoxArea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, -1, -1));
+        jPanel6.add(comboBoxArea3);
 
+        comboBoxArea4.setBackground(new java.awt.Color(204, 204, 204));
         comboBoxArea4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxArea4.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboBoxArea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, -1, -1));
+        jPanel6.add(comboBoxArea4);
 
+        comboBoxArea5.setBackground(new java.awt.Color(204, 204, 204));
         comboBoxArea5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxArea5.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboBoxArea5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
+        jPanel6.add(comboBoxArea5);
+
+        jPanel8.add(jPanel6);
+
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 166, 320, 180));
+
+        jPanel9.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel9.setLayout(new java.awt.GridLayout(1, 2, 80, 0));
 
         botonActualizar.setBackground(new java.awt.Color(0, 204, 0));
         botonActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -394,15 +487,7 @@ public class VerSimulador extends javax.swing.JFrame {
                 botonActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, -1, -1));
-
-        textLink.setBackground(new java.awt.Color(102, 102, 102));
-        textLink.setColumns(20);
-        textLink.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        textLink.setRows(5);
-        jScrollPane3.setViewportView(textLink);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 240, -1));
+        jPanel9.add(botonActualizar);
 
         botonEliminar.setBackground(new java.awt.Color(255, 0, 0));
         botonEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -413,22 +498,16 @@ public class VerSimulador extends javax.swing.JFrame {
                 botonEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 620, -1, -1));
+        jPanel9.add(botonEliminar);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("MXN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 175, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setText("$");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 175, -1, -1));
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 600, 330, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -722,7 +801,6 @@ public class VerSimulador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxArea3;
     private javax.swing.JComboBox<String> comboBoxArea4;
     private javax.swing.JComboBox<String> comboBoxArea5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -730,8 +808,15 @@ public class VerSimulador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

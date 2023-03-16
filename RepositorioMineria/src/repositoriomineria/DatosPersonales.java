@@ -5,9 +5,10 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
@@ -104,7 +105,6 @@ public class DatosPersonales extends javax.swing.JFrame {
         btnActualizarCorreo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         textRol = new javax.swing.JTextField();
-        botonActualizar = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,21 +234,13 @@ public class DatosPersonales extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
 
         textRol.setEditable(false);
+        textRol.setBackground(new java.awt.Color(0, 0, 0));
         textRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textRol.setForeground(new java.awt.Color(255, 255, 255));
+        textRol.setToolTipText("Este campo no es editable");
         jPanel1.add(textRol);
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 740, 410));
-
-        botonActualizar.setBackground(new java.awt.Color(0, 51, 255));
-        botonActualizar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        botonActualizar.setText("Actualizar Datos");
-        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActualizarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 187, 32));
 
         botonBorrar.setBackground(new java.awt.Color(255, 0, 0));
         botonBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -259,7 +251,7 @@ public class DatosPersonales extends javax.swing.JFrame {
                 botonBorrarActionPerformed(evt);
             }
         });
-        jPanel2.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 187, 32));
+        jPanel2.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 460, 187, 32));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 510));
 
@@ -292,117 +284,6 @@ public class DatosPersonales extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
-    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-
-        String nombres = textNombres.getText().trim();
-        String apellidos = textApellidos.getText().trim();
-        String username = textUsername.getText().trim();
-        String contrasena = passwordField.getText().trim();
-        String hashedPassword = Passwords.cipher(contrasena, username);
-        String telefono = textTelefono.getText().trim();
-        String correo = textCorreo.getText().trim();
-
-        if (nombres.equals(nombresViejos) && apellidos.equals(apellidosViejos) && username.equals(usernameViejo)
-                && telefono.equals(telefonoViejo) && correo.equals(correoViejo)) {
-
-            JOptionPane.showMessageDialog(this, "No se han cambiado datos.");
-
-        } else {
-            try {
-                if (nombres.length() != 0 && apellidos.length() != 0 && username.length() != 0 && telefono.length() != 0
-                        && correo.length() != 0) {
-
-                    int yes_no = JOptionPane.showConfirmDialog(null,
-                            "¿Seguro que quiere actualizar sus datos?", "Alerta", JOptionPane.YES_NO_OPTION,
-                            JOptionPane.WARNING_MESSAGE);
-
-                    if (yes_no == 1) {
-                        return;
-                    }
-
-                    String checkUsername = "SELECT * FROM usuarios WHERE username = '" + username + "'";
-                    String checkTelefono = "SELECT * FROM usuarios WHERE telefono = '" + telefono + "'";
-                    String checkCorreo = "SELECT * FROM usuarios WHERE correo = '" + correo + "'";
-
-                    Connection cn = new Conexion().conectar();
-
-                    PreparedStatement pstCheckUsername = cn.prepareStatement(checkUsername);
-                    PreparedStatement pstCheckTelefono = cn.prepareStatement(checkTelefono);
-                    PreparedStatement pstCheckCorreo = cn.prepareStatement(checkCorreo);
-
-                    ResultSet rsCheckUsername = pstCheckUsername.executeQuery();
-                    ResultSet rsCheckTelefono = pstCheckTelefono.executeQuery();
-                    ResultSet rsCheckCorreo = pstCheckCorreo.executeQuery();
-
-                    if (!rsCheckUsername.next() || username.equals(usernameViejo)) {
-                        if (!rsCheckTelefono.next() || telefono.equals(telefonoViejo)) {
-                            if (Validaciones.validatePhone(telefono)) {
-                                if (!rsCheckCorreo.next() || correo.equals(correoViejo)) {
-                                    if (Validaciones.validateEmail(correo)) {
-                                        if (Validaciones.validatePassword(contrasena)) {
-
-                                            String updateUser = "UPDATE usuarios "
-                                                    + "SET nombres = ?, apellidos = ?, username = ?, "
-                                                    + "contrasenia = ?, telefono = ?, correo = ? "
-                                                    + "WHERE id_usuario = '" + id_usuario + "'";
-
-                                            PreparedStatement pstUpdateUser = cn.prepareStatement(updateUser);
-
-                                            pstUpdateUser.setString(1, nombres);
-                                            pstUpdateUser.setString(2, apellidos);
-                                            pstUpdateUser.setString(3, username);
-                                            pstUpdateUser.setString(4, hashedPassword);
-                                            pstUpdateUser.setString(5, telefono);
-                                            pstUpdateUser.setString(6, correo);
-
-                                            pstUpdateUser.executeUpdate();
-
-                                            JOptionPane.showMessageDialog(this, "Datos actualizados.");
-
-                                            cn.close();
-                                            pstUpdateUser.close();
-
-                                            this.nombresViejos = textNombres.getText().trim();
-                                            this.apellidosViejos = textApellidos.getText().trim();
-                                            this.usernameViejo = textUsername.getText().trim();
-                                            this.telefonoViejo = textTelefono.getText().trim();
-                                            this.correoViejo = textCorreo.getText().trim();
-                                        } else {
-                                            JOptionPane.showMessageDialog(this, "Contraseña no válida. Debe haber mínimo "
-                                                    + "8 caracteres, una o más mayúsculas y minúsculas, y uno "
-                                                    + "o más números");
-                                        }
-                                    } else {
-                                        JOptionPane.showMessageDialog(this, "Correo no válido.");
-                                    }
-                                } else {
-                                    JOptionPane.showMessageDialog(this, "Ya existe un usuario con este correo.");
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(this, "Teléfono no válido");
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Ya existe un usuario con este teléfono.");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Ya existe este nombre de usuario.");
-                    }
-                    pstCheckUsername.close();
-                    pstCheckTelefono.close();
-                    pstCheckCorreo.close();
-
-                    rsCheckUsername.close();
-                    rsCheckTelefono.close();
-                    rsCheckCorreo.close();
-                } else {
-                    JOptionPane.showMessageDialog(this, "No puede haber datos vacíos.");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
 
@@ -630,7 +511,7 @@ public class DatosPersonales extends javax.swing.JFrame {
             this.passwordField.setText("");
             return;
         }
-        
+
         String confirmPassword = confirmPassword();
         String hashedConfirmPassword = Passwords.cipher(confirmPassword, usernameViejo);
 
@@ -671,28 +552,135 @@ public class DatosPersonales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarPasswordActionPerformed
 
     private void btnActualizarTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTelefonoActionPerformed
-        // TODO add your handling code here:
+        String telefono = textTelefono.getText().trim();
+
+        if (telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campo vacío.");
+            return;
+        }
+
+        if (telefono.equals(telefonoViejo)) {
+            JOptionPane.showMessageDialog(this, "No se han cambiado datos.");
+            return;
+        }
+
+        if (!Validaciones.validatePhone(telefono)) {
+            JOptionPane.showMessageDialog(this, "Telefono no válido.");
+            return;
+        }
+
+        int yes_no = JOptionPane.showConfirmDialog(null,
+                "¿Seguro que quiere actualizar su telefono?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (yes_no == 1) {
+            return;
+        }
+
+        try {
+            String checkTelefono = "SELECT * FROM usuarios WHERE telefono = '" + telefono + "'";
+
+            Connection cn = new Conexion().conectar();
+            PreparedStatement pst = cn.prepareStatement(checkTelefono);
+            ResultSet rs = pst.executeQuery();
+
+            if (!rs.next()) {
+                String updateQuery = "UPDATE usuarios SET telefono = ? WHERE id_usuario = " + id_usuario + "";
+                PreparedStatement pstUpdateTelefono = cn.prepareStatement(updateQuery);
+
+                pstUpdateTelefono.setString(1, telefono);
+
+                pstUpdateTelefono.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Teléfono actualizado.");
+
+                pstUpdateTelefono.close();
+
+                this.telefonoViejo = textTelefono.getText().trim();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe alguien con este teléfono.");
+            }
+
+            cn.close();
+            pst.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnActualizarTelefonoActionPerformed
 
     private void btnActualizarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCorreoActionPerformed
-        // TODO add your handling code here:
+        String correo = textCorreo.getText().trim();
+
+        if (correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campo vacío.");
+            return;
+        }
+
+        if (correo.equals(correoViejo)) {
+            JOptionPane.showMessageDialog(this, "No se han cambiado datos.");
+            return;
+        }
+
+        if (!Validaciones.validateEmail(correo)) {
+                JOptionPane.showMessageDialog(this, "Correo no válido.");
+            return;
+        }
+
+        int yes_no = JOptionPane.showConfirmDialog(null,
+                "¿Seguro que quiere actualizar su correo?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (yes_no == 1) {
+            return;
+        }
+
+        try {
+            String checkCorreo = "SELECT * FROM usuarios WHERE correo = '" + correo + "'";
+
+            Connection cn = new Conexion().conectar();
+            PreparedStatement pst = cn.prepareStatement(checkCorreo);
+            ResultSet rs = pst.executeQuery();
+
+            if (!rs.next()) {
+                String updateQuery = "UPDATE usuarios SET correo = ? WHERE id_usuario = " + id_usuario + "";
+                PreparedStatement pstUpdateCorreo = cn.prepareStatement(updateQuery);
+
+                pstUpdateCorreo.setString(1, correo);
+
+                pstUpdateCorreo.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Correo actualizado.");
+
+                pstUpdateCorreo.close();
+
+                this.correoViejo = textCorreo.getText().trim();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya existe alguien con este correo.");
+            }
+
+            cn.close();
+            pst.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnActualizarCorreoActionPerformed
 
     public String confirmPassword() {
         JPasswordField myPasswordField = new JPasswordField(24);
         Box box = Box.createHorizontalBox();
         box.add(myPasswordField);
-        
+
         int x = JOptionPane.showConfirmDialog(null, box, "Confirme contraseña", JOptionPane.OK_CANCEL_OPTION);
-        
-        if(x == JOptionPane.OK_OPTION) {
+
+        if (x == JOptionPane.OK_OPTION) {
             return myPasswordField.getText().trim();
         }
-    
+
         return null;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton btnActualizarApellidos;
     private javax.swing.JButton btnActualizarCorreo;

@@ -85,7 +85,7 @@ public class AgregarAreas extends javax.swing.JFrame {
                 int rendererWidth = component.getPreferredSize().width;
                 TableColumn tableColumn = getColumnModel().getColumn(column);
                 tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, 
-                        tableColumn.getPreferredWidth()));
+                                                    tableColumn.getPreferredWidth()));
                 return component;
             }
         };
@@ -97,11 +97,11 @@ public class AgregarAreas extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(20);
         tabla.setFont(new Font("Arial", Font.BOLD, 14));
+        tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
         tabla.getTableHeader().setBackground(new Color(114,137,218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
-        tabla.getTableHeader().setForeground(Color.WHITE);
         
         String consulta = "SELECT nombre_area FROM areas";
         
@@ -154,6 +154,8 @@ public class AgregarAreas extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
+        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -167,14 +169,18 @@ public class AgregarAreas extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
+        jPanel4.setBackground(new java.awt.Color(74, 75, 80));
         jPanel4.setLayout(new java.awt.GridLayout(4, 2, 100, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Área seleccionada");
         jPanel4.add(jLabel1);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nueva Área");
         jPanel4.add(jLabel2);
