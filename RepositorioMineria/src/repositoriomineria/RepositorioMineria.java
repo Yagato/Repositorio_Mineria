@@ -21,9 +21,9 @@ public class RepositorioMineria {
         //FlatDarkLaf.setup();
         //new InicioSesion().setVisible(true);
         //new PantallaPrincipal("1", "Yagato", "MainAdmin", "192.168.0.4").setVisible(true);
-        new MainScreenFrame("1", "Yagato", "MainAdmin").setVisible(true);
+        new MainScreenFrame("1", "Yagatomon", "MainAdmin").setVisible(true);
         //new MainScreenFrame("37", "Adminn", "Admin").setVisible(true);
-        //new MainScreenFrame("13", "Uno", "Usuario").setVisible(true);
+        //new MainScreenFrame("38", "Probando", "Probando123!").setVisible(true);
     }
     
 }

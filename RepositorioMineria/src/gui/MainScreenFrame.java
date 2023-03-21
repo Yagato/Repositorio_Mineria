@@ -46,6 +46,10 @@ public class MainScreenFrame extends javax.swing.JFrame {
                                 case 0:
                                     break;
                                 case 1:
+                                    DatosPersonalesPanel datosPersonalesPanel = new DatosPersonalesPanel(idUsuario, username, rolUsuario, MainScreenFrame.this);
+                                    screensPanel.removeAll();
+                                    screensPanel.add(datosPersonalesPanel);
+                                    screensPanel.revalidate();
                                     break;
                                 case 2:
                                     break;
@@ -130,8 +134,16 @@ public class MainScreenFrame extends javax.swing.JFrame {
                                     screensPanel.revalidate();
                                     break;
                                 case 3:
+                                    DatosPersonalesPanel datosPersonalesPanel = new DatosPersonalesPanel(idUsuario, username, rolUsuario, MainScreenFrame.this);
+                                    screensPanel.removeAll();
+                                    screensPanel.add(datosPersonalesPanel);
+                                    screensPanel.revalidate();
                                     break;
                                 case 4:
+                                    VerUsuariosPanel verUsuariosPanel = new VerUsuariosPanel(username);
+                                    screensPanel.removeAll();
+                                    screensPanel.add(verUsuariosPanel);
+                                    screensPanel.revalidate();
                                     break;
                                 case 5:
                                     break;
@@ -203,7 +215,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
 
         screensPanel.setBackground(new java.awt.Color(74, 75, 80));
         screensPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        screensPanel.setLayout(new java.awt.GridLayout());
+        screensPanel.setLayout(new java.awt.GridLayout(1, 1));
         masterPanel.add(screensPanel, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
