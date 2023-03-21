@@ -1,0 +1,243 @@
+package gui;
+
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javaswingdev.drawer.Drawer;
+import javaswingdev.drawer.DrawerController;
+import javaswingdev.drawer.DrawerItem;
+import javaswingdev.drawer.EventDrawer;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import repositoriomineria.InicioSesion;
+
+/**
+ *
+ * @author Carlos Alberto Gonzalez Guerrero
+ */
+public class MainScreenFrame extends javax.swing.JFrame {
+
+    private DrawerController drawerController;
+    private String idUsuario = "", username = "", rolUsuario = "";
+
+    public MainScreenFrame(String idUser, String user, String rol) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setIconImage(getIconImage());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.idUsuario = idUser;
+        this.username = user;
+        this.rolUsuario = rol;
+
+        if (rolUsuario.equals("Usuario")) {
+            drawerController = Drawer.newDrawer(this)
+                    .header(new HeaderPanel())
+                    .space(5)
+                    .addChild(new DrawerItem("Base de Datos").build())
+                    .addChild(new DrawerItem("Datos Personales").build())
+                    .addChild(new DrawerItem("Manual de Usuario").build())
+                    .addFooter(new DrawerItem("Salir").build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            switch (i) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    dispose();
+                                    new InicioSesion().setVisible(true);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
+        } else if(rolUsuario.equals("Admin")) {
+            drawerController = Drawer.newDrawer(this)
+                    .header(new JLabel("Bienvenido"))
+                    .space(5)
+                    .addChild(new DrawerItem("Base de Datos").build())
+                    .addChild(new DrawerItem("Agregar Simulador").build())
+                    .addChild(new DrawerItem("Agregar Areas").build())
+                    .addChild(new DrawerItem("Datos Personales").build())
+                    .addChild(new DrawerItem("Manual de Usuario").build())
+                    .addFooter(new DrawerItem("Salir").build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            switch (i) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    dispose();
+                                    new InicioSesion().setVisible(true);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
+        } else if(rolUsuario.equals("MainAdmin")) {
+            drawerController = Drawer.newDrawer(this)
+                    .header(new HeaderPanel())
+                    .space(5)
+                    .addChild(new DrawerItem("Base de Datos").build())
+                    .addChild(new DrawerItem("Agregar Simulador").build())
+                    .addChild(new DrawerItem("Agregar Areas").build())
+                    .addChild(new DrawerItem("Datos Personales").build())
+                    .addChild(new DrawerItem("Ver Usuarios").build())
+                    .addChild(new DrawerItem("Manual de Usuario").build())
+                    .addChild(new DrawerItem("Manual Tecnico").build())
+                    .addFooter(new DrawerItem("Salir").build())
+                    .event(new EventDrawer() {
+                        @Override
+                        public void selected(int i, DrawerItem di) {
+                            switch (i) {
+                                case 0:
+                                    DatabaseMenuPanel dbMenuPanel = new DatabaseMenuPanel();
+                                    screensPanel.removeAll();
+                                    screensPanel.add(dbMenuPanel);
+                                    screensPanel.revalidate();
+                                    break;
+                                case 1:
+                                    AgregarSimuladorPanel agregarSimuladorPanel = new AgregarSimuladorPanel();
+                                    screensPanel.removeAll();
+                                    screensPanel.add(agregarSimuladorPanel);
+                                    screensPanel.revalidate();
+                                    break;
+                                case 2:
+                                    AgregarAreasPanel agregarAreasPanel = new AgregarAreasPanel();
+                                    screensPanel.removeAll();
+                                    screensPanel.add(agregarAreasPanel);
+                                    screensPanel.revalidate();
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                                case 7:
+                                    System.out.println(i);
+                                    dispose();
+                                    new InicioSesion().setVisible(true);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    })
+                    .build();
+        }
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        masterPanel = new javax.swing.JPanel();
+        openMenuPanel = new javax.swing.JPanel();
+        btnMenu = new javax.swing.JButton();
+        screensPanel = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(74, 75, 80));
+        setPreferredSize(new java.awt.Dimension(900, 720));
+
+        masterPanel.setBackground(new java.awt.Color(74, 75, 80));
+        masterPanel.setLayout(new java.awt.BorderLayout());
+
+        openMenuPanel.setBackground(new java.awt.Color(74, 75, 80));
+
+        btnMenu.setText("|||");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout openMenuPanelLayout = new javax.swing.GroupLayout(openMenuPanel);
+        openMenuPanel.setLayout(openMenuPanelLayout);
+        openMenuPanelLayout.setHorizontalGroup(
+            openMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(openMenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        openMenuPanelLayout.setVerticalGroup(
+            openMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(openMenuPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(btnMenu)
+                .addContainerGap(456, Short.MAX_VALUE))
+        );
+
+        masterPanel.add(openMenuPanel, java.awt.BorderLayout.LINE_START);
+
+        screensPanel.setBackground(new java.awt.Color(74, 75, 80));
+        screensPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        screensPanel.setLayout(new java.awt.GridLayout());
+        masterPanel.add(screensPanel, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(masterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        if (drawerController.isShow()) {
+            drawerController.hide();
+        } else {
+            drawerController.show();
+        }
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit()
+                .getImage(ClassLoader.getSystemResource("imagenes/cascoIcon.png"));
+        return retValue;
+    }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMenu;
+    private javax.swing.JPanel masterPanel;
+    private javax.swing.JPanel openMenuPanel;
+    private javax.swing.JPanel screensPanel;
+    // End of variables declaration//GEN-END:variables
+}

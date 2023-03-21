@@ -12,10 +12,8 @@ public class Simuladores {
     
     String id_simulador = "", nombre_simulador = "", requisitos = "", tutorial = ""; 
     String costo = "", caracteristicas = "", link = "", fecha_consulta = "";
-    String ipAddress;
     
-    public Simuladores(String ip){
-        this.ipAddress = ip;
+    public Simuladores(){
     }
     
     public String getIDSimulador(String nombre){

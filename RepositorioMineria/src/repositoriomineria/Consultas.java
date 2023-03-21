@@ -14,10 +14,9 @@ import javax.swing.JComboBox;
  */
 public class Consultas {
     
-    String ipAddress;
     
-    public Consultas(String ip){
-        this.ipAddress = ip;
+    public Consultas(){
+
     }
     
     

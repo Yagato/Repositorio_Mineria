@@ -64,14 +64,14 @@ public class AgregarSimulador extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         this.ipAddress = ip;
-        this.objetoAreas = new Areas(ipAddress);
-        this.sim = new Simuladores(ipAddress);
+        this.objetoAreas = new Areas();
+        this.sim = new Simuladores();
                 
         comboTutorial.removeAllItems();
         comboTutorial.addItem("Si");
         comboTutorial.addItem("No");
         
-        areas = new Consultas(ipAddress).getAreas();
+        areas = new Consultas().getAreas();
         //areas.setBackground(new Color(253,193,1));
         areas.setFont(new Font("Arial", Font.BOLD, 14));
         areas.setBounds(180, 160, 150, 25);
@@ -368,9 +368,8 @@ public class AgregarSimulador extends javax.swing.JFrame {
     private void insertarArea(String nombre){
         try{
             Connection cn = new Conexion().conectar();
-            String n = nombre;
             String area = areas.getSelectedItem().toString();
-            String id_simulador = sim.getIDSimulador(n);
+            String id_simulador = sim.getIDSimulador(nombre);
             String id_area = objetoAreas.getIDArea(area);
 
             PreparedStatement pstInsertarArea = cn.prepareStatement("insert into simuladorarea values(?,?)");

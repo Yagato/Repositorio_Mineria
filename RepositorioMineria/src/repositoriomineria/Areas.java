@@ -9,10 +9,8 @@ import java.sql.*;
 public class Areas {
     
     String id_area = "", nombre_area = "";
-    String ipAddress;
     
-    public Areas(String ip){
-        this.ipAddress = ip;
+    public Areas(){
     }
     
     public String getIDArea(String nombre){

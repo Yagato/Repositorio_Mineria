@@ -171,7 +171,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuBar.add(searchText);
 
         List areas = new List();
-        areas = new Consultas(ipAddress).getListAreas();
+        areas = new Consultas().getListAreas();
 
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
         comboBoxAreas.setBackground(new Color(204, 204, 204));
@@ -326,7 +326,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public JTable filtrarPorAreas(String area) {
         JTable tabla = renderTable();
 
-        String id_area = new Areas(ipAddress).getIDArea(area);
+        String id_area = new Areas().getIDArea(area);
 
         String consulta = "SELECT logo, costo, nombre_simulador "
                 + "FROM simuladores, areas, simuladorarea "

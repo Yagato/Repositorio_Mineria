@@ -333,7 +333,7 @@ public class AgregarAreas extends javax.swing.JFrame {
         String nombreArea = textAreaSeleccionada.getText().trim();
         if(!nombreArea.isEmpty() && !nombreAntiguo.isEmpty()){
             try {
-                String id_area = new Areas(ipAddress).getIDArea(nombreArea);
+                String id_area = new Areas().getIDArea(nombreArea);
                 String delete = "DELETE FROM areas WHERE nombre_area = '" + nombreArea + "'";
                 Connection cn = new Conexion().conectar();
                 PreparedStatement pstDelete = cn.prepareStatement(delete);

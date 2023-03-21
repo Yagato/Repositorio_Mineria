@@ -93,7 +93,7 @@ public class VerSimulador extends javax.swing.JFrame {
             botonEliminar.setVisible(false);
         }
         
-        id_simulador = new Simuladores(ipAddress).getIDSimulador(nombreSimulador);
+        id_simulador = new Simuladores().getIDSimulador(nombreSimulador);
         
         textNombre.setHorizontalAlignment(SwingConstants.CENTER);
         
@@ -106,7 +106,7 @@ public class VerSimulador extends javax.swing.JFrame {
         group.add(radioNo);
         
         List areas = new List();
-        areas = new Consultas(ipAddress).getListAreas();
+        areas = new Consultas().getListAreas();
         
         comboBoxArea1.removeAllItems();
         comboBoxArea2.removeAllItems();
@@ -521,7 +521,7 @@ public class VerSimulador extends javax.swing.JFrame {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         try{
             File image;
-            InputStream fis = new Consultas(ipAddress).getLogo(id_simulador);
+            InputStream fis = new Consultas().getLogo(id_simulador);
             if(file != null){
                 image = new File(file.getAbsolutePath());
                 fis = new FileInputStream(image);
@@ -639,12 +639,12 @@ public class VerSimulador extends javax.swing.JFrame {
             for(int i = 0; i < areas.size(); i++){
                 String idArea = "";
                 if(areas.get(i).toString().equals("-") && !areas.get(i).equals(areas_actuales[i])){
-                    idArea = new Areas(ipAddress).getIDArea(areas_actuales[i]);
+                    idArea = new Areas().getIDArea(areas_actuales[i]);
                     eliminarArea(idArea);
                     areas_actuales[i] = areas.get(i).toString();
                 }
                 else{
-                    idArea = new Areas(ipAddress).getIDArea(areas.get(i).toString());
+                    idArea = new Areas().getIDArea(areas.get(i).toString());
                     pstCheck.setString(1, idArea);
 
                     rsCheck = pstCheck.executeQuery();
@@ -659,7 +659,7 @@ public class VerSimulador extends javax.swing.JFrame {
                         areas_actuales[i] = areas.get(i).toString();
                     }
                     else{
-                        String idAreaOriginal = new Areas(ipAddress).getIDArea(areas_actuales[i]);
+                        String idAreaOriginal = new Areas().getIDArea(areas_actuales[i]);
                         pstUpdateAreas.setString(1, idArea);
                         pstUpdateAreas.setString(2, idAreaOriginal);
                         pstUpdateAreas.executeUpdate();

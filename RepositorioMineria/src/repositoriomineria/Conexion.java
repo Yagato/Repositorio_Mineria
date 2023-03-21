@@ -12,6 +12,20 @@ import java.sql.DriverManager;
 
 public class Conexion {
     
+    public static Connection conectar(){       
+        
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/repositoriomineria","root","");
+           /* Connection cn = DriverManager.getConnection("jdbc:mysql://"+ip_Address+":3306/repositoriomineria",
+                    "username","password");*/
+          return cn;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return(null);
+    }
+    
+    /*
     public static Connection conectar() {
         Dotenv dotenv = Dotenv.configure().load();
         if(dotenv.get("RDS_HOSTNAME") != null) {
@@ -31,6 +45,7 @@ public class Conexion {
 
         return null;
     }
+    */
     
     /*static String ip_Address;
     
