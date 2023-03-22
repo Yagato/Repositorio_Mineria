@@ -101,7 +101,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1.add(new JScrollPane(tablaSimuladores), BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-
+        
+        /*
         tablaSimuladores.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -112,7 +113,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     frame.setEnabled(false);
                 }
             }
-        });
+        })
+        */;
 
         menuBar.add(new JSeparator());
 

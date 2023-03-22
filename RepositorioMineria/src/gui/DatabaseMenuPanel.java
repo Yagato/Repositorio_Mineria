@@ -27,6 +27,10 @@ import javax.swing.table.TableColumn;
 import database.Areas;
 import database.Conexion;
 import database.Consultas;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -36,9 +40,14 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
 
     private String headerSimuladores[] = {"Logo", "Nombre", "Costo (MXN)"};
     private DefaultTableModel tableModelSimuladores = new DefaultTableModel(headerSimuladores, 0);
+    private MainScreenFrame myFrame;
+    private String rolUsuario;
 
-    public DatabaseMenuPanel() {
+    public DatabaseMenuPanel(MainScreenFrame frame, String rol) {
         initComponents();
+        
+        this.myFrame = frame;
+        this.rolUsuario = rol;
 
         tablaSimuladores = verTabla();
 
@@ -48,6 +57,18 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         tablePanel.revalidate();
         tablePanel.repaint();
+        
+        tablaSimuladores.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
+                    String nombreSimulador = tablaSimuladores.getValueAt(tablaSimuladores.getSelectedRow(), 1)
+                            .toString();
+                    new VerSimuladorFrame(myFrame, DatabaseMenuPanel.this, nombreSimulador, rolUsuario).setVisible(true);
+                    frame.setEnabled(false);
+                }
+            }
+        });
 
         searchButton.setBackground(new Color(253, 193, 1));
         searchButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -403,7 +424,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchText;
-    private javax.swing.JTable tablaSimuladores;
+    public javax.swing.JTable tablaSimuladores;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JPanel topBarPanel;
     // End of variables declaration//GEN-END:variables

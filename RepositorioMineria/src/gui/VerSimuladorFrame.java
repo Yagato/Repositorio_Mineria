@@ -1,4 +1,4 @@
-package repositoriomineria;
+package gui;
 
 import database.Simuladores;
 import database.Conexion;
@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -38,9 +37,10 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  * @author Carlos Alberto Gonzalez Guerrero
  * @author Ocampo Mora
  */
-public class VerSimulador extends javax.swing.JFrame {
+public class VerSimuladorFrame extends javax.swing.JFrame {
     
-    PantallaPrincipal pp;
+    MainScreenFrame myFrame;
+    private DatabaseMenuPanel myPanel;
     ButtonGroup group = new ButtonGroup();
     final JFileChooser fc = new JFileChooser();
     FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
@@ -59,7 +59,7 @@ public class VerSimulador extends javax.swing.JFrame {
         return retValue;
     }
         
-    public VerSimulador(PantallaPrincipal p, String nombreSimulador, String ip, String rol) {
+    public VerSimuladorFrame(MainScreenFrame frame, DatabaseMenuPanel panel, String nombreSimulador, String rol) {
         super(nombreSimulador);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -67,8 +67,8 @@ public class VerSimulador extends javax.swing.JFrame {
         this.setIconImage(getIconImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        this.ipAddress = ip;
         this.rolUsuario = rol;
+        this.myPanel = panel;
         
         if(this.rolUsuario.equals("Usuario")){
             textNombre.setEnabled(false);
@@ -148,13 +148,13 @@ public class VerSimulador extends javax.swing.JFrame {
         
         nombreViejo = textNombre.getText().trim();
         
-        this.pp = p;
+        this.myFrame = frame;
         
         this.pack();
         
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
-                pp.setEnabled(true);
+                myFrame.setEnabled(true);
             }
         });
     }
@@ -592,9 +592,9 @@ public class VerSimulador extends javax.swing.JFrame {
                     if(!nombre.isEmpty() && !areas.isEmpty()){
                         pstUpdate.executeUpdate();
                         actualizarAreas(areas);
-                        DefaultTableModel model = (DefaultTableModel) pp.tablaSimuladores.getModel();
+                        DefaultTableModel model = (DefaultTableModel) myPanel.tablaSimuladores.getModel();
                         model.setRowCount(0);
-                        pp.verTabla();
+                        myPanel.verTabla();
                         JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
                         nombreViejo = nombre;
                     }
@@ -708,9 +708,9 @@ public class VerSimulador extends javax.swing.JFrame {
             if (yes_no == 0) {
                 if (rsCheck.next()) {
                     pstDelete.executeUpdate();
-                    DefaultTableModel model = (DefaultTableModel) pp.tablaSimuladores.getModel();
+                    DefaultTableModel model = (DefaultTableModel) myPanel.tablaSimuladores.getModel();
                     model.setRowCount(0);
-                    pp.verTabla();
+                    myPanel.verTabla();
                 }
                 JOptionPane.showMessageDialog(null, "Área(s) desasignada(s) exitosamente.");
             }
@@ -760,10 +760,10 @@ public class VerSimulador extends javax.swing.JFrame {
                     eliminarAreasSimuladores();
                     pstDeleteSimulador.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Simulador eliminado exitosamente.");
-                    DefaultTableModel model = (DefaultTableModel) pp.tablaSimuladores.getModel();
+                    DefaultTableModel model = (DefaultTableModel) myPanel.tablaSimuladores.getModel();
                     model.setRowCount(0);
-                    pp.verTabla();
-                    pp.setEnabled(true);
+                    myPanel.verTabla();
+                    myFrame.setEnabled(true);
                     this.dispose();
                 }
             }

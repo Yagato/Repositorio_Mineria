@@ -137,7 +137,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
     }
 
     private void showBaseDeDatos() {
-        DatabaseMenuPanel dbMenuPanel = new DatabaseMenuPanel();
+        DatabaseMenuPanel dbMenuPanel = new DatabaseMenuPanel(this, rolUsuario);
         screensPanel.removeAll();
         screensPanel.add(dbMenuPanel);
         screensPanel.revalidate();
