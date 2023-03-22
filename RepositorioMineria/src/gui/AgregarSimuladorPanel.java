@@ -97,6 +97,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         botonAgregar = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -109,6 +109,7 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         textRol = new javax.swing.JTextField();
         botonBorrar = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(750, 500));
         setLayout(new java.awt.GridLayout(1, 1));
 
         jPanel2.setBackground(new java.awt.Color(74, 75, 80));
@@ -247,7 +248,7 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         textRol.setToolTipText("Este campo no es editable");
         jPanel1.add(textRol);
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 740, 410));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 740, 560));
 
         botonBorrar.setBackground(new java.awt.Color(255, 0, 0));
         botonBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -258,7 +259,7 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
                 botonBorrarActionPerformed(evt);
             }
         });
-        jPanel2.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 460, 187, 32));
+        jPanel2.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 580, 187, 32));
 
         add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
