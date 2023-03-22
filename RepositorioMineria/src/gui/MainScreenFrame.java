@@ -13,7 +13,6 @@ import javaswingdev.drawer.DrawerItem;
 import javaswingdev.drawer.EventDrawer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import repositoriomineria.InicioSesion;
 
 /**
  *
@@ -49,20 +48,16 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         @Override
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
-                                case 0:
+                                case 0 ->
                                     showBaseDeDatos();
-                                    break;
-                                case 1:
+                                case 1 ->
                                     showDatosPersonales();
-                                    break;
-                                case 2:
+                                case 2 ->
                                     openPDF("manual_usuario.pdf");
-                                    break;
-                                case 3:
+                                case 3 ->
                                     salir();
-                                    break;
-                                default:
-                                    break;
+                                default -> {
+                                }
                             }
                         }
                     })
@@ -81,26 +76,20 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         @Override
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
-                                case 0:
+                                case 0 ->
                                     showBaseDeDatos();
-                                    break;
-                                case 1:
+                                case 1 ->
                                     showAgregarSimulador();
-                                    break;
-                                case 2:
+                                case 2 ->
                                     showAgregarAreas();
-                                    break;
-                                case 3:
+                                case 3 ->
                                     showDatosPersonales();
-                                    break;
-                                case 4:
+                                case 4 ->
                                     openPDF("manual_usuario.pdf");
-                                    break;
-                                case 5:
+                                case 5 ->
                                     salir();
-                                    break;
-                                default:
-                                    break;
+                                default -> {
+                                }
                             }
                         }
                     })
@@ -121,32 +110,24 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         @Override
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
-                                case 0:
+                                case 0 ->
                                     showBaseDeDatos();
-                                    break;
-                                case 1:
+                                case 1 ->
                                     showAgregarSimulador();
-                                    break;
-                                case 2:
+                                case 2 ->
                                     showAgregarAreas();
-                                    break;
-                                case 3:
+                                case 3 ->
                                     showDatosPersonales();
-                                    break;
-                                case 4:
+                                case 4 ->
                                     showVerUsuarios();
-                                    break;
-                                case 5:
+                                case 5 ->
                                     openPDF("manual_usuario.pdf");
-                                    break;
-                                case 6:
+                                case 6 ->
                                     openPDF("manual_tecnico.pdf");
-                                    break;
-                                case 7:
+                                case 7 ->
                                     salir();
-                                    break;
-                                default:
-                                    break;
+                                default -> {
+                                }
                             }
                         }
                     })
@@ -192,7 +173,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
 
     private void salir() {
         this.dispose();
-        new InicioSesion().setVisible(true);
+        new InicioSesionFrame().setVisible(true);
     }
 
     private void openPDF(String filename) {
@@ -236,7 +217,9 @@ public class MainScreenFrame extends javax.swing.JFrame {
 
         openMenuPanel.setBackground(new java.awt.Color(74, 75, 80));
 
-        btnMenu.setText("|||");
+        btnMenu.setBackground(new java.awt.Color(102, 102, 102));
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("Menu");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -249,15 +232,15 @@ public class MainScreenFrame extends javax.swing.JFrame {
             openMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(openMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnMenu)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         openMenuPanelLayout.setVerticalGroup(
             openMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(openMenuPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnMenu)
-                .addContainerGap(456, Short.MAX_VALUE))
+                .addContainerGap(676, Short.MAX_VALUE))
         );
 
         masterPanel.add(openMenuPanel, java.awt.BorderLayout.LINE_START);

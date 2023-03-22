@@ -1,8 +1,7 @@
-package repositoriomineria;
+package gui;
 
-import gui.MainScreenFrame;
-import java.awt.Color;
-import java.awt.Font;
+import database.Passwords;
+import database.Conexion;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.InetAddress;
@@ -10,24 +9,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import repositoriomineria.AgregarUsuarios;
+
 /**
  *
  * @author Ocampo Mora
  */
-public class InicioSesion extends javax.swing.JFrame {
+public class InicioSesionFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form InicioSesion
+     * Creates new form InicioSesionFrame
      */
     //JComboBox comboHosts = new JComboBox();
     DefaultComboBoxModel model = new DefaultComboBoxModel(new String[]{"LAPTOP-818UCN4A"});
     InetAddress ip = null;
     String ipHost;
-    
-    public InicioSesion() {
+
+    public InicioSesionFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -39,29 +39,28 @@ public class InicioSesion extends javax.swing.JFrame {
         //comboHosts.setBackground(new Color(255,255,255));
         comboHosts.setFont(new Font("Arial", Font.BOLD, 14));
         comboHosts.setBounds(90, 85, 230, 23);
-        */
-        
-        try{
+         */
+        try {
             ip = InetAddress.getLocalHost();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         /*
         if(model.getIndexOf(ip.getHostName()) == -1){
             comboHosts.addItem("Local: " + ip.getHostName());
         }
         jLabelFondo.add(comboHosts);
-        */
-        
+         */
         this.pack();
     }
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/cascoIcon.png"));
         return retValue;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,52 +153,47 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUserActionPerformed
 
     private void jButtonSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSesionActionPerformed
-        
+
         String user = jTextFieldUser.getText().trim();
         String password = jPassword.getText().trim();
         String hashedPassword = Passwords.cipher(password, user);
-        
+
         /*
         String host = comboHosts.getSelectedItem().toString();
         
         if(host.toLowerCase().contains("Local: ".toLowerCase())){
             host = host.replace("Local: ", "");
         }
-        */
-        
-       /* ip = Conexion.getHostIP(host);
+         */
+ /* ip = Conexion.getHostIP(host);
         ipHost = ip.getHostAddress();*/
-        
-        if(jTextFieldUser.getText().length() == 0 || jPassword.getPassword().length == 0){
+        if (jTextFieldUser.getText().length() == 0 || jPassword.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no ingresado");
             jTextFieldUser.setText("");
             jPassword.setText("");
-        }
-        else{
-            try{
+        } else {
+            try {
                 Connection cn = new Conexion().conectar();
                 PreparedStatement pst = cn.prepareStatement(
-                        "select id_usuario, username, contrasenia, rol from usuarios where username = '" 
+                        "select id_usuario, username, contrasenia, rol from usuarios where username = '"
                         + user + "' and contrasenia = '" + hashedPassword + "'");
                 ResultSet rs = pst.executeQuery();
-                
-                if(rs.next()){
+
+                if (rs.next()) {
                     String id_usuario = rs.getString("id_usuario");
                     String username = rs.getString("username");
                     //String contrasenia = rs.getString("contrasenia");
                     String rol = rs.getString("rol");
                     dispose();
                     new MainScreenFrame(id_usuario, username, rol).setVisible(true);
-                }
-                else{
+                } else {
                     jPassword.setText("");
                     jTextFieldUser.setText("");
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
                 }
                 cn.close();
                 pst.close();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
                 System.out.println(e);
             }
@@ -207,20 +201,19 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSesionActionPerformed
 
     private void botonCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuentaActionPerformed
-        try{
+        try {
             /*
             String host = comboHosts.getSelectedItem().toString();
         
             if(host.toLowerCase().contains("Local: ".toLowerCase())){
                 host = host.replace("Local: ", "");
             }
-            */
+             */
 
             //ip = Conexion.getHostIP(host);
             ipHost = ip.getHostAddress();
             new AgregarUsuarios(ipHost).setVisible(true);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
         }
     }//GEN-LAST:event_botonCrearCuentaActionPerformed

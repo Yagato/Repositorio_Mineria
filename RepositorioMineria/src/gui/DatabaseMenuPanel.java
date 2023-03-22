@@ -24,10 +24,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import repositoriomineria.Areas;
-import repositoriomineria.Conexion;
-import repositoriomineria.Consultas;
-import repositoriomineria.TablaImagen;
+import database.Areas;
+import database.Conexion;
+import database.Consultas;
 
 /**
  *
@@ -37,23 +36,23 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
 
     private String headerSimuladores[] = {"Logo", "Nombre", "Costo (MXN)"};
     private DefaultTableModel tableModelSimuladores = new DefaultTableModel(headerSimuladores, 0);
-    
+
     public DatabaseMenuPanel() {
         initComponents();
-        
+
         tablaSimuladores = verTabla();
-        
+
         tablePanel.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(tablaSimuladores);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
         tablePanel.revalidate();
         tablePanel.repaint();
-        
-        searchButton.setBackground(new Color(253,193,1));
+
+        searchButton.setBackground(new Color(253, 193, 1));
         searchButton.setFont(new Font("Arial", Font.BOLD, 20));
         searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        
+
         searchText.setBackground(new Color(153, 153, 153));
         searchText.setFont(new Font("Arial", Font.BOLD, 20));
         searchText.setForeground(Color.WHITE);
@@ -74,22 +73,23 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
                 super.focusLost(e);
             }
         });
-        
+
         searchButton.addActionListener((ActionEvent evt) -> {
             String nombre = searchText.getText().trim();
-            
-            if(nombre.equals("Buscar..."))
+
+            if (nombre.equals("Buscar...")) {
                 return;
-            
+            }
+
             nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
             tableModelSimuladores.setRowCount(0);
             buscarSimulador(nombre);
         });
-        
+
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         //refreshButton.setFont(new Font("Arial", Font.BOLD, 14));
         refreshButton.setBackground(Color.GREEN);
-        
+
         try {
             Image img = ImageIO.read(getClass().getResource("/imagenes/refresh.png"));
             Image scaledImage = img.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -104,7 +104,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
             comboBoxAreas.setSelectedIndex(0);
             this.verTabla();
         });
-        
+
         List areas = new List();
         areas = new Consultas().getListAreas();
 
@@ -129,7 +129,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
             }
         });
     }
-    
+
     public JTable renderTable() {
         JTable tabla = new JTable() {
             @Override
@@ -205,7 +205,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
 
         return tabla;
     }
-    
+
     public JTable buscarSimulador(String nombre) {
         JTable tabla = renderTable();
 

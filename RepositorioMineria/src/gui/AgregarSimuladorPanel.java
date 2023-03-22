@@ -10,14 +10,16 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import repositoriomineria.Areas;
-import repositoriomineria.Conexion;
-import repositoriomineria.Consultas;
+import database.Areas;
+import database.Conexion;
+import database.Consultas;
 import repositoriomineria.RepositorioMineria;
-import repositoriomineria.Simuladores;
+import database.Simuladores;
 
 /**
  *
@@ -39,26 +41,26 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
 
     public AgregarSimuladorPanel() {
         initComponents();
-        
+
         this.objetoAreas = new Areas();
         this.sim = new Simuladores();
-                
+
         comboTutorial.removeAllItems();
         comboTutorial.addItem("Si");
         comboTutorial.addItem("No");
-        
+
         areas = new Consultas().getAreas();
         //areas.setBackground(new Color(253,193,1));
         areas.setFont(new Font("Arial", Font.BOLD, 14));
         areas.setBounds(340, 170, 150, 25);
         jLabelFondo.add(areas);
-        
+
         textReq.setLineWrap(true);
         textReq.setWrapStyleWord(true);
-        
+
         textCaracteristicas.setLineWrap(true);
         textCaracteristicas.setWrapStyleWord(true);
-        
+
         calendar.setBounds(340, 590, 250, 22);
         jLabelFondo.add(calendar);
         editor.setEditable(false);
@@ -304,7 +306,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "Ya existe ese simulador");
                         textNombre.setText("");
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
@@ -318,8 +320,8 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void insertarArea(String nombre){
-        try{
+    private void insertarArea(String nombre) {
+        try {
             Connection cn = new Conexion().conectar();
             String n = nombre;
             String area = areas.getSelectedItem().toString();
@@ -335,8 +337,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
 
             cn.close();
             pstInsertarArea.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

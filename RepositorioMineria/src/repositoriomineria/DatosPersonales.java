@@ -1,5 +1,9 @@
 package repositoriomineria;
 
+import gui.InicioSesionFrame;
+import security.Validaciones;
+import database.Passwords;
+import database.Conexion;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -305,7 +309,7 @@ public class DatosPersonales extends javax.swing.JFrame {
 
                 this.dispose();
                 this.pp.dispose();
-                new InicioSesion().setVisible(true);
+                new InicioSesionFrame().setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }

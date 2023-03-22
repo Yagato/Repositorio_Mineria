@@ -1,5 +1,10 @@
 package repositoriomineria;
 
+import gui.InicioSesionFrame;
+import gui.TablaImagen;
+import database.Consultas;
+import database.Areas;
+import database.Conexion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -520,7 +525,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed
         this.dispose();
-        new InicioSesion().setVisible(true);
+        new InicioSesionFrame().setVisible(true);
     }//GEN-LAST:event_CerrarSesionActionPerformed
 
     private void menuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuariosActionPerformed

@@ -1,5 +1,8 @@
 package repositoriomineria;
 
+import gui.TablaImagen;
+import database.Areas;
+import database.Conexion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;

@@ -4,24 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import repositoriomineria.Conexion;
-import repositoriomineria.TablaImagen;
+import database.Conexion;
 
 /**
  *
@@ -29,24 +25,24 @@ import repositoriomineria.TablaImagen;
  */
 public class VerUsuariosPanel extends javax.swing.JPanel {
 
-   String headerUsuarios[] = {"Nombre", "Username", "Teléfono", "Correo", "Rol"};
+    String headerUsuarios[] = {"Nombre", "Username", "Teléfono", "Correo", "Rol"};
     DefaultTableModel tableModelUsuarios = new DefaultTableModel(headerUsuarios, 0);
     JTable tablaUsuarios;
     String rolAntiguo = "";
     String user = "";
-    
+
     public VerUsuariosPanel(String username) {
         initComponents();
-        
+
         this.user = username;
-        
+
         comboBoxRol.removeAllItems();
-        
+
         comboBoxRol.addItem("-");
         comboBoxRol.addItem("MainAdmin");
         comboBoxRol.addItem("Admin");
         comboBoxRol.addItem("Usuario");
-        
+
         tablaUsuarios = verTablaUsuarios();
         jPanel1.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
@@ -54,90 +50,87 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         jPanel1.add(scrollPane, BorderLayout.CENTER);
         jPanel1.revalidate();
         jPanel1.repaint();
-        
-        tablaUsuarios.addMouseListener(new MouseAdapter(){
+
+        tablaUsuarios.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e){
+            public void mousePressed(MouseEvent e) {
                 textUsername.setText(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1).toString());
                 rolAntiguo = tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 4).toString();
                 comboBoxRol.setSelectedItem(rolAntiguo);
                 comboBoxRol.removeItem("-");
-                if(rolAntiguo.equals("MainAdmin") && contarMainAdmins() <= 1 || user.equals(textUsername.getText().trim())){
+                if (rolAntiguo.equals("MainAdmin") && contarMainAdmins() <= 1 || user.equals(textUsername.getText().trim())) {
                     comboBoxRol.setEnabled(false);
                     botonEliminarUsuario.setEnabled(false);
                     botonActualizarRol.setEnabled(false);
-                }
-                else{
-                   comboBoxRol.setEnabled(true); 
-                   botonEliminarUsuario.setEnabled(true);
-                   botonActualizarRol.setEnabled(true);
+                } else {
+                    comboBoxRol.setEnabled(true);
+                    botonEliminarUsuario.setEnabled(true);
+                    botonActualizarRol.setEnabled(true);
                 }
             }
         });
-        
-        if(contarUsuarios() == 1){
+
+        if (contarUsuarios() == 1) {
             botonEliminarUsuario.setEnabled(false);
         }
     }
-    
-    private int contarMainAdmins(){
+
+    private int contarMainAdmins() {
         int contador = 0;
-        
-        try{
+
+        try {
             String consulta = "SELECT * FROM usuarios WHERE rol = 'MainAdmin'";
-            
+
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 contador++;
             }
-            
+
             cn.close();
             pst.close();
             rs.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return contador;
     }
-    
-    private int contarUsuarios(){
+
+    private int contarUsuarios() {
         int contador = 0;
-        
-        try{
+
+        try {
             String consulta = "SELECT * FROM usuarios";
-            
+
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 contador++;
             }
-            
+
             cn.close();
             pst.close();
             rs.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return contador;
     }
-    
-    private JTable verTablaUsuarios(){
-        JTable tabla = new JTable(){
+
+    private JTable verTablaUsuarios() {
+        JTable tabla = new JTable() {
             @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
                 int rendererWidth = component.getPreferredSize().width;
                 TableColumn tableColumn = getColumnModel().getColumn(column);
-                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, 
+                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width,
                         tableColumn.getPreferredWidth()));
                 return component;
             }
@@ -153,37 +146,36 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114,137,218));
+        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
-        
+
         String consulta = "SELECT CONCAT(nombres, ' ', apellidos) AS nombre, username, telefono, correo, rol "
-                        + "FROM usuarios";
-        
-        try{
+                + "FROM usuarios";
+
+        try {
             Connection cn = new Conexion().conectar();
             PreparedStatement pstConsulta = cn.prepareStatement(consulta);
             ResultSet rsConsulta = pstConsulta.executeQuery();
-            
-            while(rsConsulta.next()){
+
+            while (rsConsulta.next()) {
                 Object fila[] = new Object[5];
-                
+
                 fila[0] = rsConsulta.getString("nombre");
                 fila[1] = rsConsulta.getString("username");
                 fila[2] = rsConsulta.getString("telefono");
                 fila[3] = rsConsulta.getString("correo");
                 fila[4] = rsConsulta.getString("rol");
-                
+
                 tableModelUsuarios.addRow(fila);
             }
             tabla.setModel(tableModelUsuarios);
             cn.close();
             pstConsulta.close();
             rsConsulta.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return tabla;
     }
 
@@ -276,14 +268,12 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         String username = textUsername.getText().trim();
         String rol = comboBoxRol.getSelectedItem().toString();
 
-        if(rolAntiguo.equals("")){
+        if (rolAntiguo.equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario.");
-        }
-        else if(rolAntiguo.equals(rol)){
+        } else if (rolAntiguo.equals(rol)) {
             JOptionPane.showMessageDialog(null, "No se seleccionó un rol distinto.");
-        }
-        else{
-            try{
+        } else {
+            try {
                 String updateRol = "UPDATE usuarios SET rol = ? WHERE username = '" + username + "'";
 
                 Connection cn = new Conexion().conectar();
@@ -301,8 +291,7 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
                 verTablaUsuarios();
 
                 JOptionPane.showMessageDialog(null, "Rol actualizado correctamente.");
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -310,18 +299,17 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
 
     private void botonEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarUsuarioActionPerformed
 
-        if(rolAntiguo.equals("")){
+        if (rolAntiguo.equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario.");
-        }
-        else{
+        } else {
             int yes_no = JOptionPane.showConfirmDialog(null,
-                "¿Seguro que quiere eliminar este usuario?", "Alerta", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
+                    "¿Seguro que quiere eliminar este usuario?", "Alerta", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
 
-            if(yes_no == 0){
+            if (yes_no == 0) {
                 String username = textUsername.getText().trim();
 
-                try{
+                try {
                     String deleteUser = "DELETE FROM usuarios WHERE username = '" + username + "'";
 
                     Connection cn = new Conexion().conectar();
@@ -337,8 +325,7 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
                     verTablaUsuarios();
 
                     rolAntiguo = "";
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

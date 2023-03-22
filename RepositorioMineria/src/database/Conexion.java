@@ -1,29 +1,27 @@
-package repositoriomineria;
+package database;
 
 /**
  *
  * @author Carlos Alberto Gonzalez Guerrero
  */
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conexion {
-    
-    public static Connection conectar(){       
-        
-        try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/repositoriomineria","root","");
-           /* Connection cn = DriverManager.getConnection("jdbc:mysql://"+ip_Address+":3306/repositoriomineria",
+
+    public static Connection conectar() {
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/repositoriomineria", "root", "");
+            /* Connection cn = DriverManager.getConnection("jdbc:mysql://"+ip_Address+":3306/repositoriomineria",
                     "username","password");*/
-          return cn;
-        }catch(Exception e){
+            return cn;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return(null);
+        return (null);
     }
-    
+
     /*
     public static Connection conectar() {
         Dotenv dotenv = Dotenv.configure().load();
@@ -44,9 +42,8 @@ public class Conexion {
 
         return null;
     }
-    */
-    
-    /*static String ip_Address;
+     */
+ /*static String ip_Address;
     
     public Conexion(String ip){
         Conexion.ip_Address = ip;
@@ -78,7 +75,4 @@ public class Conexion {
         }
         return(null);
     }*/
-    
-    
-    
 }

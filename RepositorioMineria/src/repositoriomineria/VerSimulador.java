@@ -1,5 +1,9 @@
 package repositoriomineria;
 
+import database.Simuladores;
+import database.Conexion;
+import database.Consultas;
+import database.Areas;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;

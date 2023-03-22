@@ -7,10 +7,9 @@ import java.sql.ResultSet;
 import javax.swing.Box;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import repositoriomineria.Conexion;
-import repositoriomineria.InicioSesion;
-import repositoriomineria.Passwords;
-import repositoriomineria.Validaciones;
+import database.Conexion;
+import database.Passwords;
+import security.Validaciones;
 
 /**
  *
@@ -26,10 +25,10 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
     String telefonoViejo;
     String correoViejo;
     JFrame pantallaPrincipal;
-    
+
     public DatosPersonalesPanel(String idUsuario, String username, String rol, JFrame pantallaPrincipal) {
         initComponents();
-        
+
         this.id_usuario = idUsuario;
         this.user = username;
         this.rolUser = rol;
@@ -47,7 +46,7 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         this.telefonoViejo = textTelefono.getText().trim();
         this.correoViejo = textCorreo.getText().trim();
     }
-    
+
     private void verDatos() {
         try {
             String datos = "SELECT * FROM usuarios WHERE username = '" + user + "'";
@@ -276,8 +275,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar sus nombres?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar sus nombres?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             return;
@@ -327,8 +326,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar sus apellidos?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar sus apellidos?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             return;
@@ -378,8 +377,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar su nombre de usuario?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar su nombre de usuario?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             return;
@@ -440,15 +439,15 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
 
         if (!Validaciones.validatePassword(password)) {
             JOptionPane.showMessageDialog(this, "Contraseña no válida. Debe haber mínimo "
-                + "8 caracteres, una o más mayúsculas y minúsculas, y uno "
-                + "o más números");
+                    + "8 caracteres, una o más mayúsculas y minúsculas, y uno "
+                    + "o más números");
             this.passwordField.setText("");
             return;
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar su contraseña?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar su contraseña?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             this.passwordField.setText("");
@@ -519,8 +518,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar su telefono?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar su telefono?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             return;
@@ -577,8 +576,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         }
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere actualizar su correo?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere actualizar su correo?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
         if (yes_no == 1) {
             return;
@@ -619,8 +618,8 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
 
         int yes_no = JOptionPane.showConfirmDialog(null,
-            "¿Seguro que quiere eliminar su cuenta?", "Alerta", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "¿Seguro que quiere eliminar su cuenta?", "Alerta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
         if (yes_no == 0) {
             try {
                 String deleteUser = "DELETE FROM usuarios WHERE id_usuario = '" + id_usuario + "'";
@@ -635,7 +634,7 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
                 pstDelete.close();
 
                 this.pantallaPrincipal.dispose();
-                new InicioSesion().setVisible(true);
+                new InicioSesionFrame().setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }

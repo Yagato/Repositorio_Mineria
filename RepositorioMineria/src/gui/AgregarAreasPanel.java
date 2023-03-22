@@ -4,25 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import repositoriomineria.Areas;
-import repositoriomineria.Conexion;
-import repositoriomineria.TablaImagen;
+import database.Areas;
+import database.Conexion;
 
 /**
  *
@@ -34,37 +30,37 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
     DefaultTableModel tableModelAreas = new DefaultTableModel(headerAreas, 0);
     JTable tablaAreas;
     String nombreAntiguo = "";
-    
+
     public AgregarAreasPanel() {
         initComponents();
-        
+
         tablaAreas = verTablaAreas();
-        
+
         jPanel2.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(tablaAreas);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         jPanel2.add(scrollPane, BorderLayout.CENTER);
         jPanel2.revalidate();
         jPanel2.repaint();
-        
-        tablaAreas.addMouseListener(new MouseAdapter(){
+
+        tablaAreas.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e){
+            public void mousePressed(MouseEvent e) {
                 textAreaSeleccionada.setText(tablaAreas.getValueAt(tablaAreas.getSelectedRow(), 0).toString());
                 nombreAntiguo = textAreaSeleccionada.getText().trim();
             }
         });
     }
-    
-    public JTable verTablaAreas(){
-        JTable tabla = new JTable(){
+
+    public JTable verTablaAreas() {
+        JTable tabla = new JTable() {
             @Override
-            public Component prepareRenderer(TableCellRenderer renderer, int row, int column){
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component component = super.prepareRenderer(renderer, row, column);
                 int rendererWidth = component.getPreferredSize().width;
                 TableColumn tableColumn = getColumnModel().getColumn(column);
-                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, 
-                                                    tableColumn.getPreferredWidth()));
+                tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width,
+                        tableColumn.getPreferredWidth()));
                 return component;
             }
         };
@@ -79,32 +75,31 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
         tabla.setBackground(new Color(74, 74, 80));
         tabla.setForeground(Color.WHITE);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114,137,218));
+        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 32));
-        
+
         String consulta = "SELECT nombre_area FROM areas";
-        
-        try{
+
+        try {
             Connection cn = new Conexion().conectar();
             PreparedStatement pst = cn.prepareStatement(consulta);
             ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Object fila[] = new Object[1];
-                
+
                 fila[0] = rs.getString("nombre_area");
-                
+
                 tableModelAreas.addRow(fila);
             }
             tabla.setModel(tableModelAreas);
             cn.close();
             pst.close();
             rs.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return tabla;
     }
 
@@ -211,23 +206,23 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
 
     private void botonActualizarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarAreaActionPerformed
         String nombreArea = textAreaSeleccionada.getText().trim();
-        if(!nombreArea.isEmpty() && !nombreAntiguo.isEmpty()){
+        if (!nombreArea.isEmpty() && !nombreAntiguo.isEmpty()) {
             try {
                 String check = "SELECT * from areas WHERE BINARY nombre_area = '" + nombreArea + "'";
                 String consulta = "UPDATE areas SET nombre_area = '" + nombreArea + "' "
-                + "WHERE nombre_area = '" + nombreAntiguo + "'";
+                        + "WHERE nombre_area = '" + nombreAntiguo + "'";
                 Connection cn = new Conexion().conectar();
                 PreparedStatement pstUpdate = cn.prepareStatement(consulta);
                 PreparedStatement pstCheck = cn.prepareStatement(check);
 
                 ResultSet rsCheck = pstCheck.executeQuery();
 
-                if(!rsCheck.next()){
+                if (!rsCheck.next()) {
                     int yes_no = JOptionPane.showConfirmDialog(null,
-                        "¿Seguro que quiere cambiar el nombre de esa área?", "Alerta", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.WARNING_MESSAGE);
+                            "¿Seguro que quiere cambiar el nombre de esa área?", "Alerta", JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE);
 
-                    if(yes_no == 0){
+                    if (yes_no == 0) {
                         pstUpdate.executeUpdate();
                         JOptionPane.showMessageDialog(null, "Área actualizada correctamente.");
                         tableModelAreas.setRowCount(0);
@@ -241,15 +236,13 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                         pstCheck.close();
                         rsCheck.close();
                     }
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(this, "Ya existe esa área.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar alguno de los simuladores en la lista.");
         }
     }//GEN-LAST:event_botonActualizarAreaActionPerformed
@@ -257,8 +250,8 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         String nombreArea = textNuevaArea.getText().trim();
 
-        if(!nombreArea.isEmpty()){
-            try{
+        if (!nombreArea.isEmpty()) {
+            try {
                 String check = "SELECT * from areas WHERE nombre_area = '" + nombreArea + "'";
                 String insertArea = "INSERT INTO areas values(?,?)";
 
@@ -268,7 +261,7 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
 
                 ResultSet rsCheck = pstCheck.executeQuery();
 
-                if(!rsCheck.next()){
+                if (!rsCheck.next()) {
                     pstInsertArea.setString(1, "0");
                     pstInsertArea.setString(2, nombreArea);
                     pstInsertArea.executeUpdate();
@@ -283,24 +276,21 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                     cn.close();
                     pstCheck.close();
                     pstInsertArea.close();
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(this, "Ya existe esa área.");
                 }
                 rsCheck.close();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "No puede agregar un valor vacío.");
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         String nombreArea = textAreaSeleccionada.getText().trim();
-        if(!nombreArea.isEmpty() && !nombreAntiguo.isEmpty()){
+        if (!nombreArea.isEmpty() && !nombreAntiguo.isEmpty()) {
             try {
                 String id_area = new Areas().getIDArea(nombreArea);
                 String delete = "DELETE FROM areas WHERE nombre_area = '" + nombreArea + "'";
@@ -308,8 +298,8 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                 PreparedStatement pstDelete = cn.prepareStatement(delete);
 
                 int yes_no = JOptionPane.showConfirmDialog(null,
-                    "¿Seguro que quiere eliminar esta área?", "Alerta", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE);
+                        "¿Seguro que quiere eliminar esta área?", "Alerta", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE);
 
                 if (yes_no == 0) {
                     eliminarSimuladorArea(id_area);
@@ -327,21 +317,19 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar alguno de los simuladores en la lista.");
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void eliminarSimuladorArea(String id_area){
-        try{
+    private void eliminarSimuladorArea(String id_area) {
+        try {
             String delete = "DELETE FROM simuladorarea WHERE  id_area = '" + id_area + "'";
             Connection cn = new Conexion().conectar();
             PreparedStatement pstDelete = cn.prepareStatement(delete);
-            
+
             pstDelete.executeUpdate();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

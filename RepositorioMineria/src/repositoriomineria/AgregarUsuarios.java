@@ -1,5 +1,8 @@
 package repositoriomineria;
 
+import security.Validaciones;
+import database.Passwords;
+import database.Conexion;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
