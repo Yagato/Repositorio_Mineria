@@ -17,14 +17,16 @@ import security.Validaciones;
  */
 public class DatosPersonalesPanel extends javax.swing.JPanel {
 
-    String id_usuario = "", user = "", rolUser = "";
+    private String id_usuario = "";
+    private String user = "";
+    private String rolUser = "";
 
-    String nombresViejos;
-    String apellidosViejos;
-    String usernameViejo;
-    String telefonoViejo;
-    String correoViejo;
-    JFrame pantallaPrincipal;
+    private String nombresViejos;
+    private String apellidosViejos;
+    private String usernameViejo;
+    private String telefonoViejo;
+    private String correoViejo;
+    private JFrame pantallaPrincipal;
 
     public DatosPersonalesPanel(String idUsuario, String username, String rol, JFrame pantallaPrincipal) {
         initComponents();

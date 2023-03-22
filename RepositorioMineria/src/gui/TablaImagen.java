@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class TablaImagen extends DefaultTableCellRenderer {
 
@@ -16,8 +16,8 @@ public class TablaImagen extends DefaultTableCellRenderer {
             boolean hasFocus, int row, int column) {
 
         if (value instanceof JLabel) {
-            JLabel lbl = (JLabel) value;
-            return lbl;
+            JLabel label = (JLabel) value;
+            return label;
         }
 
         return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

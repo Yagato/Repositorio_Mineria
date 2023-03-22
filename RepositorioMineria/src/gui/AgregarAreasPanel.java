@@ -26,22 +26,22 @@ import database.Conexion;
  */
 public class AgregarAreasPanel extends javax.swing.JPanel {
 
-    String headerAreas[] = {"Areas"};
-    DefaultTableModel tableModelAreas = new DefaultTableModel(headerAreas, 0);
-    JTable tablaAreas;
-    String nombreAntiguo = "";
+    private String headerAreas[] = {"Areas"};
+    private DefaultTableModel tableModelAreas = new DefaultTableModel(headerAreas, 0);
+    private JTable tablaAreas;
+    private String nombreAntiguo = "";
 
     public AgregarAreasPanel() {
         initComponents();
 
         tablaAreas = verTablaAreas();
 
-        jPanel2.setLayout(new BorderLayout());
+        tablePanel.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(tablaAreas);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        jPanel2.add(scrollPane, BorderLayout.CENTER);
-        jPanel2.revalidate();
-        jPanel2.repaint();
+        tablePanel.add(scrollPane, BorderLayout.CENTER);
+        tablePanel.revalidate();
+        tablePanel.repaint();
 
         tablaAreas.addMouseListener(new MouseAdapter() {
             @Override
@@ -113,8 +113,8 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        tablePanel = new javax.swing.JPanel();
+        infoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         textAreaSeleccionada = new javax.swing.JTextField();
@@ -127,44 +127,44 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
-        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+        tablePanel.setBackground(new java.awt.Color(74, 75, 80));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 464, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 178, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2);
+        jPanel1.add(tablePanel);
 
-        jPanel4.setBackground(new java.awt.Color(74, 75, 80));
-        jPanel4.setLayout(new java.awt.GridLayout(4, 2, 100, 10));
+        infoPanel.setBackground(new java.awt.Color(74, 75, 80));
+        infoPanel.setLayout(new java.awt.GridLayout(4, 2, 100, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Área seleccionada");
-        jPanel4.add(jLabel1);
+        infoPanel.add(jLabel1);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nueva Área");
-        jPanel4.add(jLabel2);
+        infoPanel.add(jLabel2);
 
         textAreaSeleccionada.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         textAreaSeleccionada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(textAreaSeleccionada);
+        infoPanel.add(textAreaSeleccionada);
 
         textNuevaArea.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         textNuevaArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(textNuevaArea);
+        infoPanel.add(textNuevaArea);
 
         botonActualizarArea.setBackground(new java.awt.Color(51, 51, 255));
         botonActualizarArea.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -175,7 +175,7 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                 botonActualizarAreaActionPerformed(evt);
             }
         });
-        jPanel4.add(botonActualizarArea);
+        infoPanel.add(botonActualizarArea);
 
         botonAgregar.setBackground(new java.awt.Color(0, 204, 0));
         botonAgregar.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -186,7 +186,7 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                 botonAgregarActionPerformed(evt);
             }
         });
-        jPanel4.add(botonAgregar);
+        infoPanel.add(botonAgregar);
 
         botonEliminar.setBackground(new java.awt.Color(255, 0, 0));
         botonEliminar.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -197,9 +197,9 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
                 botonEliminarActionPerformed(evt);
             }
         });
-        jPanel4.add(botonEliminar);
+        infoPanel.add(botonEliminar);
 
-        jPanel1.add(jPanel4);
+        jPanel1.add(infoPanel);
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
@@ -338,11 +338,11 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
     private javax.swing.JButton botonActualizarArea;
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField textAreaSeleccionada;
     private javax.swing.JTextField textNuevaArea;
     // End of variables declaration//GEN-END:variables

@@ -27,33 +27,32 @@ import database.Simuladores;
  */
 public class AgregarSimuladorPanel extends javax.swing.JPanel {
 
-    Simuladores sim;
-    Areas objetoAreas;
+    private Simuladores simuladores;
+    private Areas objetoAreas;
 
-    final JFileChooser fc = new JFileChooser();
-    FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-    File file = null;
+    private final JFileChooser fileChoooser = new JFileChooser();
+    private FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+    private File file = null;
 
-    JDateChooser calendar = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
-    JTextFieldDateEditor editor = (JTextFieldDateEditor) calendar.getDateEditor();
+    private JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+    private JTextFieldDateEditor textFieldDateEditor = (JTextFieldDateEditor) dateChooser.getDateEditor();
 
-    JComboBox areas = new JComboBox();
+    private JComboBox comboBoxAreas = new JComboBox();
 
     public AgregarSimuladorPanel() {
         initComponents();
 
         this.objetoAreas = new Areas();
-        this.sim = new Simuladores();
+        this.simuladores = new Simuladores();
 
         comboTutorial.removeAllItems();
         comboTutorial.addItem("Si");
         comboTutorial.addItem("No");
 
-        areas = new Consultas().getAreas();
-        //areas.setBackground(new Color(253,193,1));
-        areas.setFont(new Font("Arial", Font.BOLD, 14));
-        areas.setBounds(340, 170, 150, 25);
-        jLabelFondo.add(areas);
+        comboBoxAreas = new Consultas().getAreas();
+        comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
+        comboBoxAreas.setBounds(340, 170, 150, 25);
+        jLabelFondo.add(comboBoxAreas);
 
         textReq.setLineWrap(true);
         textReq.setWrapStyleWord(true);
@@ -61,9 +60,9 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         textCaracteristicas.setLineWrap(true);
         textCaracteristicas.setWrapStyleWord(true);
 
-        calendar.setBounds(340, 590, 250, 22);
-        jLabelFondo.add(calendar);
-        editor.setEditable(false);
+        dateChooser.setBounds(340, 590, 250, 22);
+        jLabelFondo.add(dateChooser);
+        textFieldDateEditor.setEditable(false);
     }
 
     /**
@@ -227,12 +226,12 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
-        fc.setFileFilter(imageFilter);
-        fc.setAcceptAllFileFilterUsed(false);
+        fileChoooser.setFileFilter(imageFilter);
+        fileChoooser.setAcceptAllFileFilterUsed(false);
         try {
-            int returnVal = fc.showOpenDialog(this);
+            int returnVal = fileChoooser.showOpenDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                file = fc.getSelectedFile();
+                file = fileChoooser.getSelectedFile();
                 botonAbrir.setText(file.getName());
             }
         } catch (HeadlessException e) {
@@ -250,13 +249,13 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
                 fis = new FileInputStream(image);
             }
             String nombre = textNombre.getText().trim();
-            String area = areas.getSelectedItem().toString();
+            String area = comboBoxAreas.getSelectedItem().toString();
             String requerimientos = textReq.getText();
             String tutorial = comboTutorial.getSelectedItem().toString();
             String costo = textCosto.getText().trim();
             String caracteristicas = textCaracteristicas.getText();
             String link = textLink.getText().trim();
-            java.sql.Date fechaSQL = new java.sql.Date(calendar.getDate().getTime());
+            java.sql.Date fechaSQL = new java.sql.Date(dateChooser.getDate().getTime());
             String fecha = fechaSQL.toString();
 
             String insertarSimuladores = "INSERT INTO simuladores VALUES(?,?,?,?,?,?,?,?,?)";
@@ -324,8 +323,8 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         try {
             Connection cn = new Conexion().conectar();
             String n = nombre;
-            String area = areas.getSelectedItem().toString();
-            String id_simulador = sim.getIDSimulador(n);
+            String area = comboBoxAreas.getSelectedItem().toString();
+            String id_simulador = simuladores.getIDSimulador(n);
             String id_area = objetoAreas.getIDArea(area);
 
             PreparedStatement pstInsertarArea = cn.prepareStatement("insert into simuladorarea values(?,?)");

@@ -21,7 +21,9 @@ import javax.swing.JLabel;
 public class MainScreenFrame extends javax.swing.JFrame {
 
     private DrawerController drawerController;
-    private String idUsuario = "", username = "", rolUsuario = "";
+    private String idUsuario = "";
+    private String username = "";
+    private String rolUsuario = "";
 
     public MainScreenFrame(String idUser, String user, String rol) {
         initComponents();

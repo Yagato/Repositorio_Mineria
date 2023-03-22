@@ -29,7 +29,6 @@ import database.Conexion;
 import database.Consultas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
@@ -108,7 +107,6 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         });
 
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        //refreshButton.setFont(new Font("Arial", Font.BOLD, 14));
         refreshButton.setBackground(Color.GREEN);
 
         try {
@@ -126,8 +124,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
             this.verTabla();
         });
 
-        List areas = new List();
-        areas = new Consultas().getListAreas();
+        List areas = new Consultas().getListAreas();
 
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 20));
         comboBoxAreas.setBackground(new Color(204, 204, 204));

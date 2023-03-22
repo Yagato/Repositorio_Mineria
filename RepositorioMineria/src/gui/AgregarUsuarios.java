@@ -1,21 +1,16 @@
-package deprecated;
+package gui;
 
 import security.Validaciones;
 import database.Passwords;
 import database.Conexion;
-import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
 import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -27,14 +22,9 @@ import javax.swing.event.DocumentListener;
  */
 public class AgregarUsuarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormUsuarios
-     */
+    private List<JTextField> list = new ArrayList<>();
     
-    String ipAddress;
-    List<JTextField> list = new ArrayList<>();
-    
-    public AgregarUsuarios(String ip) {
+    public AgregarUsuarios() {
         super("Crear cuenta");
         initComponents();
         this.setLocationRelativeTo(null);

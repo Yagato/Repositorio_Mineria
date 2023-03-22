@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import javax.swing.JFrame;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -41,16 +43,15 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
     
     MainScreenFrame myFrame;
     private DatabaseMenuPanel myPanel;
-    ButtonGroup group = new ButtonGroup();
-    final JFileChooser fc = new JFileChooser();
+    ButtonGroup buttonGroup = new ButtonGroup();
+    final JFileChooser fileChooser = new JFileChooser();
     FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
     File file = null;
     String id_simulador = ""; 
     String areas_actuales[] = {"-", "-", "-", "-", "-"};
-    JDateChooser calendar = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
-    JTextFieldDateEditor editor = (JTextFieldDateEditor) calendar.getDateEditor();
+    JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+    JTextFieldDateEditor textEditor = (JTextFieldDateEditor) dateChooser.getDateEditor();
     String nombreViejo = "";
-    String ipAddress;
     String rolUsuario;
 
     @Override
@@ -91,8 +92,8 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
             textCaracteristicas.setDisabledTextColor(Color.black);
             textLink.setEnabled(false);
             textLink.setDisabledTextColor(Color.black);
-            editor.setDisabledTextColor(Color.black);
-            calendar.setEnabled(false);
+            textEditor.setDisabledTextColor(Color.black);
+            dateChooser.setEnabled(false);
             botonActualizar.setVisible(false);
             botonEliminar.setVisible(false);
         }
@@ -105,9 +106,9 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         textRequerimientos.setWrapStyleWord(true);
         
         radioSi.setActionCommand("Si");
-        group.add(radioSi);
+        buttonGroup.add(radioSi);
         radioNo.setActionCommand("No");
-        group.add(radioNo);
+        buttonGroup.add(radioNo);
         
         List areas = new List();
         areas = new Consultas().getListAreas();
@@ -140,9 +141,9 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         textLink.setLineWrap(true);
         textLink.setWrapStyleWord(true);
                 
-        calendar.setFont(new Font("Arial", Font.BOLD, 16));
-        jPanel1.add(calendar, new AbsoluteConstraints(840, 510, 261, 30));
-        editor.setEditable(false);
+        dateChooser.setFont(new Font("Arial", Font.BOLD, 16));
+        jPanel1.add(dateChooser, new AbsoluteConstraints(840, 510, 261, 30));
+        textEditor.setEditable(false);
      
         this.displayData();
         
@@ -184,7 +185,7 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
                 textRequerimientos.setText(rs.getString("requerimientos"));
                 
                 String tutorial = rs.getString("tutorial");
-                group.clearSelection();
+                buttonGroup.clearSelection();
                 if(tutorial.equals("Si"))
                     radioSi.setSelected(true);
                 else if(tutorial.equals("No"))
@@ -203,7 +204,7 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
                 
                 textLink.setText(rs.getString("link"));
                 
-                calendar.setDate(rs.getDate("fecha_consulta"));                
+                dateChooser.setDate(rs.getDate("fecha_consulta"));                
             }
             
             cn.close();
@@ -557,7 +558,7 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
             
             String link = textLink.getText().trim();
             
-            java.sql.Date fechaSQL = new java.sql.Date(calendar.getDate().getTime());
+            java.sql.Date fechaSQL = new java.sql.Date(dateChooser.getDate().getTime());
             String fecha = fechaSQL.toString();
 
             String update = "UPDATE simuladores "
@@ -726,12 +727,12 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
     }
     
     private void botonImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImagenActionPerformed
-        fc.setFileFilter(imageFilter);
-        fc.setAcceptAllFileFilterUsed(false);
+        fileChooser.setFileFilter(imageFilter);
+        fileChooser.setAcceptAllFileFilterUsed(false);
         try{
-            int returnVal = fc.showOpenDialog(this);
+            int returnVal = fileChooser.showOpenDialog(this);
             if(returnVal == JFileChooser.APPROVE_OPTION){
-                file = fc.getSelectedFile();
+                file = fileChooser.getSelectedFile();
                 botonImagen.setText(file.getName());
             }
         }

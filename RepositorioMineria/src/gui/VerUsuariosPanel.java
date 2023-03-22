@@ -25,11 +25,11 @@ import database.Conexion;
  */
 public class VerUsuariosPanel extends javax.swing.JPanel {
 
-    String headerUsuarios[] = {"Nombre", "Username", "Teléfono", "Correo", "Rol"};
-    DefaultTableModel tableModelUsuarios = new DefaultTableModel(headerUsuarios, 0);
-    JTable tablaUsuarios;
-    String rolAntiguo = "";
-    String user = "";
+    private String headerUsuarios[] = {"Nombre", "Username", "Teléfono", "Correo", "Rol"};
+    private DefaultTableModel tableModelUsuarios = new DefaultTableModel(headerUsuarios, 0);
+    private JTable tablaUsuarios;
+    private String rolAntiguo = "";
+    private String user = "";
 
     public VerUsuariosPanel(String username) {
         initComponents();
@@ -44,12 +44,12 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         comboBoxRol.addItem("Usuario");
 
         tablaUsuarios = verTablaUsuarios();
-        jPanel1.setLayout(new BorderLayout());
+        tablePanel.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        jPanel1.add(scrollPane, BorderLayout.CENTER);
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        tablePanel.add(scrollPane, BorderLayout.CENTER);
+        tablePanel.revalidate();
+        tablePanel.repaint();
 
         tablaUsuarios.addMouseListener(new MouseAdapter() {
             @Override
@@ -188,8 +188,8 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        tablePanel = new javax.swing.JPanel();
+        infoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -199,45 +199,45 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridLayout(2, 1));
 
-        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+        tablePanel.setBackground(new java.awt.Color(74, 75, 80));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
+        tablePanel.setLayout(tablePanelLayout);
+        tablePanelLayout.setHorizontalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tablePanelLayout.setVerticalGroup(
+            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 150, Short.MAX_VALUE)
         );
 
-        add(jPanel1);
+        add(tablePanel);
 
-        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
-        jPanel2.setLayout(new java.awt.GridLayout(3, 2, 20, 10));
+        infoPanel.setBackground(new java.awt.Color(74, 75, 80));
+        infoPanel.setLayout(new java.awt.GridLayout(3, 2, 20, 10));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Usuario seleccionado:");
-        jPanel2.add(jLabel1);
+        infoPanel.add(jLabel1);
 
         textUsername.setEditable(false);
         textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel2.add(textUsername);
+        infoPanel.add(textUsername);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Rol:");
-        jPanel2.add(jLabel2);
+        infoPanel.add(jLabel2);
 
         comboBoxRol.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         comboBoxRol.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(comboBoxRol);
+        infoPanel.add(comboBoxRol);
 
         botonActualizarRol.setBackground(new java.awt.Color(0, 102, 255));
         botonActualizarRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -248,7 +248,7 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
                 botonActualizarRolActionPerformed(evt);
             }
         });
-        jPanel2.add(botonActualizarRol);
+        infoPanel.add(botonActualizarRol);
 
         botonEliminarUsuario.setBackground(new java.awt.Color(255, 0, 0));
         botonEliminarUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -259,9 +259,9 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
                 botonEliminarUsuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(botonEliminarUsuario);
+        infoPanel.add(botonEliminarUsuario);
 
-        add(jPanel2);
+        add(infoPanel);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActualizarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarRolActionPerformed
@@ -337,10 +337,10 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
     private javax.swing.JButton botonActualizarRol;
     private javax.swing.JButton botonEliminarUsuario;
     private javax.swing.JComboBox<String> comboBoxRol;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
 }

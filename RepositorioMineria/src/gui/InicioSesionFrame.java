@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import deprecated.AgregarUsuarios;
 
 /**
  *
@@ -19,13 +18,11 @@ import deprecated.AgregarUsuarios;
  */
 public class InicioSesionFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InicioSesionFrame
-     */
-    //JComboBox comboHosts = new JComboBox();
+    /*
     DefaultComboBoxModel model = new DefaultComboBoxModel(new String[]{"LAPTOP-818UCN4A"});
     InetAddress ip = null;
     String ipHost;
+    */
 
     public InicioSesionFrame() {
         initComponents();
@@ -39,14 +36,14 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         //comboHosts.setBackground(new Color(255,255,255));
         comboHosts.setFont(new Font("Arial", Font.BOLD, 14));
         comboHosts.setBounds(90, 85, 230, 23);
-         */
+         
         try {
             ip = InetAddress.getLocalHost();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        /*
+        
         if(model.getIndexOf(ip.getHostName()) == -1){
             comboHosts.addItem("Local: " + ip.getHostName());
         }
@@ -175,8 +172,8 @@ public class InicioSesionFrame extends javax.swing.JFrame {
             try {
                 Connection cn = new Conexion().conectar();
                 PreparedStatement pst = cn.prepareStatement(
-                        "select id_usuario, username, contrasenia, rol from usuarios where username = '"
-                        + user + "' and contrasenia = '" + hashedPassword + "'");
+                        "SELECT id_usuario, username, contrasenia, rol FROM usuarios WHERE username = '"
+                        + user + "' AND contrasenia = '" + hashedPassword + "'");
                 ResultSet rs = pst.executeQuery();
 
                 if (rs.next()) {
@@ -201,6 +198,8 @@ public class InicioSesionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSesionActionPerformed
 
     private void botonCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuentaActionPerformed
+        new AgregarUsuarios().setVisible(true);
+        /*
         try {
             /*
             String host = comboHosts.getSelectedItem().toString();
@@ -208,14 +207,14 @@ public class InicioSesionFrame extends javax.swing.JFrame {
             if(host.toLowerCase().contains("Local: ".toLowerCase())){
                 host = host.replace("Local: ", "");
             }
-             */
 
             //ip = Conexion.getHostIP(host);
-            ipHost = ip.getHostAddress();
-            new AgregarUsuarios(ipHost).setVisible(true);
+            //ipHost = ip.getHostAddress();
+            new AgregarUsuarios().setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
         }
+        */
     }//GEN-LAST:event_botonCrearCuentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
