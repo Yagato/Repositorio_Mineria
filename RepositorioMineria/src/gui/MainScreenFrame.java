@@ -1,8 +1,12 @@
 package gui;
 
-import java.awt.Font;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
@@ -31,6 +35,8 @@ public class MainScreenFrame extends javax.swing.JFrame {
         this.username = user;
         this.rolUsuario = rol;
 
+        showBaseDeDatos();
+
         if (rolUsuario.equals("Usuario")) {
             drawerController = Drawer.newDrawer(this)
                     .header(new HeaderPanel())
@@ -44,18 +50,16 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
                                 case 0:
+                                    showBaseDeDatos();
                                     break;
                                 case 1:
-                                    DatosPersonalesPanel datosPersonalesPanel = new DatosPersonalesPanel(idUsuario, username, rolUsuario, MainScreenFrame.this);
-                                    screensPanel.removeAll();
-                                    screensPanel.add(datosPersonalesPanel);
-                                    screensPanel.revalidate();
+                                    showDatosPersonales();
                                     break;
                                 case 2:
+                                    openPDF("manual_usuario.pdf");
                                     break;
                                 case 3:
-                                    dispose();
-                                    new InicioSesion().setVisible(true);
+                                    salir();
                                     break;
                                 default:
                                     break;
@@ -63,7 +67,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         }
                     })
                     .build();
-        } else if(rolUsuario.equals("Admin")) {
+        } else if (rolUsuario.equals("Admin")) {
             drawerController = Drawer.newDrawer(this)
                     .header(new JLabel("Bienvenido"))
                     .space(5)
@@ -78,20 +82,22 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
                                 case 0:
+                                    showBaseDeDatos();
                                     break;
                                 case 1:
+                                    showAgregarSimulador();
                                     break;
                                 case 2:
+                                    showAgregarAreas();
                                     break;
                                 case 3:
+                                    showDatosPersonales();
                                     break;
                                 case 4:
+                                    openPDF("manual_usuario.pdf");
                                     break;
                                 case 5:
-                                    break;
-                                case 6:
-                                    dispose();
-                                    new InicioSesion().setVisible(true);
+                                    salir();
                                     break;
                                 default:
                                     break;
@@ -99,7 +105,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         }
                     })
                     .build();
-        } else if(rolUsuario.equals("MainAdmin")) {
+        } else if (rolUsuario.equals("MainAdmin")) {
             drawerController = Drawer.newDrawer(this)
                     .header(new HeaderPanel())
                     .space(5)
@@ -116,43 +122,28 @@ public class MainScreenFrame extends javax.swing.JFrame {
                         public void selected(int i, DrawerItem di) {
                             switch (i) {
                                 case 0:
-                                    DatabaseMenuPanel dbMenuPanel = new DatabaseMenuPanel();
-                                    screensPanel.removeAll();
-                                    screensPanel.add(dbMenuPanel);
-                                    screensPanel.revalidate();
+                                    showBaseDeDatos();
                                     break;
                                 case 1:
-                                    AgregarSimuladorPanel agregarSimuladorPanel = new AgregarSimuladorPanel();
-                                    screensPanel.removeAll();
-                                    screensPanel.add(agregarSimuladorPanel);
-                                    screensPanel.revalidate();
+                                    showAgregarSimulador();
                                     break;
                                 case 2:
-                                    AgregarAreasPanel agregarAreasPanel = new AgregarAreasPanel();
-                                    screensPanel.removeAll();
-                                    screensPanel.add(agregarAreasPanel);
-                                    screensPanel.revalidate();
+                                    showAgregarAreas();
                                     break;
                                 case 3:
-                                    DatosPersonalesPanel datosPersonalesPanel = new DatosPersonalesPanel(idUsuario, username, rolUsuario, MainScreenFrame.this);
-                                    screensPanel.removeAll();
-                                    screensPanel.add(datosPersonalesPanel);
-                                    screensPanel.revalidate();
+                                    showDatosPersonales();
                                     break;
                                 case 4:
-                                    VerUsuariosPanel verUsuariosPanel = new VerUsuariosPanel(username);
-                                    screensPanel.removeAll();
-                                    screensPanel.add(verUsuariosPanel);
-                                    screensPanel.revalidate();
+                                    showVerUsuarios();
                                     break;
                                 case 5:
+                                    openPDF("manual_usuario.pdf");
                                     break;
                                 case 6:
+                                    openPDF("manual_tecnico.pdf");
                                     break;
                                 case 7:
-                                    System.out.println(i);
-                                    dispose();
-                                    new InicioSesion().setVisible(true);
+                                    salir();
                                     break;
                                 default:
                                     break;
@@ -162,6 +153,64 @@ public class MainScreenFrame extends javax.swing.JFrame {
                     .build();
         }
 
+    }
+
+    private void showBaseDeDatos() {
+        DatabaseMenuPanel dbMenuPanel = new DatabaseMenuPanel();
+        screensPanel.removeAll();
+        screensPanel.add(dbMenuPanel);
+        screensPanel.revalidate();
+    }
+
+    private void showAgregarSimulador() {
+        AgregarSimuladorPanel agregarSimuladorPanel = new AgregarSimuladorPanel();
+        screensPanel.removeAll();
+        screensPanel.add(agregarSimuladorPanel);
+        screensPanel.revalidate();
+    }
+
+    private void showAgregarAreas() {
+        AgregarAreasPanel agregarAreasPanel = new AgregarAreasPanel();
+        screensPanel.removeAll();
+        screensPanel.add(agregarAreasPanel);
+        screensPanel.revalidate();
+    }
+
+    private void showDatosPersonales() {
+        DatosPersonalesPanel datosPersonalesPanel = new DatosPersonalesPanel(idUsuario, username, rolUsuario, this);
+        screensPanel.removeAll();
+        screensPanel.add(datosPersonalesPanel);
+        screensPanel.revalidate();
+    }
+
+    private void showVerUsuarios() {
+        VerUsuariosPanel verUsuariosPanel = new VerUsuariosPanel(username);
+        screensPanel.removeAll();
+        screensPanel.add(verUsuariosPanel);
+        screensPanel.revalidate();
+    }
+
+    private void salir() {
+        this.dispose();
+        new InicioSesion().setVisible(true);
+    }
+
+    private void openPDF(String filename) {
+        try {
+            Path tempOutput = null;
+            tempOutput = Files.createTempFile(filename, ".pdf");
+            tempOutput.toFile().deleteOnExit();
+            InputStream is = getClass().getResourceAsStream("/documentacion/" + filename);
+            Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(tempOutput.toFile());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -245,7 +294,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
                 .getImage(ClassLoader.getSystemResource("imagenes/cascoIcon.png"));
         return retValue;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMenu;
     private javax.swing.JPanel masterPanel;

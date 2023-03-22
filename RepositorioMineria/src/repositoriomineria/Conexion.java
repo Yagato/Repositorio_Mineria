@@ -5,7 +5,6 @@ package repositoriomineria;
  * @author Carlos Alberto Gonzalez Guerrero
  */
 
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

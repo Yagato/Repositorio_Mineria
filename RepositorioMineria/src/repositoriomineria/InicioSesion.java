@@ -1,5 +1,6 @@
 package repositoriomineria;
 
+import gui.MainScreenFrame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -188,7 +189,7 @@ public class InicioSesion extends javax.swing.JFrame {
                     //String contrasenia = rs.getString("contrasenia");
                     String rol = rs.getString("rol");
                     dispose();
-                    new PantallaPrincipal(id_usuario, username, rol, ipHost).setVisible(true);
+                    new MainScreenFrame(id_usuario, username, rol).setVisible(true);
                 }
                 else{
                     jPassword.setText("");
