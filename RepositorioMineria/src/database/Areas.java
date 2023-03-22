@@ -6,17 +6,17 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class Areas {
 
-    String id_area = "", nombre_area = "";
+    private String id_area = "";
 
     public Areas() {
     }
 
     public String getIDArea(String nombre) {
-        String consultaID = "select id_area from areas where nombre_area = '" + nombre + "'";
+        String consultaID = "SELECT id_area FROM areas WHERE nombre_area = '" + nombre + "'";
         try {
             Connection cn = new Conexion().conectar();
             PreparedStatement obtenerIDArea = cn.prepareStatement(consultaID);

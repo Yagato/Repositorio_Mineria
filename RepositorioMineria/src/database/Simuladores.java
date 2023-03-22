@@ -10,14 +10,13 @@ import java.sql.ResultSet;
  */
 public class Simuladores {
 
-    String id_simulador = "", nombre_simulador = "", requisitos = "", tutorial = "";
-    String costo = "", caracteristicas = "", link = "", fecha_consulta = "";
+    private String id_simulador = "";
 
     public Simuladores() {
     }
 
     public String getIDSimulador(String nombre) {
-        String consultaID = "select id_simulador from simuladores where nombre_simulador = '" + nombre + "'";
+        String consultaID = "SELECT id_simulador FROM simuladores WHERE nombre_simulador = '" + nombre + "'";
         try {
             Connection cn = new Conexion().conectar();
             PreparedStatement obtenerIDSimulador = cn.prepareStatement(consultaID);

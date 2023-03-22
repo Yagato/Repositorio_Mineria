@@ -1,4 +1,4 @@
-package repositoriomineria;
+package deprecated;
 
 import security.Validaciones;
 import database.Passwords;

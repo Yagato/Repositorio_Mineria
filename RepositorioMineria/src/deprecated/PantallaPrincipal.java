@@ -1,4 +1,4 @@
-package repositoriomineria;
+package deprecated;
 
 import gui.InicioSesionFrame;
 import gui.TablaImagen;

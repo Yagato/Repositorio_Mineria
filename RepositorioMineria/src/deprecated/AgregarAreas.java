@@ -1,4 +1,4 @@
-package repositoriomineria;
+package deprecated;
 
 import gui.TablaImagen;
 import database.Areas;

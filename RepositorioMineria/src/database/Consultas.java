@@ -9,7 +9,7 @@ import javax.swing.JComboBox;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class Consultas {
 

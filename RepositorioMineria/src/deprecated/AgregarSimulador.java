@@ -1,4 +1,4 @@
-package repositoriomineria;
+package deprecated;
 
 import database.Simuladores;
 import database.Areas;
@@ -29,6 +29,7 @@ import java.sql.*;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import repositoriomineria.RepositorioMineria;
 
 /**
  *

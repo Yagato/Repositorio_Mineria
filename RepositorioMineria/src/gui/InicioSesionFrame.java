@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import repositoriomineria.AgregarUsuarios;
+import deprecated.AgregarUsuarios;
 
 /**
  *
