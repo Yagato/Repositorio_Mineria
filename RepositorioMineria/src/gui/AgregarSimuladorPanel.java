@@ -20,6 +20,8 @@ import database.Conexion;
 import database.Consultas;
 import repositoriomineria.RepositorioMineria;
 import database.Simuladores;
+import java.awt.GridLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -38,7 +40,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
     private JTextFieldDateEditor textFieldDateEditor = (JTextFieldDateEditor) dateChooser.getDateEditor();
 
     private JComboBox comboBoxAreas = new JComboBox();
-
+    
     public AgregarSimuladorPanel() {
         initComponents();
 
@@ -50,7 +52,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         comboTutorial.addItem("No");
 
         comboBoxAreas = new Consultas().getAreas();
-        comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 14));
+        comboBoxAreas.setFont(new Font("Century Gothic", Font.BOLD, 18));
         comboBoxAreas.setBounds(340, 170, 150, 25);
         jLabelFondo.add(comboBoxAreas);
 
@@ -61,6 +63,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         textCaracteristicas.setWrapStyleWord(true);
 
         dateChooser.setBounds(340, 590, 250, 22);
+        dateChooser.setFont(new Font("Century Gothic", Font.BOLD, 18));
         jLabelFondo.add(dateChooser);
         textFieldDateEditor.setEditable(false);
     }
@@ -97,89 +100,91 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         botonAgregar = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(245, 241, 216));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel1.setBackground(new java.awt.Color(245, 241, 216));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(246, 63, 63));
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 3));
         jLabel9.setText("Fecha de consulta:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, -1, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Tutorial:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
-        comboTutorial.setBackground(new java.awt.Color(204, 204, 204));
-        comboTutorial.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboTutorial.setBackground(new java.awt.Color(255, 255, 255));
+        comboTutorial.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         comboTutorial.setForeground(new java.awt.Color(0, 0, 0));
         comboTutorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboTutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
+        jPanel1.add(comboTutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(246, 63, 63));
+        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
         jLabel10.setText("Los campos en color rojo son obligatorios");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Costo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, 30));
 
-        textCosto.setBackground(new java.awt.Color(204, 204, 204));
-        textCosto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textCosto.setBackground(new java.awt.Color(255, 255, 255));
+        textCosto.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textCosto.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 190, -1));
+        jPanel1.add(textCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 190, 30));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Características:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, -1, -1));
 
-        textCaracteristicas.setBackground(new java.awt.Color(204, 204, 204));
+        textCaracteristicas.setBackground(new java.awt.Color(255, 255, 255));
         textCaracteristicas.setColumns(20);
-        textCaracteristicas.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textCaracteristicas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textCaracteristicas.setForeground(new java.awt.Color(0, 0, 0));
         textCaracteristicas.setRows(5);
         jScrollPane2.setViewportView(textCaracteristicas);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 370, 120));
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Link:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, -1, 30));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(246, 63, 63));
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Nombre del simulador:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
-        textNombre.setBackground(new java.awt.Color(204, 204, 204));
-        textNombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textNombre.setBackground(new java.awt.Color(255, 255, 255));
+        textNombre.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textNombre.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 370, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(246, 63, 63));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("Area:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Logo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 63, -1, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, 40));
 
-        botonAbrir.setBackground(new java.awt.Color(51, 51, 255));
-        botonAbrir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        botonAbrir.setBackground(new java.awt.Color(0, 102, 255));
+        botonAbrir.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonAbrir.setForeground(new java.awt.Color(255, 255, 255));
         botonAbrir.setText("Abrir imagen");
         botonAbrir.addActionListener(new java.awt.event.ActionListener() {
@@ -187,28 +192,29 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
                 botonAbrirActionPerformed(evt);
             }
         });
-        jPanel1.add(botonAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
+        jPanel1.add(botonAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 67, -1, 30));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Requerimientos:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
-        textLink.setBackground(new java.awt.Color(204, 204, 204));
-        textLink.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textLink.setBackground(new java.awt.Color(255, 255, 255));
+        textLink.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textLink.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(textLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 250, -1));
+        jPanel1.add(textLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 370, -1));
 
-        textReq.setBackground(new java.awt.Color(204, 204, 204));
+        textReq.setBackground(new java.awt.Color(255, 255, 255));
         textReq.setColumns(20);
-        textReq.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textReq.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textReq.setForeground(new java.awt.Color(0, 0, 0));
         textReq.setRows(5);
         jScrollPane1.setViewportView(textReq);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 201, 370, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 201, 380, 120));
 
-        botonAgregar.setBackground(new java.awt.Color(0, 153, 0));
+        botonAgregar.setBackground(new java.awt.Color(0, 204, 0));
         botonAgregar.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
         botonAgregar.setText("Agregar");
@@ -219,8 +225,9 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         });
         jPanel1.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 630, -1, -1));
 
-        jLabelFondo.setBackground(new java.awt.Color(74, 75, 80));
-        jLabelFondo.setForeground(new java.awt.Color(74, 75, 80));
+        jLabelFondo.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelFondo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabelFondo.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 690));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 690));

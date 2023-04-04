@@ -46,6 +46,7 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
         tablaAreas.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                if(tablaAreas.getSelectedRow() == -1) return;
                 textAreaSeleccionada.setText(tablaAreas.getValueAt(tablaAreas.getSelectedRow(), 0).toString());
                 nombreAntiguo = textAreaSeleccionada.getText().trim();
             }
@@ -71,11 +72,11 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
         tabla.setFillsViewportHeight(true);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(30);
-        tabla.setFont(new Font("Arial", Font.BOLD, 28));
-        tabla.setBackground(new Color(74, 74, 80));
-        tabla.setForeground(Color.WHITE);
+        tabla.setFont(new Font("Arial", Font.BOLD, 20));
+        tabla.setBackground(Color.WHITE);
+        tabla.setForeground(Color.BLACK);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
+        tabla.getTableHeader().setBackground(new Color(37, 150, 190));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 32));
 
         String consulta = "SELECT nombre_area FROM areas";
@@ -123,17 +124,18 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
         botonAgregar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(245, 241, 216));
         setLayout(new java.awt.GridLayout(1, 1));
 
         jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
-        tablePanel.setBackground(new java.awt.Color(74, 75, 80));
+        tablePanel.setBackground(new java.awt.Color(245, 241, 216));
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 548, Short.MAX_VALUE)
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,31 +144,35 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
 
         jPanel1.add(tablePanel);
 
-        infoPanel.setBackground(new java.awt.Color(74, 75, 80));
+        infoPanel.setBackground(new java.awt.Color(245, 241, 216));
         infoPanel.setLayout(new java.awt.GridLayout(4, 2, 100, 10));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Área seleccionada");
         infoPanel.add(jLabel1);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nueva Área");
         infoPanel.add(jLabel2);
 
+        textAreaSeleccionada.setBackground(new java.awt.Color(255, 255, 255));
         textAreaSeleccionada.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        textAreaSeleccionada.setForeground(new java.awt.Color(0, 0, 0));
         textAreaSeleccionada.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         infoPanel.add(textAreaSeleccionada);
 
+        textNuevaArea.setBackground(new java.awt.Color(255, 255, 255));
         textNuevaArea.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        textNuevaArea.setForeground(new java.awt.Color(0, 0, 0));
         textNuevaArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         infoPanel.add(textNuevaArea);
 
-        botonActualizarArea.setBackground(new java.awt.Color(51, 51, 255));
+        botonActualizarArea.setBackground(new java.awt.Color(0, 102, 255));
         botonActualizarArea.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         botonActualizarArea.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizarArea.setText("Actualizar");
@@ -188,7 +194,7 @@ public class AgregarAreasPanel extends javax.swing.JPanel {
         });
         infoPanel.add(botonAgregar);
 
-        botonEliminar.setBackground(new java.awt.Color(255, 0, 0));
+        botonEliminar.setBackground(new java.awt.Color(204, 0, 0));
         botonEliminar.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         botonEliminar.setText("Eliminar");

@@ -42,6 +42,7 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         comboBoxRol.addItem("MainAdmin");
         comboBoxRol.addItem("Admin");
         comboBoxRol.addItem("Usuario");
+        comboBoxRol.setEnabled(false);
 
         tablaUsuarios = verTablaUsuarios();
         tablePanel.setLayout(new BorderLayout());
@@ -54,6 +55,9 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         tablaUsuarios.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                if(tablaUsuarios.getSelectedRow() == -1) return;
+                
+                comboBoxRol.setEnabled(true);
                 textUsername.setText(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1).toString());
                 rolAntiguo = tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 4).toString();
                 comboBoxRol.setSelectedItem(rolAntiguo);
@@ -143,10 +147,10 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setRowHeight(50);
         tabla.setFont(new Font("Arial", Font.BOLD, 14));
-        tabla.setBackground(new Color(74, 74, 80));
-        tabla.setForeground(Color.WHITE);
+        tabla.setBackground(Color.WHITE);
+        tabla.setForeground(Color.BLACK);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
+        tabla.getTableHeader().setBackground(new Color(37, 150, 190));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 16));
 
         String consulta = "SELECT CONCAT(nombres, ' ', apellidos) AS nombre, username, telefono, correo, rol "
@@ -197,50 +201,53 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         botonActualizarRol = new javax.swing.JButton();
         botonEliminarUsuario = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridLayout(2, 1));
+        setBackground(new java.awt.Color(245, 241, 216));
+        setLayout(new java.awt.GridLayout(2, 1, 0, 20));
 
-        tablePanel.setBackground(new java.awt.Color(74, 75, 80));
+        tablePanel.setBackground(new java.awt.Color(245, 241, 216));
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 177, Short.MAX_VALUE)
         );
 
         add(tablePanel);
 
-        infoPanel.setBackground(new java.awt.Color(74, 75, 80));
+        infoPanel.setBackground(new java.awt.Color(245, 241, 216));
         infoPanel.setLayout(new java.awt.GridLayout(3, 2, 20, 10));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Usuario seleccionado:");
         infoPanel.add(jLabel1);
 
         textUsername.setEditable(false);
-        textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textUsername.setBackground(new java.awt.Color(255, 255, 255));
+        textUsername.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textUsername.setForeground(new java.awt.Color(0, 0, 0));
         infoPanel.add(textUsername);
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Rol:");
         infoPanel.add(jLabel2);
 
         comboBoxRol.setBackground(new java.awt.Color(255, 255, 255));
-        comboBoxRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comboBoxRol.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         comboBoxRol.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         infoPanel.add(comboBoxRol);
 
         botonActualizarRol.setBackground(new java.awt.Color(0, 102, 255));
-        botonActualizarRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonActualizarRol.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonActualizarRol.setForeground(new java.awt.Color(255, 255, 255));
         botonActualizarRol.setText("Actualizar rol");
         botonActualizarRol.addActionListener(new java.awt.event.ActionListener() {
@@ -250,8 +257,8 @@ public class VerUsuariosPanel extends javax.swing.JPanel {
         });
         infoPanel.add(botonActualizarRol);
 
-        botonEliminarUsuario.setBackground(new java.awt.Color(255, 0, 0));
-        botonEliminarUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonEliminarUsuario.setBackground(new java.awt.Color(204, 0, 0));
+        botonEliminarUsuario.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonEliminarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         botonEliminarUsuario.setText("Eliminar usuario");
         botonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {

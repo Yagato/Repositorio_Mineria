@@ -107,63 +107,75 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         setBackground(new java.awt.Color(247, 242, 216));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel1.setBackground(new java.awt.Color(245, 241, 216));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridLayout(6, 2, -100, 30));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
-        textNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textNombres.setBackground(new java.awt.Color(255, 255, 255));
+        textNombres.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        textNombres.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textNombres);
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
-        textApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textApellidos.setBackground(new java.awt.Color(255, 255, 255));
+        textApellidos.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        textApellidos.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textApellidos);
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
-        textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textUsername.setBackground(new java.awt.Color(255, 255, 255));
+        textUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        textUsername.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textUsername);
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        passwordField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        passwordField.setBackground(new java.awt.Color(255, 255, 255));
+        passwordField.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(0, 0, 0));
         passwordField.setToolTipText("");
         jPanel1.add(passwordField);
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
-        textTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        textTelefono.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        textTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textTelefono);
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
-        textCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        textCorreo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        textCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textCorreo);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 420, 440));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 520, 450));
 
         botonRegistrarse.setBackground(new java.awt.Color(0, 204, 51));
-        botonRegistrarse.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        botonRegistrarse.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         botonRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistrarse.setText("Registrarse");
         botonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
@@ -171,16 +183,16 @@ public class AgregarUsuarios extends javax.swing.JFrame {
                 botonRegistrarseActionPerformed(evt);
             }
         });
-        getContentPane().add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
+        getContentPane().add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, 410, 40));
 
-        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel2.setBackground(new java.awt.Color(245, 241, 216));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("TODOS LOS CAMPOS SON OBLIGATORIOS");
         jPanel2.add(jLabel1);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

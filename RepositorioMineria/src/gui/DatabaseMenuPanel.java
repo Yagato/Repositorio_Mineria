@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.List;
@@ -27,9 +28,12 @@ import javax.swing.table.TableColumn;
 import database.Areas;
 import database.Conexion;
 import database.Consultas;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -41,6 +45,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
     private DefaultTableModel tableModelSimuladores = new DefaultTableModel(headerSimuladores, 0);
     private MainScreenFrame myFrame;
     private String rolUsuario;
+    private int hoveredRow = -1, hoveredColumn = -1;
 
     public DatabaseMenuPanel(MainScreenFrame frame, String rol) {
         initComponents();
@@ -60,22 +65,25 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         tablaSimuladores.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+                if(tablaSimuladores.getSelectedRow() == -1) return;
+                
                 if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
                     String nombreSimulador = tablaSimuladores.getValueAt(tablaSimuladores.getSelectedRow(), 1)
                             .toString();
                     new VerSimuladorFrame(myFrame, DatabaseMenuPanel.this, nombreSimulador, rolUsuario).setVisible(true);
+                    tablaSimuladores.clearSelection();
                     frame.setEnabled(false);
                 }
             }
         });
 
-        searchButton.setBackground(new Color(253, 193, 1));
+        searchButton.setBackground(new Color(48, 188, 99));
         searchButton.setFont(new Font("Arial", Font.BOLD, 20));
         searchButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
-        searchText.setBackground(new Color(153, 153, 153));
+        searchText.setBackground(Color.WHITE);
         searchText.setFont(new Font("Arial", Font.BOLD, 20));
-        searchText.setForeground(Color.WHITE);
+        searchText.setForeground(Color.BLACK);
         searchText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -107,7 +115,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         });
 
         refreshButton.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        refreshButton.setBackground(Color.GREEN);
+        refreshButton.setBackground(new Color(227, 148, 199));
 
         try {
             Image img = ImageIO.read(getClass().getResource("/imagenes/refresh.png"));
@@ -127,7 +135,7 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         List areas = new Consultas().getListAreas();
 
         comboBoxAreas.setFont(new Font("Arial", Font.BOLD, 20));
-        comboBoxAreas.setBackground(new Color(204, 204, 204));
+        comboBoxAreas.setBackground(Color.WHITE);
         comboBoxAreas.setForeground(Color.BLACK);
         comboBoxAreas.removeAllItems();
         comboBoxAreas.addItem("-");
@@ -159,19 +167,26 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
                         tableColumn.getPreferredWidth()));
                 return component;
             }
+            @Override
+            public Dimension getPreferredScrollableViewportSize() {
+                return new Dimension(super.getPreferredSize().width,
+                    getRowHeight() * getRowCount());
+            }
         };
+        
         TablaImagen imgRenderer = new TablaImagen();
         imgRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tabla.setBorder(new LineBorder(Color.GRAY, 1));
         tabla.setDefaultRenderer(Object.class, imgRenderer);
-        tabla.setRowHeight(60);
+        tabla.setRowHeight(80);
         tabla.setDefaultEditor(Object.class, null);
         tabla.setFillsViewportHeight(true);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.setFont(new Font("Arial", Font.BOLD, 16));
-        tabla.setBackground(new Color(74, 74, 80));
-        tabla.setForeground(Color.WHITE);
+        tabla.setBackground(Color.WHITE);
+        tabla.setForeground(Color.BLACK);
         tabla.getTableHeader().setOpaque(false);
-        tabla.getTableHeader().setBackground(new Color(114, 137, 218));
+        tabla.getTableHeader().setBackground(new Color(37, 150, 190));
         tabla.getTableHeader().setFont(new Font("Arial", Font.BOLD, 18));
 
         return tabla;
@@ -338,17 +353,19 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
         comboBoxAreas = new javax.swing.JComboBox<>();
         refreshButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         tablaSimuladores = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(74, 75, 80));
+        setBackground(new java.awt.Color(245, 241, 216));
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(750, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        topBarPanel.setBackground(new java.awt.Color(74, 75, 80));
+        topBarPanel.setBackground(new java.awt.Color(245, 241, 216));
 
         searchButton.setText("Buscar");
+
+        searchText.setBackground(new java.awt.Color(255, 255, 255));
+        searchText.setForeground(new java.awt.Color(0, 0, 0));
 
         comboBoxAreas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -380,7 +397,9 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
 
         add(topBarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
 
-        tablePanel.setBackground(new java.awt.Color(74, 75, 80));
+        tablePanel.setBackground(new java.awt.Color(245, 241, 216));
+        tablePanel.setPreferredSize(new java.awt.Dimension(750, 280));
+        tablePanel.setLayout(new java.awt.GridLayout());
 
         tablaSimuladores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -393,31 +412,14 @@ public class DatabaseMenuPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaSimuladores);
+        tablePanel.add(tablaSimuladores);
 
-        javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
-        tablePanel.setLayout(tablePanelLayout);
-        tablePanelLayout.setHorizontalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        tablePanelLayout.setVerticalGroup(
-            tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 750, 540));
+        add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 750, 560));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxAreas;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchText;

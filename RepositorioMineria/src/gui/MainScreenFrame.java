@@ -26,6 +26,7 @@ public class MainScreenFrame extends javax.swing.JFrame {
     private String rolUsuario = "";
 
     public MainScreenFrame(String idUser, String user, String rol) {
+        super("Repositorio de Minería");
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -135,7 +136,6 @@ public class MainScreenFrame extends javax.swing.JFrame {
                     })
                     .build();
         }
-
     }
 
     private void showBaseDeDatos() {
@@ -217,10 +217,11 @@ public class MainScreenFrame extends javax.swing.JFrame {
         masterPanel.setBackground(new java.awt.Color(74, 75, 80));
         masterPanel.setLayout(new java.awt.BorderLayout());
 
-        openMenuPanel.setBackground(new java.awt.Color(74, 75, 80));
+        openMenuPanel.setBackground(new java.awt.Color(245, 241, 216));
 
-        btnMenu.setBackground(new java.awt.Color(102, 102, 102));
-        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setBackground(new java.awt.Color(208, 184, 47));
+        btnMenu.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Menu");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,19 +236,19 @@ public class MainScreenFrame extends javax.swing.JFrame {
             .addGroup(openMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMenu)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         openMenuPanelLayout.setVerticalGroup(
             openMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(openMenuPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnMenu)
-                .addContainerGap(676, Short.MAX_VALUE))
+                .addContainerGap(669, Short.MAX_VALUE))
         );
 
         masterPanel.add(openMenuPanel, java.awt.BorderLayout.LINE_START);
 
-        screensPanel.setBackground(new java.awt.Color(74, 75, 80));
+        screensPanel.setBackground(new java.awt.Color(245, 241, 216));
         screensPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         screensPanel.setLayout(new java.awt.GridLayout(1, 1));
         masterPanel.add(screensPanel, java.awt.BorderLayout.CENTER);

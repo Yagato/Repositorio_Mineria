@@ -109,26 +109,29 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         textRol = new javax.swing.JTextField();
         botonBorrar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(245, 241, 216));
         setPreferredSize(new java.awt.Dimension(750, 500));
         setLayout(new java.awt.GridLayout(1, 1));
 
-        jPanel2.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel2.setBackground(new java.awt.Color(245, 241, 216));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(74, 75, 80));
+        jPanel1.setBackground(new java.awt.Color(245, 241, 216));
         jPanel1.setForeground(new java.awt.Color(240, 240, 240));
         jPanel1.setLayout(new java.awt.GridLayout(7, 3, 10, 30));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
-        textNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textNombres.setBackground(new java.awt.Color(255, 255, 255));
+        textNombres.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textNombres.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textNombres);
 
-        btnActualizarNombres.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarNombres.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarNombres.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarNombres.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarNombres.setText("Actualizar");
         btnActualizarNombres.setPreferredSize(new java.awt.Dimension(20, 22));
@@ -140,16 +143,18 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         jPanel1.add(btnActualizarNombres);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
-        textApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textApellidos.setBackground(new java.awt.Color(255, 255, 255));
+        textApellidos.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textApellidos.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textApellidos);
 
-        btnActualizarApellidos.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarApellidos.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarApellidos.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarApellidos.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarApellidos.setText("Actualizar");
         btnActualizarApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -160,16 +165,18 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         jPanel1.add(btnActualizarApellidos);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
-        textUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textUsername.setBackground(new java.awt.Color(255, 255, 255));
+        textUsername.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textUsername.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textUsername);
 
-        btnActualizarUsername.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarUsername.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarUsername.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarUsername.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarUsername.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarUsername.setText("Actualizar");
         btnActualizarUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -179,16 +186,18 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnActualizarUsername);
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        passwordField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        passwordField.setBackground(new java.awt.Color(255, 255, 255));
+        passwordField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(passwordField);
 
-        btnActualizarPassword.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarPassword.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarPassword.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarPassword.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarPassword.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarPassword.setText("Actualizar");
         btnActualizarPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -198,16 +207,18 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnActualizarPassword);
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
-        textTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        textTelefono.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textTelefono);
 
-        btnActualizarTelefono.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarTelefono.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarTelefono.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarTelefono.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarTelefono.setText("Actualizar");
         btnActualizarTelefono.addActionListener(new java.awt.event.ActionListener() {
@@ -217,16 +228,18 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnActualizarTelefono);
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
-        textCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        textCorreo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        textCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textCorreo);
 
-        btnActualizarCorreo.setBackground(new java.awt.Color(0, 0, 204));
-        btnActualizarCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarCorreo.setBackground(new java.awt.Color(0, 102, 255));
+        btnActualizarCorreo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btnActualizarCorreo.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarCorreo.setText("Actualizar");
         btnActualizarCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -236,22 +249,22 @@ public class DatosPersonalesPanel extends javax.swing.JPanel {
         });
         jPanel1.add(btnActualizarCorreo);
 
-        jLabel8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Rol:");
         jPanel1.add(jLabel8);
 
         textRol.setEditable(false);
         textRol.setBackground(new java.awt.Color(0, 0, 0));
-        textRol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        textRol.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         textRol.setForeground(new java.awt.Color(255, 255, 255));
         textRol.setToolTipText("Este campo no es editable");
         jPanel1.add(textRol);
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 740, 560));
 
-        botonBorrar.setBackground(new java.awt.Color(255, 0, 0));
-        botonBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonBorrar.setBackground(new java.awt.Color(204, 0, 0));
+        botonBorrar.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonBorrar.setForeground(new java.awt.Color(255, 255, 255));
         botonBorrar.setText("Borrar cuenta");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {

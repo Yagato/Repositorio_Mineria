@@ -81,8 +81,8 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonCrearCuenta.setBackground(new java.awt.Color(0, 255, 0));
-        botonCrearCuenta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botonCrearCuenta.setBackground(new java.awt.Color(0, 204, 0));
+        botonCrearCuenta.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         botonCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         botonCrearCuenta.setText("Crear Cuenta");
         botonCrearCuenta.setMaximumSize(new java.awt.Dimension(800, 50));
@@ -98,15 +98,16 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         getContentPane().add(jLabelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 250, 250));
 
         jLabelUser.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabelUser.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUser.setForeground(new java.awt.Color(0, 0, 0));
         jLabelUser.setText("Usuario :");
-        getContentPane().add(jLabelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
+        getContentPane().add(jLabelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 361, -1, 40));
 
         jLabelPass.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabelPass.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPass.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPass.setText("Contraseña :");
-        getContentPane().add(jLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+        getContentPane().add(jLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 411, -1, 40));
 
+        jTextFieldUser.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldUser.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jTextFieldUser.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldUser.addActionListener(new java.awt.event.ActionListener() {
@@ -116,12 +117,13 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 200, 30));
 
+        jPassword.setBackground(new java.awt.Color(255, 255, 255));
         jPassword.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jPassword.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 200, 30));
 
         jButtonSesion.setBackground(new java.awt.Color(0, 102, 255));
-        jButtonSesion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonSesion.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButtonSesion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSesion.setText("Iniciar Sesión");
         jButtonSesion.setMaximumSize(new java.awt.Dimension(800, 50));
@@ -133,13 +135,14 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, -1, -1));
 
-        jLabelName.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabelName.setForeground(new java.awt.Color(51, 102, 255));
-        jLabelName.setText("Repositorio Herramientas de Mineria");
-        getContentPane().add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 430, 50));
+        jLabelName.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
+        jLabelName.setForeground(new java.awt.Color(0, 51, 102));
+        jLabelName.setText("Repositorio Herramientas de Minería");
+        getContentPane().add(jLabelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 720, 50));
 
+        jLabelFondo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos2.jpg"))); // NOI18N
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos_ver2.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
         pack();
