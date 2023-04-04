@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @author Lenovo
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class DatabaseMenuPanel extends javax.swing.JPanel {
 

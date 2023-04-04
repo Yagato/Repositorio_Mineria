@@ -50,7 +50,6 @@ import javax.swing.table.TableColumn;
 /**
  *
  * @author Carlos Alberto Gonzalez Guerrero
- * @author Ocampo Mora
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 

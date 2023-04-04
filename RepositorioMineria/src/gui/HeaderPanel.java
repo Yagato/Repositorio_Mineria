@@ -25,7 +25,7 @@ public class HeaderPanel extends javax.swing.JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image image = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/casco.png"));
+        Image image = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/logov3.png"));
         
         Image scaledImage = image.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
         
@@ -46,7 +46,7 @@ public class HeaderPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 102, 255));
+        setBackground(new java.awt.Color(245, 241, 216));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N

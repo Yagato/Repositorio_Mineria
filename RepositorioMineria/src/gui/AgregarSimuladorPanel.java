@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Lenovo
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class AgregarSimuladorPanel extends javax.swing.JPanel {
 
@@ -109,7 +109,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 0, 3));
+        jLabel9.setForeground(new java.awt.Color(0, 102, 255));
         jLabel9.setText("Fecha de consulta:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, -1, -1));
 
@@ -126,8 +126,8 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         jPanel1.add(comboTutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel10.setText("Los campos en color rojo son obligatorios");
+        jLabel10.setForeground(new java.awt.Color(0, 102, 255));
+        jLabel10.setText("Los campos en color azul son obligatorios");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
@@ -163,7 +163,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setText("Nombre del simulador:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
@@ -173,7 +173,7 @@ public class AgregarSimuladorPanel extends javax.swing.JPanel {
         jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 370, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(0, 102, 255));
         jLabel2.setText("Area:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 

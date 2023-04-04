@@ -34,7 +34,6 @@ import repositoriomineria.RepositorioMineria;
 /**
  *
  * @author Carlos Alberto Gonzalez Guerrero
- * @author Ocampo Mora
  */
 public class AgregarSimulador extends javax.swing.JFrame {
    

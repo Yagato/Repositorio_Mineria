@@ -188,7 +188,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(245, 241, 216));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setText("TODOS LOS CAMPOS SON OBLIGATORIOS");
         jPanel2.add(jLabel1);
 

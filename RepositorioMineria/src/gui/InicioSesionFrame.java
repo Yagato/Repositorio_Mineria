@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ocampo Mora
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class InicioSesionFrame extends javax.swing.JFrame {
 
@@ -94,8 +94,9 @@ public class InicioSesionFrame extends javax.swing.JFrame {
         });
         getContentPane().add(botonCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
 
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/casco.png"))); // NOI18N
-        getContentPane().add(jLabelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 250, 250));
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logov2.png"))); // NOI18N
+        jLabelIcon.setPreferredSize(new java.awt.Dimension(200, 288));
+        getContentPane().add(jLabelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 290, 290));
 
         jLabelUser.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabelUser.setForeground(new java.awt.Color(0, 0, 0));

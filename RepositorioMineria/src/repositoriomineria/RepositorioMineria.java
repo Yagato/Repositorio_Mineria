@@ -6,7 +6,6 @@ import gui.MainScreenFrame;
 /**
  *
  * @author Carlos Alberto Gonzalez Guerrero
- * @author Ocampo Mora
  */
 public class RepositorioMineria {
 

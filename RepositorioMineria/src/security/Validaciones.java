@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author YGT
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class Validaciones {
 

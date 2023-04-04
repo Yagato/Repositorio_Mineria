@@ -22,7 +22,7 @@ import database.Conexion;
 
 /**
  *
- * @author Lenovo
+ * @author Carlos Alberto Gonzalez Guerrero
  */
 public class AgregarAreasPanel extends javax.swing.JPanel {
 

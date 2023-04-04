@@ -37,7 +37,6 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 /**
  *
  * @author Carlos Alberto Gonzalez Guerrero
- * @author Ocampo Mora
  */
 public class VerSimuladorFrame extends javax.swing.JFrame {
     
