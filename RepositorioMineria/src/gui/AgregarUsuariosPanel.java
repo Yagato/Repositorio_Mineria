@@ -20,11 +20,11 @@ import javax.swing.event.DocumentListener;
  *
  * @author Carlos Alberto Gonzalez Guerrero
  */
-public class AgregarUsuarios extends javax.swing.JFrame {
+public class AgregarUsuariosPanel extends javax.swing.JFrame {
 
     private List<JTextField> list = new ArrayList<>();
     
-    public AgregarUsuarios() {
+    public AgregarUsuariosPanel() {
         super("Crear cuenta");
         initComponents();
         this.setLocationRelativeTo(null);
@@ -108,68 +108,49 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(245, 241, 216));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new java.awt.GridLayout(6, 2, -100, 30));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre(s):");
         jPanel1.add(jLabel2);
 
-        textNombres.setBackground(new java.awt.Color(255, 255, 255));
         textNombres.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textNombres.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textNombres);
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Apellido(s):");
         jPanel1.add(jLabel3);
 
-        textApellidos.setBackground(new java.awt.Color(255, 255, 255));
         textApellidos.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textApellidos.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textApellidos);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre de usuario:");
         jPanel1.add(jLabel4);
 
-        textUsername.setBackground(new java.awt.Color(255, 255, 255));
         textUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textUsername.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textUsername);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña:");
         jPanel1.add(jLabel5);
 
-        passwordField.setBackground(new java.awt.Color(255, 255, 255));
         passwordField.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        passwordField.setForeground(new java.awt.Color(0, 0, 0));
         passwordField.setToolTipText("");
         jPanel1.add(passwordField);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Teléfono celular:");
         jPanel1.add(jLabel6);
 
-        textTelefono.setBackground(new java.awt.Color(255, 255, 255));
         textTelefono.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textTelefono);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Correo electrónico:");
         jPanel1.add(jLabel7);
 
-        textCorreo.setBackground(new java.awt.Color(255, 255, 255));
         textCorreo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(textCorreo);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 520, 450));

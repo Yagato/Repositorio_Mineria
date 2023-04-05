@@ -24,7 +24,7 @@ public class Consultas {
 
         try {
             Connection cn = new Conexion().conectar();
-            PreparedStatement pstAreas = cn.prepareStatement("select nombre_area from areas");
+            PreparedStatement pstAreas = cn.prepareStatement("SELECT nombre_area FROM areas");
             ResultSet rs = pstAreas.executeQuery();
 
             while (rs.next()) {
@@ -46,7 +46,7 @@ public class Consultas {
 
         try {
             Connection cn = new Conexion().conectar();
-            PreparedStatement pstAreas = cn.prepareStatement("select nombre_area from areas");
+            PreparedStatement pstAreas = cn.prepareStatement("SELECT nombre_area FROM areas");
             ResultSet rs = pstAreas.executeQuery();
 
             while (rs.next()) {

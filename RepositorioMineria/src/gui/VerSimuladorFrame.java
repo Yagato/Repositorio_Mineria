@@ -274,7 +274,6 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         textLink = new javax.swing.JTextArea();
         labelLogo = new javax.swing.JLabel();
         botonImagen = new javax.swing.JButton();
-        textNombre = new javax.swing.JTextField();
         requisitosPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -302,6 +301,8 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         costoPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         textCosto = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -324,10 +325,8 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         jLabel7.setText("LINK");
         linkPanel.add(jLabel7);
 
-        textLink.setBackground(new java.awt.Color(255, 255, 255));
         textLink.setColumns(20);
         textLink.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        textLink.setForeground(new java.awt.Color(0, 0, 0));
         textLink.setRows(5);
         jScrollPane3.setViewportView(textLink);
 
@@ -347,12 +346,6 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         });
         jPanel1.add(botonImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 150, 40));
 
-        textNombre.setBackground(new java.awt.Color(255, 255, 255));
-        textNombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        textNombre.setForeground(new java.awt.Color(0, 102, 255));
-        textNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(textNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 300, 40));
-
         requisitosPanel.setBackground(new java.awt.Color(245, 241, 216));
         requisitosPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -362,10 +355,8 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         jLabel2.setText("REQUISITOS");
         requisitosPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 180, 30));
 
-        textRequerimientos.setBackground(new java.awt.Color(255, 255, 255));
         textRequerimientos.setColumns(20);
         textRequerimientos.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        textRequerimientos.setForeground(new java.awt.Color(0, 0, 0));
         textRequerimientos.setRows(5);
         jScrollPane1.setViewportView(textRequerimientos);
 
@@ -381,10 +372,8 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         jLabel5.setText("CARACTERISTICAS");
         caracteristicasPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
-        textCaracteristicas.setBackground(new java.awt.Color(255, 255, 255));
         textCaracteristicas.setColumns(20);
         textCaracteristicas.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        textCaracteristicas.setForeground(new java.awt.Color(0, 0, 0));
         textCaracteristicas.setRows(5);
         jScrollPane2.setViewportView(textCaracteristicas);
 
@@ -407,14 +396,12 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
 
         radioSi.setBackground(new java.awt.Color(245, 241, 216));
         radioSi.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        radioSi.setForeground(new java.awt.Color(0, 0, 0));
         radioSi.setText("Si");
         radioSi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel5.add(radioSi);
 
         radioNo.setBackground(new java.awt.Color(245, 241, 216));
         radioNo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        radioNo.setForeground(new java.awt.Color(0, 0, 0));
         radioNo.setText("No");
         radioNo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel5.add(radioNo);
@@ -436,33 +423,23 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(245, 241, 216));
         jPanel6.setLayout(new java.awt.GridLayout(3, 2));
 
-        comboBoxArea1.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxArea1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        comboBoxArea1.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(comboBoxArea1);
 
-        comboBoxArea2.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxArea2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        comboBoxArea2.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(comboBoxArea2);
 
-        comboBoxArea3.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxArea3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        comboBoxArea3.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(comboBoxArea3);
 
-        comboBoxArea4.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxArea4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        comboBoxArea4.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(comboBoxArea4);
 
-        comboBoxArea5.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxArea5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        comboBoxArea5.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxArea5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(comboBoxArea5);
 
@@ -505,12 +482,17 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
         jLabel4.setText("COSTO");
         costoPanel.add(jLabel4);
 
-        textCosto.setBackground(new java.awt.Color(255, 255, 255));
         textCosto.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        textCosto.setForeground(new java.awt.Color(0, 0, 0));
         costoPanel.add(textCosto);
 
         jPanel1.add(costoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 600, 420, 30));
+
+        textNombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        textNombre.setForeground(new java.awt.Color(0, 102, 255));
+        textNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jScrollPane4.setViewportView(textNombre);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -828,6 +810,7 @@ public class VerSimuladorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JPanel linkPanel;
     private javax.swing.JRadioButton radioNo;

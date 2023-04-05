@@ -202,7 +202,7 @@ public class InicioSesionFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSesionActionPerformed
 
     private void botonCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuentaActionPerformed
-        new AgregarUsuarios().setVisible(true);
+        new AgregarUsuariosPanel().setVisible(true);
         /*
         try {
             /*
@@ -214,7 +214,7 @@ public class InicioSesionFrame extends javax.swing.JFrame {
 
             //ip = Conexion.getHostIP(host);
             //ipHost = ip.getHostAddress();
-            new AgregarUsuarios().setVisible(true);
+            new AgregarUsuariosPanel().setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No se puede entablar conexión con el servidor.");
         }
